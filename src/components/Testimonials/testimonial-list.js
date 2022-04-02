@@ -11,7 +11,7 @@ import {
   Blockquote,
   Text,
   Avatar,
-} from "./ui"
+} from "../ui"
 
 function Testimonial(props) {
   return (

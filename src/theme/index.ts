@@ -1,5 +1,17 @@
-import { createGlobalTheme } from "@vanilla-extract/css"
-import { colors } from "./theme/colors"
+import { colors } from "./colors"
+
+export interface ThemeProps {
+  colors: Record<string, string>
+  space: Record<string, string>
+  fontSizes: Record<string, string>
+  fontWeights: Record<string, string>
+  fonts: Record<string, string>
+  lineHeights: Record<string, string>
+  sizes: Record<string, string>
+  letterSpacings: Record<string, string>
+  radii: Record<string, string>
+  shadows: Record<string, string>
+}
 
 const space = {
   0: "0",
@@ -17,7 +29,7 @@ Object.assign(
   Object.entries(space).reduce(
     (a, [key, val]) => ({
       ...a,
-      [-1 * key]: `-${val}`,
+      [-1 * parseInt(key)]: `-${val}`,
     }),
     {}
   )
@@ -84,7 +96,7 @@ const shadows = {
     "0px 4px 8px 0px #2E29330A, 0px 4px 24px 0px #2E293314, 0px 8px 24px 0px #473F4F29",
 }
 
-export const theme = createGlobalTheme(":root", {
+export const theme = {
   colors,
   space,
   fontSizes,
@@ -95,4 +107,4 @@ export const theme = createGlobalTheme(":root", {
   sizes,
   radii,
   shadows,
-})
+};

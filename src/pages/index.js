@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import Layout from "../components/Layout/layout"
+import Layout from "../components/Layout"
 import * as sections from "../components/Sections/sections"
 
 const Fallback = (props) => {
@@ -14,10 +14,10 @@ export default function Homepage(props) {
 
   return (
     <Layout {...homepage}>
-      {homepage.blocks.map((block, i) => {
+      {/* {homepage.blocks.map((block, i) => {
         const Component = sections[block.blocktype] || Fallback
         return <Component key={block.id} index={i} {...block} />
-      })}
+      })} */}
     </Layout>
   )
 }

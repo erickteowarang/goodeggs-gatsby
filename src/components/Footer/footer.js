@@ -17,8 +17,8 @@ import {
   Text,
   IconLink,
   VisuallyHidden,
-} from "./ui"
-import BrandLogo from "./brand-logo"
+} from "../ui"
+import BrandLogo from "../Brand/brand-logo"
 
 const socialMedia = {
   TWITTER: {

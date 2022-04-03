@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react"
 import { Menu, X } from "react-feather"
-import styled from 'styled-components'
+import styled from "styled-components"
+import BrandLogo from "../Brand/brand-logo"
+import Container, { ContainerProps } from "../Container"
+import Flex from "../Flex"
+import Spacing from "../Spacing"
 import {
-  Container,
-  Flex,
-  FlexList,
-  Space,
-  NavLink,
-  Button,
   InteractiveIcon,
-  Nudge,
   VisuallyHidden,
-} from "../ui"
+} from "../Utils"
 import { 
   media
 } from "../../theme/media"
-import BrandLogo from "../Brand/brand-logo"
+import NavLink from "./NavLink"
 
 const data = {
   navItems: [
@@ -57,7 +54,9 @@ const DesktopNavWrapper = styled(Container)`
   }
 `
 
-const MobileNavWrapper = styled(Container)`
+const MobileNavWrapper = styled(Container)<ContainerProps & {
+  isOpen?: boolean
+}>`
   display: block;
   position: relative;
   padding-top: ${({ theme }) => theme.space[3]};
@@ -91,12 +90,12 @@ const MobileNavLink = styled(NavLink)`
   padding-right: ${({ theme }) => theme.space[4]};
 `
 
-const MobileSVGColorWrapper = styled.span`
+const MobileSVGColorWrapper = styled.span<{ isOpen?: boolean}>`
   color: ${({ theme, isOpen }) => isOpen ? theme.colors.primary : theme.colors.background };
 `
 
 const Header = () => {
-  const { navItems, cta } = data
+  const { navItems } = data
   const [isOpen, setOpen] = useState(false)
 
   useEffect(() => {
@@ -110,26 +109,26 @@ const Header = () => {
   return (
     <header>
       <DesktopNavWrapper>
-        <Space size={2} />
+        <Spacing size={2} />
         <Flex variant="spaceBetween">
           <NavLink to="/">
             <VisuallyHidden>Home</VisuallyHidden>
             <BrandLogo />
           </NavLink>
           <nav>
-            <FlexList gap={4}>
+            <Flex list gap={4}>
               {navItems &&
                 navItems.map((navItem) => (
                   <li key={navItem.id}>
                     <NavLink to={navItem.href}>{navItem.text}</NavLink>
                   </li>
                 ))}
-            </FlexList>
+            </Flex>
           </nav>
         </Flex>
       </DesktopNavWrapper>
       <MobileNavWrapper isOpen={isOpen}>
-        <Space size={2} />
+        <Spacing size={2} />
         <Flex variant="spaceBetween">
           <MobileSVGColorWrapper>
             <NavLink to="/">
@@ -138,29 +137,20 @@ const Header = () => {
             </NavLink>
           </MobileSVGColorWrapper>
           <Flex>
-            <Space />
-            <div>
-              {cta && (
-                <Button to={cta.href} variant={isOpen ? "reversed" : "primary"}>
-                  {cta.text}
-                </Button>
-              )}
-            </div>
-            <Nudge right={3}>
-              <InteractiveIcon
-                title="Toggle menu"
-                onClick={() => setOpen(!isOpen)}
-              >
-                {isOpen ? <X /> : <Menu />}
-              </InteractiveIcon>
-            </Nudge>
+            <Spacing />
+            <InteractiveIcon
+              title="Toggle menu"
+              onClick={() => setOpen(!isOpen)}
+            >
+              {isOpen ? <X /> : <Menu />}
+            </InteractiveIcon>
           </Flex>
         </Flex>
       </MobileNavWrapper>
       {isOpen && (
         <MobileNavOverlay>
           <nav>
-            <FlexList responsive variant="stretch">
+            <Flex list responsive alignItems="stretch">
               {navItems?.map((navItem) => (
                 <li key={navItem.id}>
                   <MobileNavLink to={navItem.href}>
@@ -168,7 +158,7 @@ const Header = () => {
                   </MobileNavLink>
                 </li>
               ))}
-            </FlexList>
+            </Flex>
           </nav>
         </MobileNavOverlay>
       )}

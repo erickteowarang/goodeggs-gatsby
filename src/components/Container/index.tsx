@@ -1,14 +1,20 @@
 import React from "react"
-import styled, { DefaultTheme } from "styled-components"
+import styled, { css, DefaultTheme } from "styled-components"
+import { 
+  media
+} from "../../theme/media"
 
-type ContainerProps = {
+type ContainerVariants = "wide" | "narrow" | "tight" | "full"
+
+export type ContainerProps = {
   children: React.ReactNode;
-  variant?: "wide" | "narrow" | "tight" | "full"
+  className?: string;
+  variant?: ContainerVariants
 }
 
 const getMaxWidth = (
-  variant: Pick<ContainerProps, "variant">,
-  theme: DefaultTheme
+  theme: DefaultTheme,
+  variant?: ContainerVariants,
 ) => {
   if (variant) {
     switch (variant) {
@@ -27,18 +33,35 @@ const getMaxWidth = (
 }
 
 const StyledContainer = styled.div<ContainerProps>`
-  max-width: ${({ theme, variant }) => getMaxWidth(variant, theme)};
+  max-width: ${({ theme, variant }) => getMaxWidth(theme, variant)};
   margin-left: auto;
   margin-right: auto;
-  padding-left: ${({ theme }) => theme.space[4]};
-  padding-right: ${({ theme }) => theme.space[4]};
+
+  ${({ variant }) => {
+    if (variant === "full") {
+      return css`
+        padding: ${({ theme }) => theme.space[4]} 0;
+
+        @media ${media.medium} {
+          padding: ${({ theme }) => theme.space[4]} ${({ theme }) => theme.space[5]};
+        }
+      `
+    } else {
+      return css`
+        padding-left: ${({ theme }) => theme.space[4]};
+        padding-right: ${({ theme }) => theme.space[4]};
+      `
+    }
+  }}
+  
 ` 
 
 const Container = ({ 
   children,
-  size
+  className,
+  variant
 }: ContainerProps) => (
-  <StyledContainer size={size}>
+  <StyledContainer variant={variant} className={className}>
     {children}
   </StyledContainer>
 )

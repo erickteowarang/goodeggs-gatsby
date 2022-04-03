@@ -1,6 +1,6 @@
 import { colors } from "./colors"
 
-export interface ThemeProps {
+export interface CustomThemeProps {
   colors: Record<string, string>
   space: Record<string, string>
   fontSizes: Record<string, string>

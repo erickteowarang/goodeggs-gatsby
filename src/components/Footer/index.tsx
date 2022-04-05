@@ -1,13 +1,5 @@
 import * as React from "react"
 import {
-  Twitter,
-  Twitch,
-  Instagram,
-  Facebook,
-  Youtube,
-  GitHub,
-} from "react-feather"
-import {
   Container,
   Flex,
   FlexList,
@@ -18,54 +10,6 @@ import {
   IconLink,
   VisuallyHidden,
 } from "../ui"
-import { Logo } from "../Svg"
-
-const socialMedia = {
-  TWITTER: {
-    url: "https://twitter.com",
-    name: "Twitter",
-    icon: <Twitter />,
-  },
-  INSTAGRAM: {
-    url: "https://instagram.com",
-    name: "Instagram",
-    icon: <Instagram />,
-  },
-  FACEBOOK: {
-    url: "https://facebook.com",
-    name: "Facebook",
-    icon: <Facebook />,
-  },
-  YOUTUBE: {
-    url: "https://youtube.com",
-    name: "YouTube",
-    icon: <Youtube />,
-  },
-  GITHUB: {
-    url: "https://github.com",
-    name: "GitHub",
-    icon: <GitHub />,
-  },
-  TWITCH: {
-    url: "https://twitch.tv",
-    name: "Twitch",
-    icon: <Twitch />,
-  },
-}
-
-const getSocialURL = ({ service, username }) => {
-  const domain = socialMedia[service]?.url
-  if (!domain) return false
-  return `${domain}/${username}`
-}
-
-const getSocialIcon = ({ service }) => {
-  return socialMedia[service]?.icon
-}
-
-const getSocialName = ({ service }) => {
-  return socialMedia[service]?.name
-}
 
 const data = {
   links: [
@@ -131,35 +75,12 @@ const data = {
   copyright: "© 2022 Gatsby Inc. All rights reserved",
 }
 
-export default function Footer(props) {
+const Footer = (props) => {
   const { links, meta, socialLinks, copyright } = data
 
   return (
     <Box as="footer" paddingY={4}>
       <Container>
-        <Flex variant="start" responsive>
-          <NavLink to="/">
-            <VisuallyHidden>Home</VisuallyHidden>
-            <Logo />
-          </NavLink>
-          <Space />
-          <FlexList>
-            {socialLinks &&
-              socialLinks.map((link) => {
-                const url = getSocialURL(link)
-                return (
-                  url && (
-                    <li key={link.id}>
-                      <IconLink to={url}>
-                        <VisuallyHidden>{getSocialName(link)}</VisuallyHidden>
-                        {getSocialIcon(link)}
-                      </IconLink>
-                    </li>
-                  )
-                )
-              })}
-          </FlexList>
-        </Flex>
         <Space size={5} />
         <Flex variant="start" responsive>
           <FlexList variant="start" responsive>
@@ -188,3 +109,5 @@ export default function Footer(props) {
     </Box>
   )
 }
+
+export default Footer;

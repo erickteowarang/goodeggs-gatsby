@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Menu, X } from "react-feather"
 import styled from "styled-components"
-import BrandLogo from "../Brand/brand-logo"
+import { Logo } from "../Svg"
 import Container, { ContainerProps } from "../Container"
 import Flex from "../Flex"
 import Spacing from "../Spacing"
@@ -113,7 +113,7 @@ const Header = () => {
         <Flex variant="spaceBetween">
           <NavLink to="/">
             <VisuallyHidden>Home</VisuallyHidden>
-            <BrandLogo />
+            <Logo />
           </NavLink>
           <nav>
             <Flex list gap={4}>
@@ -133,7 +133,7 @@ const Header = () => {
           <MobileSVGColorWrapper>
             <NavLink to="/">
               <VisuallyHidden>Home</VisuallyHidden>
-              <BrandLogo />
+              <Logo />
             </NavLink>
           </MobileSVGColorWrapper>
           <Flex>

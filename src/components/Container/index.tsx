@@ -7,9 +7,10 @@ import {
 type ContainerVariants = "wide" | "narrow" | "tight" | "full"
 
 export type ContainerProps = {
-  children: React.ReactNode;
-  className?: string;
+  children: React.ReactNode
+  className?: string
   variant?: ContainerVariants
+  customWidth?: string
 }
 
 const getMaxWidth = (
@@ -33,7 +34,9 @@ const getMaxWidth = (
 }
 
 const StyledContainer = styled.div<ContainerProps>`
-  max-width: ${({ theme, variant }) => getMaxWidth(theme, variant)};
+  max-width: ${({ theme, variant, customWidth }) => 
+    customWidth || getMaxWidth(theme, variant)
+  };
   margin-left: auto;
   margin-right: auto;
 
@@ -59,9 +62,10 @@ const StyledContainer = styled.div<ContainerProps>`
 const Container = ({ 
   children,
   className,
-  variant
+  variant,
+  customWidth,
 }: ContainerProps) => (
-  <StyledContainer variant={variant} className={className}>
+  <StyledContainer variant={variant} className={className} customWidth={customWidth}>
     {children}
   </StyledContainer>
 )

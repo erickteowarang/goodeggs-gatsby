@@ -18,9 +18,9 @@ const space = {
   1: "4px",
   2: "8px",
   3: "16px",
-  4: "32px",
-  5: "64px",
-  6: "128px",
+  4: "30px",
+  5: "60px",
+  6: "120px",
 }
 
 // add negative margins
@@ -74,7 +74,7 @@ const letterSpacings = {
 }
 
 const sizes = {
-  container: "1280px",
+  container: "1310px",
   narrow: "1024px",
   wide: "1440px",
   tight: "848px",

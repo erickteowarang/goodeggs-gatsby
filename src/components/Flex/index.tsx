@@ -22,7 +22,7 @@ type FlexProps = {
   children: ReactNode;
 }
 
-const getFlexVariant = (variant: FlexVariants) => {
+const getFlexVariant = (variant?: FlexVariants) => {
   switch (variant) {
     case "columnStart":
       return css`
@@ -75,14 +75,14 @@ const getItemAlignment = (option?: AlignItemsOptions) => {
   }
 }
 
-const getSpacing = (gap: number, gutter?: number) => {
+const getSpacing = (gap?: number, gutter?: number) => {
   if (gutter) {
     return css`
       gap: ${({ theme }) => theme.space[0]};
       margin-left: calc(${({ theme }) => theme.space[gutter]} * -1);
       margin-right: calc(${({ theme }) => theme.space[gutter]} * -1);
     `
-  } else {
+  } else if (gap) {
     return css`
       gap: ${({ theme }) => theme.space[gap]};
     `

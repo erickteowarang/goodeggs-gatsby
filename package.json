@@ -24,6 +24,7 @@
     "gatsby-theme-datocms-blog": "1.0.0-1",
     "gatsby-theme-wordpress-blog": "1.0.0-1",
     "gatsby-transformer-sharp": "^4.4.0",
+    "html-react-parser": "^1.4.10",
     "is-absolute-url": "^4.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

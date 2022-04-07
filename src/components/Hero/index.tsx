@@ -1,8 +1,11 @@
 import * as React from "react"
+import styled from "styled-components"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage, IGatsbyImageData, ImageDataLike } from "gatsby-plugin-image"
+import parse, { domToReact, HTMLReactParserOptions, Element } from "html-react-parser";
 
 import Box from "../Box"
+import Button from "../Button"
 import Container from "../Container"
 import Flex from "../Flex"
 import Section from "../Section"
@@ -24,38 +27,54 @@ type HeroProps = {
   }
 }
 
+const HeroContent = styled(Text)`
+  margin: ${({ theme }) => theme.space[4]} 0;
+  font-size: 20px;
+  font-weight: lighter;
+`
+
+const options: HTMLReactParserOptions = {
+  replace: domNode => {
+    if (domNode instanceof Element && domNode.name === "p") {
+      return <>{domToReact(domNode.children)}</>;
+    }
+  }
+};
+
 const Hero = ({
   heading,
   text,
   cta,
   image
-}: HeroProps) => {
-  return (
-    <Section>
-      <Container customWidth="1250px">
-        <Flex gap={5} responsive>
-          <Box width="55%">
-            <Heading as="h1" isLarge>
-              {heading}
-            </Heading>
-            <Text>{text}</Text>
-            {cta && (
-              <a href={cta.url}>{cta.title}</a>
-            )}
-          </Box>
-          <Box width="45%">
-            {image && (
-              <GatsbyImage
-                alt={image.alt}
-                image={getImage(image.gatsbyImageData)!}
-              />
-            )}
-          </Box>
-        </Flex>
-      </Container>
-    </Section>
-  )
-}
+}: HeroProps) => (
+  <Section>
+    <Container customWidth="1250px">
+      <Flex variant="spaceBetween" responsive>
+        <Box width="55%">
+          <Heading 
+            as="h1" 
+            isLarge
+            isHighlighted
+          >
+            {parse(heading, options)}
+          </Heading>
+          <HeroContent>{text}</HeroContent>
+          {cta && (
+            <Button url={cta.url} isLink>{cta.title}</Button>
+          )}
+        </Box>
+        <Box width="40%">
+          {image && (
+            <GatsbyImage
+              alt={image.alt}
+              image={getImage(image.gatsbyImageData)!}
+            />
+          )}
+        </Box>
+      </Flex>
+    </Container>
+  </Section>
+)
 
 export default Hero;
 

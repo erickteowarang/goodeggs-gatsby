@@ -44,6 +44,7 @@ const fontSizes = {
   5: "32px",
   6: "48px",
   7: "64px",
+  8: "78px"
 }
 
 const fontWeights = {

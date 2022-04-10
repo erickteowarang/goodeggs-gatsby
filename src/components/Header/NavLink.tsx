@@ -5,6 +5,7 @@ import Link, { LinkProps } from "../Link"
 const StyledNavLink = styled(Link)`
   color: inherit;
   text-decoration: none;
+  text-transform: uppercase;
   transition-property: color;
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;

@@ -1,7 +1,7 @@
 import * as React from "react"
-import Layout from "../components/Layout"
+import Layout from "../components/organisms/Layout"
 import { Container, Box, Heading, Text, Link, Flex } from "../components/ui"
-import ChevronRight from "../components/Utils/chevron-right"
+import ChevronRight from "../components/utils/chevron-right"
 
 export default function NotFound() {
   return (

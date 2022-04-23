@@ -4,12 +4,12 @@ import { graphql } from "gatsby"
 import { GatsbyImage, getImage, IGatsbyImageData, ImageDataLike } from "gatsby-plugin-image"
 import parse, { domToReact, HTMLReactParserOptions, Element } from "html-react-parser";
 
-import Box from "../Box"
-import Button from "../Button"
-import Container from "../Container"
-import Flex from "../Flex"
-import Section from "../Section"
-import { Text, Heading } from "../Typography"
+import Box from "../../atoms/Box"
+import Button from "../../atoms/Button"
+import Container from "../../atoms/Container"
+import Flex from "../../atoms/Flex"
+import Section from "../../atoms/Section"
+import { Text, Heading } from "../../atoms/Typography"
 
 type HeroProps = {
   id: string

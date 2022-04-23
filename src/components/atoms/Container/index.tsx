@@ -2,7 +2,7 @@ import React from "react"
 import styled, { css, DefaultTheme } from "styled-components"
 import { 
   media
-} from "../../theme/media"
+} from "../../../theme/media"
 
 type ContainerVariants = "wide" | "narrow" | "tight" | "full"
 

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react"
 import { Menu, X } from "react-feather"
 import styled from "styled-components"
-import { Logo } from "../Svg"
-import Container, { ContainerProps } from "../Container"
-import Flex from "../Flex"
-import Spacing from "../Spacing"
+import { Logo } from "../../atoms/Svg"
+import Container, { ContainerProps } from "../../atoms/Container"
+import Flex from "../../atoms/Flex"
+import Spacing from "../../atoms/Spacing"
 import {
   InteractiveIcon,
   VisuallyHidden,
-} from "../Utils"
+} from "../../utils"
 import { 
   media
-} from "../../theme/media"
+} from "../../../theme/media"
 import NavLink from "./NavLink"
 
 const data = {

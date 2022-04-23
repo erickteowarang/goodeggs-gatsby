@@ -9,7 +9,7 @@ import {
   Text,
   IconLink,
   VisuallyHidden,
-} from "../ui"
+} from "../../ui"
 
 const data = {
   links: [

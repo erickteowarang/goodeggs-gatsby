@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react"
 import styled, { css } from "styled-components"
-import { media } from "../../theme/media"
+import { media } from "../../../theme/media"
 
 type FlexVariants = "columnStart"
   | "column"

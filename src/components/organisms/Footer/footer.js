@@ -17,8 +17,8 @@ import {
   Text,
   IconLink,
   VisuallyHidden,
-} from "../ui"
-import { Logo } from "../Svg"
+} from "../../ui"
+import { Logo } from "../../atoms/Svg"
 
 const socialMedia = {
   TWITTER: {

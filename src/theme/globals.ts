@@ -1,4 +1,4 @@
-import { createGlobalStyle, withTheme } from 'styled-components'
+import { createGlobalStyle, withTheme } from 'styled-components';
 
 const Globals = createGlobalStyle`
   * {
@@ -59,6 +59,6 @@ const Globals = createGlobalStyle`
       visibility: hidden;
     }
   }
-`
+`;
 
 export default withTheme(Globals);

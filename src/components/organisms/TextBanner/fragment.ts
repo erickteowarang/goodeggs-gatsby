@@ -1,10 +1,10 @@
 module.exports = () => {
-  return `
+    return `
     text
     cta {
       target
       title
       url
     }
-  `
-}
+  `;
+};

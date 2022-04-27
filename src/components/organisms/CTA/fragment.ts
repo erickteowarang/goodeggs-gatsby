@@ -1,5 +1,5 @@
 module.exports = () => {
-  return `
+    return `
     id
     kicker
     heading
@@ -14,5 +14,5 @@ module.exports = () => {
       href
       text
     }
-  `
-}
+  `;
+};

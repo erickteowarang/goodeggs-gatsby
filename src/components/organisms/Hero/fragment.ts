@@ -1,5 +1,5 @@
 module.exports = () => {
-  return `
+    return `
     heading
     text
     image {
@@ -13,5 +13,5 @@ module.exports = () => {
       title
       url
     }
-  `
-}
+  `;
+};

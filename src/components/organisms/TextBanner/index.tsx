@@ -1,25 +1,22 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React from 'react';
+import styled from 'styled-components';
+import parse, {
+    domToReact,
+    HTMLReactParserOptions,
+    Element,
+} from 'html-react-parser';
+import { CTAProps } from 'types/global';
 
-const TextBanner = ({ 
-  text,
-  cta
-}) => (
-  <>
-    {console.log(text)}
-    {console.log(cta)}
-  </>
-)
+type TextBannerProps = {
+    text: string;
+    cta?: CTAProps;
+};
+
+const TextBanner = ({ text, cta }: TextBannerProps) => (
+    <>
+        {console.log(text)}
+        {console.log(cta)}
+    </>
+);
 
 export default TextBanner;
-
-export const query = graphql`
-  fragment TextBannerFragment on TextBanner {
-    text
-    cta {
-      target
-      title
-      url
-    }
-  }
-`

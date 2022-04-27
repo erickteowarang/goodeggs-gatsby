@@ -216,6 +216,7 @@ const createTemporaryPageTemplateFile = (
       query PageQuery${databaseId}($id: String!) {
         wp${postType}(id: {eq: $id}) {
           title
+          uri
           ${getComponentsQuery(postType, true, componentNames)}
         }
       }

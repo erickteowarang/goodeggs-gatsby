@@ -1,11 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { GatsbyImage, getImage, IGatsbyImageData } from 'gatsby-plugin-image';
-import parse, {
-  domToReact,
-  HTMLReactParserOptions,
-  Element,
-} from 'html-react-parser';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import parse from 'html-react-parser';
 import { CTAProps, GatsbyImageProps } from 'types/global';
 
 import Box from 'components/atoms/Box';
@@ -14,6 +10,9 @@ import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
 import Section from 'components/atoms/Section';
 import { Text, Heading } from 'components/atoms/Typography';
+import { HTMLParserOptions } from 'components/utils';
+
+import { theme } from 'theme/index'
 
 type HeroProps = {
   id: string;
@@ -26,24 +25,16 @@ type HeroProps = {
 const HeroContent = styled(Text)`
   margin: ${({ theme }) => theme.space[4]} 0;
   font-size: 20px;
-  font-weight: lighter;
+  font-weight: ${({ theme }) => theme.fontWeights.light};
 `;
 
-const options: HTMLReactParserOptions = {
-  replace: (domNode) => {
-    if (domNode instanceof Element && domNode.name === 'p') {
-      return <>{domToReact(domNode.children)}</>;
-    }
-  },
-};
-
 const Hero = ({ heading, text, cta, image }: HeroProps) => (
-  <Section>
+  <Section background={theme.colors.headerBackground}>
     <Container customWidth="1250px">
       <Flex variant="spaceBetween" responsive>
         <Box width="55%">
           <Heading as="h1" isLarge isHighlighted>
-            {parse(heading, options)}
+            {parse(heading, HTMLParserOptions)}
           </Heading>
           <HeroContent>{text}</HeroContent>
           {cta && (

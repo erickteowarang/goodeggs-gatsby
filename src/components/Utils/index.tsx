@@ -1,5 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import {
+  domToReact,
+  HTMLReactParserOptions,
+  Element,
+} from 'html-react-parser';
+
 
 export const VisuallyHidden = styled.span`
   border: 0;
@@ -22,3 +28,11 @@ export const InteractiveIcon = styled.button`
   width: 48;
   height: 48;
 `;
+
+export const HTMLParserOptions: HTMLReactParserOptions = {
+  replace: (domNode) => {
+    if (domNode instanceof Element && domNode.name === 'p') {
+      return <>{domToReact(domNode.children)}</>;
+    }
+  },
+};

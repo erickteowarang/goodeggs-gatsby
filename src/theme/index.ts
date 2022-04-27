@@ -48,6 +48,7 @@ const fontSizes = {
 };
 
 const fontWeights = {
+  light: '300',
   normal: '400',
   medium: '500',
   semibold: '600',

@@ -15,7 +15,7 @@ const PageTemplate = (pageProps) => {
   });
 
   return (
-    <Layout>
+    <Layout title={pageProps.data.wpPage.title}>
       {components.map((component, index) => {
         // ### COMPONENT RENDERING ### DO NOT MODIFY OR MOVE THIS COMMENT ###
         return <div>Error: The component {component.name} was not found</div>;

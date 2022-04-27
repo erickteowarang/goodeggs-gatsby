@@ -10,6 +10,8 @@ type TypographyProps = {
 type HeadingProps = TypographyProps & {
   isLarge?: boolean;
   isHighlighted?: boolean;
+  isLight?: boolean;
+  align?: 'center' | 'right'
 };
 
 export const Blockquote = styled.blockquote`
@@ -38,14 +40,13 @@ export const Text = styled.p<TypographyProps>`
 
 export const Heading = styled.h2<HeadingProps>`
   margin: 0;
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme, isLight }) => isLight ? theme.colors.text : theme.colors.primary};
   margin-bottom: ${({ theme }) => theme.space[3]};
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: ${({ theme, isLarge }) =>
     isLarge ? theme.fontSizes[6] : theme.fontSizes[5]};
-  font-weight: ${({ theme }) => theme.fontWeights.extrabold};
+  font-weight: ${({ theme, isLight }) => isLight ? theme.fontWeights.normal : theme.fontWeights.bold};
   line-height: ${({ theme }) => theme.lineHeights.tight};
-  letter-spacing: ${({ theme }) => theme.letterSpacings.tight};
 
   ${({ isHighlighted }) =>
     isHighlighted &&
@@ -57,6 +58,12 @@ export const Heading = styled.h2<HeadingProps>`
           theme.colors.highlight} !important;
       }
     `}
+
+  ${({ align }) =>
+    align &&
+    css`
+      text-align: ${align};
+    `};
 
   @media ${media.medium} {
     font-size: ${({ theme, isLarge }) =>

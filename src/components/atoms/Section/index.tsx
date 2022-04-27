@@ -1,15 +1,21 @@
 import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
-import { media } from '../../../theme/media';
+import { headerHeight } from 'components/organisms/Header';
+import { media } from 'theme/media';
 
 type SectionProps = {
   background?: string
-  children: ReactNode;
+  largePadding?: boolean
+  children: ReactNode
 };
 
 const StyledSection = styled.section<SectionProps>`
-  padding-top: ${({ theme }) => theme.space[4]};
-  padding-bottom: ${({ theme }) => theme.space[4]};
+  padding-top: ${({ theme }) => theme.space[5]};
+  padding-bottom: ${({ theme }) => theme.space[5]};
+
+  &:first-of-type {
+    padding-top: calc(${({ theme }) => theme.space[4]} + ${headerHeight});
+  }
 
   ${({ background }) =>
     background &&
@@ -18,13 +24,22 @@ const StyledSection = styled.section<SectionProps>`
     `}
 
   @media ${media.small} {
-    padding-top: ${({ theme }) => theme.space[5]};
-    padding-bottom: ${({ theme }) => theme.space[5]};
+    padding-top: ${({ theme, largePadding }) => largePadding ? theme.space[7] : theme.space[6]};
+    padding-bottom: ${({ theme, largePadding }) => largePadding ? theme.space[7] : theme.space[6]};
+
+    &:first-of-type {
+      padding-top: calc(${({ theme }) => theme.space[6]} + ${headerHeight});
+    }
   }
 `;
 
-const Section = ({ background, children }: SectionProps) => (
-  <StyledSection background={background}>{children}</StyledSection>
+const Section = ({ background, children, largePadding }: SectionProps) => (
+  <StyledSection 
+    background={background}
+    largePadding={largePadding}
+  >
+    {children}
+  </StyledSection>
 );
 
 export default Section;

@@ -7,4 +7,5 @@ export const colors = {
   black: '#000',
   highlight: '#EBB74F',
   headerBackground: '#F6F6F6',
+  grey: '#666666',
 };

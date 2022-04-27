@@ -20,7 +20,9 @@ const space = {
   3: '16px',
   4: '30px',
   5: '60px',
-  6: '120px',
+  6: '80px',
+  7: '100px',
+  8: '120px',
 };
 
 // add negative margins

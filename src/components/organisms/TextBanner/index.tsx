@@ -15,13 +15,14 @@ type TextBannerProps = {
 };
 
 const TextBanner = ({ text, cta }: TextBannerProps) => (
-  <Section>
+  <Section largePadding>
     <Container variant='narrow'>
       <Flex variant='center'>
         <Heading 
           isHighlighted
           isLight
           align='center'
+          as='h3'
         >
           {parse(text, HTMLParserOptions)}
         </Heading>

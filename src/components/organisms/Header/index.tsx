@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'react-feather';
 import styled from 'styled-components';
-import { Logo } from '../../atoms/Svg';
-import Container, { ContainerProps } from '../../atoms/Container';
-import Flex from '../../atoms/Flex';
-import Spacing from '../../atoms/Spacing';
-import { InteractiveIcon, VisuallyHidden } from '../../utils';
-import { media } from '../../../theme/media';
+import { Logo } from 'components/atoms/Svg';
+import Container, { ContainerProps } from 'components/atoms/Container';
+import Flex from 'components/atoms/Flex';
+import Spacing from 'components/atoms/Spacing';
+import { InteractiveIcon, VisuallyHidden } from 'components/utils';
+import { media } from 'theme/media';
 import NavLink from './NavLink';
 
 const data = {
@@ -93,6 +93,14 @@ const MobileSVGColorWrapper = styled.span<{ isOpen?: boolean }>`
     isOpen ? theme.colors.primary : theme.colors.background};
 `;
 
+export const headerHeight = '150px';
+
+const StyledHeader = styled.header`
+  position: absolute;
+  height: ${headerHeight};
+  width: 100%;
+`
+
 const Header = () => {
   const { navItems } = data;
   const [isOpen, setOpen] = useState(false);
@@ -106,7 +114,7 @@ const Header = () => {
   }, [isOpen]);
 
   return (
-    <header>
+    <StyledHeader>
       <DesktopNavWrapper>
         <Spacing size={2} />
         <Flex variant="spaceBetween">
@@ -161,7 +169,7 @@ const Header = () => {
           </nav>
         </MobileNavOverlay>
       )}
-    </header>
+    </StyledHeader>
   );
 };
 

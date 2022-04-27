@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import Link, { LinkProps } from '../../atoms/Link';
 
 const StyledNavLink = styled(Link)`
-  color: inherit;
+  color: ${({ theme }) => theme.colors.grey};
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
   text-decoration: none;
   text-transform: uppercase;
   transition-property: color;

@@ -1,40 +1,29 @@
-import * as React from "react"
+import React from 'react'
 import { graphql } from "gatsby"
 import Layout from "components/organisms/Layout"
-import * as pageComponents from "components"
 
-const Fallback = (props) => {
-  console.warn(`No component found for: ${props.blocktype}`)
-  return false
-}
+// ### COMPONENT IMPORTS ### DO NOT MODIFY OR MOVE THIS COMMENT ###
 
-const Page = (props) => {
-  const { page } = props.data
-  const { components } = page.pageModules
+const PageTemplate = pageProps => {
+  let components
+  // ### COMPONENTS VARIABLE ### DO NOT MODIFY OR MOVE THIS COMMENT ###
+  components = components.map(component => {
+    return {
+      name: component.__typename.split('_').pop(),
+      data: component,
+    }
+  })
 
   return (
-    <Layout {...homepage}>
-      {components.map((component, i) => {
-        const Component = pageComponents[component.__typename] || Fallback
-        return <Component key={component.id} index={i} {...component} />
+    <Layout>
+      {components.map((component, index) => {
+        // ### COMPONENT RENDERING ### DO NOT MODIFY OR MOVE THIS COMMENT ###
+        return <div>Error: The component {component.name} was not found</div>
       })}
     </Layout>
   )
 }
 
-export default Page
+export default PageTemplate
 
-export const query = graphql`
-  query PageContent($id: String!) {
-    wpPage(id: { eq: $id }) {
-      title
-      slug
-      content
-      pageModules {
-        components {
-          __typename
-        }
-      }
-    }
-  }
-`
+// ### PAGE QUERY ### DO NOT MODIFY OR MOVE THIS COMMENT ###

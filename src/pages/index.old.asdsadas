@@ -1,7 +1,7 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import Layout from "../components/organisms/Layout"
-import * as components from "../components/"
+import Layout from "components/organisms/Layout"
+import * as components from "components"
 
 const Fallback = (props) => {
   console.warn(`No component found for: ${props.blocktype}`)
@@ -10,14 +10,18 @@ const Fallback = (props) => {
 
 export default function Homepage(props) {
   const { homepage } = props.data
-  console.log(homepage);
 
   return (
     <Layout {...homepage}>
       {homepage.blocks.map((block, i) => {
-        const Component = components[block.blocktype] || Fallback
+        const Component = components[block.blockType] || Fallback
         return <Component key={block.id} index={i} {...block} />
       })}
+
+      {/* {pageModules.components.map((component, i) => {
+        const PageComponent = components[component.fieldGroupName] || Fallback
+        return <PageComponent key={component.id} index={i} {...component} />
+      })} */}
     </Layout>
   )
 }
@@ -34,8 +38,11 @@ export const query = graphql`
       }
       blocks: content {
         id
-        blocktype
         ...HomepageHeroContent
+      }
+      components {
+        id
+        ...TextBannerFragment
       }
     }
   }

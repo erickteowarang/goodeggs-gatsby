@@ -1,39 +1,40 @@
 // import * as React from "react"
 // import { graphql } from "gatsby"
-// import Layout from "../components/Layout"
-// import { Container, Box, Heading } from "../components/ui"
+// import Layout from "components/organisms/Layout"
+// import * as pageComponents from "components"
 
-// export default function Page(props) {
+// const Fallback = (props) => {
+//   console.warn(`No component found for: ${props.blocktype}`)
+//   return false
+// }
+
+// const Page = (props) => {
 //   const { page } = props.data
+//   const { components } = page.pageModules
 
 //   return (
-//     <Layout {...page}>
-//       <Box paddingY={5}>
-//         <Container width="narrow">
-//           <Heading as="h1">{page.title}</Heading>
-//           <div
-//             dangerouslySetInnerHTML={{
-//               __html: page.html,
-//             }}
-//           />
-//         </Container>
-//       </Box>
+//     <Layout {...homepage}>
+//       {components.map((component, i) => {
+//         const Component = pageComponents[component.__typename] || Fallback
+//         return <Component key={component.id} index={i} {...component} />
+//       })}
 //     </Layout>
 //   )
 // }
 
+// export default Page
+
 // export const query = graphql`
 //   query PageContent($id: String!) {
-//     page(id: { eq: $id }) {
-//       id
+//     wpPage(id: { eq: $id }) {
 //       title
 //       slug
-//       description
-//       image {
-//         id
-//         gatsbyImageData
+//       content
+//       pageModules {
+//         components {
+//           __typename
+//         }
 //       }
-//       html
 //     }
 //   }
 // `

@@ -81,6 +81,7 @@ export default Hero;
 export const query = graphql`
   fragment HomepageHeroContent on HomepageHero {
     id
+    blockType
     heading
     text
     image {

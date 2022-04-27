@@ -32,146 +32,180 @@ exports.createSchemaCustomization = async ({ actions }) => {
   })
 
   // interfaces
-  actions.createTypes(/* GraphQL */ `
-    interface HomepageImage implements Node {
-      id: ID!
-      alt: String
-      gatsbyImageData: JSON
-      image: HomepageImage
-      localFile: File
-      url: String
-    }
+  // actions.createTypes(/* GraphQL */ `
+  //   interface HomepageImage implements Node {
+  //     id: ID!
+  //     alt: String
+  //     gatsbyImageData: JSON
+  //     image: HomepageImage
+  //     localFile: File
+  //     url: String
+  //   }
 
-    interface HomepageBlock implements Node {
-      id: ID!
-      blocktype: String
-    }
-  `)
+  //   interface HomepageBlock implements Node {
+  //     id: ID!
+  //     blockType: String
+  //   }
 
-  // blocks
-  actions.createTypes(/* GraphQL */ `
-    type HomepageLink implements Node {
-      id: ID!
-      href: String
-      text: String
-    }
+  //   interface PageComponent implements Node {
+  //     id: ID!
+  //     componentType: String
+  //   }
+  // `)
 
-    type HomepageCTA implements Node {
-      target: String
-      title: String
-      url: String
-    }
+  // // blocks
+  // actions.createTypes(/* GraphQL */ `
+  //   type HomepageLink implements Node {
+  //     id: ID!
+  //     href: String
+  //     text: String
+  //   }
 
-    type HomepageHero implements Node & HomepageBlock {
-      id: ID!
-      heading: String!
-      image: HomepageImage @link
-      text: String
-      cta: HomepageCTA
-    }
-  `)
+  //   type CTA implements Node {
+  //     target: String
+  //     title: String
+  //     url: String
+  //   }
 
-  // pages
-  actions.createTypes(/* GraphQL */ `
-    type Homepage implements Node {
-      id: ID!
-      title: String
-      description: String
-      image: HomepageImage @link
-      content: [HomepageBlock] @link
-    }
+  //   type HomepageHero implements Node & HomepageBlock {
+  //     id: ID!
+  //     blockType: String
+  //     heading: String!
+  //     image: HomepageImage @link
+  //     text: String
+  //     cta: CTA
+  //   }
 
-    type Page implements Node {
-      id: ID!
-      slug: String!
-      title: String
-      description: String
-      image: HomepageImage @link
-      html: String
-    }
-  `)
+  //   type TextBanner implements Node & PageComponent {
+  //     id: ID!
+  //     componentType: String
+  //     text: String
+  //     cta: CTA
+  //   }
+  // `)
+
+  // // pages
+  // actions.createTypes(/* GraphQL */ `
+  //   type Homepage implements Node {
+  //     id: ID!
+  //     title: String
+  //     description: String
+  //     image: HomepageImage @link
+  //     content: [HomepageBlock] @link
+  //     components: [PageComponent] @link
+  //   }
+
+  //   type Page implements Node {
+  //     id: ID!
+  //     slug: String!
+  //     title: String
+  //     description: String
+  //     image: HomepageImage @link
+  //     html: String
+  //     components: [PageComponent] @link
+  //   }
+  // `)
 
   // WordPress types
-  actions.createTypes(/* GraphQL */ `
-    type WpMediaItem implements Node & HomepageImage {
-      id: ID!
-      alt: String @proxy(from: "altText")
-      altText: String
-      gatsbyImageData: JSON @wpImagePassthroughResolver
-      image: HomepageImage @wpRecursiveImage
-      localFile: File
-      url: String @proxy(from: "mediaItemUrl")
-      mediaItemUrl: String
-    }
-  `)
+  // actions.createTypes(/* GraphQL */ `
+  //   type WpMediaItem implements Node & HomepageImage {
+  //     id: ID!
+  //     alt: String @proxy(from: "altText")
+  //     altText: String
+  //     gatsbyImageData: JSON @wpImagePassthroughResolver
+  //     image: HomepageImage @wpRecursiveImage
+  //     localFile: File
+  //     url: String @proxy(from: "mediaItemUrl")
+  //     mediaItemUrl: String
+  //   }
+  // `)
 }
 
-exports.onCreateNode = ({
-  node,
-  actions,
-  createNodeId,
-}) => {
-  if (!node.internal.type.includes("Wp")) return
+// exports.onCreateNode = ({
+//   node,
+//   actions,
+//   createNodeId,
+// }) => {
+//   if (!node.internal.type.includes("Wp")) return
 
-  if (node.internal.type === "WpPage") {
-    switch (node.slug) {
-      case "homepage":
-        // prettier-ignore
-        const {
-          description,
-          hero,
-        } = node.homepage
+//   if (node.internal.type === "WpPage") {
+//     let nodeIDs = [];
+//     node.pageModules.components.forEach(component => {
+//       const componentName = component.fieldGroupName.substring(28);
+//       actions.createNode({
+//         ...component,
+//         id: createNodeId(`${node.id} >>> ${componentName}`),
+//         componentType: componentName,
+//         internal: {
+//           type: componentName,
+//           contentDigest: node.internal.contentDigest,
+//         },
+//       });
+//       nodeIDs.push({
+//         id: createNodeId(`${node.id} >>> ${componentName}`)
+//       })
+//     });
 
-        const blocks = {
-          hero: {
-            id: createNodeId(`${node.id} >>> HomepageHero`),
-            ...hero,
-            image: hero.image?.id,
-          },
-        }
+//     switch (node.slug) {
+//       case "homepage":
+//         // prettier-ignore
+//         const {
+//           description,
+//           hero
+//         } = node.homepage
 
-        actions.createNode({
-          ...blocks.hero,
-          blocktype: "HomepageHero",
-          internal: {
-            type: "HomepageHero",
-            contentDigest: node.internal.contentDigest,
-          },
-        })
+//         const blocks = {
+//           hero: {
+//             id: createNodeId(`${node.id} >>> HomepageHero`),
+//             ...hero,
+//             image: hero.image?.id,
+//           },
+//         }
 
-        actions.createNode({
-          ...node.homepage,
-          id: createNodeId(`${node.id} >>> Homepage`),
-          internal: {
-            type: "Homepage",
-            contentDigest: node.internal.contentDigest,
-          },
-          parent: node.id,
-          title: node.title,
-          description,
-          image: node.featuredImage?.node?.id,
-          content: [
-            blocks.hero.id,
-          ],
-        })
+//         actions.createNode({
+//           ...blocks.hero,
+//           blockType: "HomepageHero",
+//           internal: {
+//             type: "HomepageHero",
+//             contentDigest: node.internal.contentDigest,
+//           },
+//         })
 
-        break
-      default:
-        actions.createNode({
-          ...node.page,
-          id: createNodeId(`${node.id} >>> Page ${node.slug}`),
-          internal: {
-            type: "Page",
-            contentDigest: node.internal.contentDigest,
-          },
-          parent: node.id,
-          slug: node.slug,
-          title: node.title,
-          description: node.page?.description,
-          image: node.featuredImage?.node?.id,
-          html: node.content,
-        })
-        break
-    }
-  }
-}
+//         actions.createNode({
+//           ...node.homepage,
+//           id: createNodeId(`${node.id} >>> Homepage`),
+//           internal: {
+//             type: "Homepage",
+//             contentDigest: node.internal.contentDigest,
+//           },
+//           parent: node.id,
+//           title: node.title,
+//           description,
+//           image: node.featuredImage?.node?.id,
+//           content: [
+//             blocks.hero.id,
+//           ],
+//           components: nodeIDs,
+//         })
+
+//         break
+//       default:
+//         actions.createNode({
+//           ...node.page,
+//           id: createNodeId(`${node.id} >>> Page ${node.slug}`),
+//           internal: {
+//             type: "Page",
+//             contentDigest: node.internal.contentDigest,
+//           },
+//           parent: node.id,
+//           slug: node.slug,
+//           title: node.title,
+//           description: node.page?.description,
+//           image: node.featuredImage?.node?.id,
+//           html: node.content,
+//           components: nodeIDs,
+//         })
+//         break
+//     }
+//   }
+// }

@@ -4,33 +4,33 @@ import { Link as GatsbyLink } from 'gatsby';
 import isAbsoluteURL from 'is-absolute-url';
 
 export type LinkProps = {
-    to?: string;
-    href?: string;
-    children: string | ReactNode;
-    className?: string;
+  to?: string;
+  href?: string;
+  children: string | ReactNode;
+  className?: string;
 };
 
 const StyledLink = styled.a`
-    color: inherit;
+  color: inherit;
 
-    &:hover {
-        color: ${({ theme }) => theme.colors.active};
-    }
+  &:hover {
+    color: ${({ theme }) => theme.colors.active};
+  }
 `;
 
 const Link = ({ to, href, children, className, ...props }: LinkProps) => {
-    const url = href || to || '';
+  const url = href || to || '';
 
-    return (
-        <StyledLink
-            as={isAbsoluteURL(url) ? 'a' : GatsbyLink}
-            href={url}
-            className={className}
-            {...props}
-        >
-            {children}
-        </StyledLink>
-    );
+  return (
+    <StyledLink
+      as={isAbsoluteURL(url) ? 'a' : GatsbyLink}
+      href={url}
+      className={className}
+      {...props}
+    >
+      {children}
+    </StyledLink>
+  );
 };
 
 export default Link;

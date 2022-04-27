@@ -3,63 +3,63 @@ import styled, { css } from 'styled-components';
 import { media } from '../../../theme/media';
 
 type TypographyProps = {
-    center?: boolean;
-    bold?: boolean;
+  center?: boolean;
+  bold?: boolean;
 };
 
 type HeadingProps = TypographyProps & {
-    isLarge?: boolean;
-    isHighlighted?: boolean;
+  isLarge?: boolean;
+  isHighlighted?: boolean;
 };
 
 export const Blockquote = styled.blockquote`
-    margin: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
-    padding-bottom: ${({ theme }) => theme.space[4]};
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: ${({ theme }) => theme.space[4]};
 `;
 
 export const Text = styled.p<TypographyProps>`
-    margin: 0;
-    margin-bottom: ${({ theme }) => theme.space[3]};
-    font-size: ${({ theme }) => theme.fontSizes[2]};
-    font-weight: ${({ bold, theme }) =>
-        bold ? theme.fontWeights.bold : theme.fontWeights.normal};
-    line-height: ${({ theme }) => theme.lineHeights.text};
-    letter-spacing: ${({ theme }) => theme.letterSpacings.normal};
+  margin: 0;
+  margin-bottom: ${({ theme }) => theme.space[3]};
+  font-size: ${({ theme }) => theme.fontSizes[2]};
+  font-weight: ${({ bold, theme }) =>
+    bold ? theme.fontWeights.bold : theme.fontWeights.normal};
+  line-height: ${({ theme }) => theme.lineHeights.text};
+  letter-spacing: ${({ theme }) => theme.letterSpacings.normal};
 
-    ${({ center }) =>
-        center &&
-        css`
-            text-align: center;
-        `};
+  ${({ center }) =>
+    center &&
+    css`
+      text-align: center;
+    `};
 `;
 
 export const Heading = styled.h2<HeadingProps>`
-    margin: 0;
-    color: ${({ theme }) => theme.colors.primary};
-    margin-bottom: ${({ theme }) => theme.space[3]};
-    font-family: ${({ theme }) => theme.fonts.heading};
+  margin: 0;
+  color: ${({ theme }) => theme.colors.primary};
+  margin-bottom: ${({ theme }) => theme.space[3]};
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: ${({ theme, isLarge }) =>
+    isLarge ? theme.fontSizes[6] : theme.fontSizes[5]};
+  font-weight: ${({ theme }) => theme.fontWeights.extrabold};
+  line-height: ${({ theme }) => theme.lineHeights.tight};
+  letter-spacing: ${({ theme }) => theme.letterSpacings.tight};
+
+  ${({ isHighlighted }) =>
+    isHighlighted &&
+    css`
+      text-decoration-color: ${({ theme }) => theme.colors.highlight};
+
+      span {
+        text-decoration-color: ${({ theme }) =>
+          theme.colors.highlight} !important;
+      }
+    `}
+
+  @media ${media.medium} {
     font-size: ${({ theme, isLarge }) =>
-        isLarge ? theme.fontSizes[6] : theme.fontSizes[5]};
-    font-weight: ${({ theme }) => theme.fontWeights.extrabold};
-    line-height: ${({ theme }) => theme.lineHeights.tight};
-    letter-spacing: ${({ theme }) => theme.letterSpacings.tight};
-
-    ${({ isHighlighted }) =>
-        isHighlighted &&
-        css`
-            text-decoration-color: ${({ theme }) => theme.colors.highlight};
-
-            span {
-                text-decoration-color: ${({ theme }) =>
-                    theme.colors.highlight} !important;
-            }
-        `}
-
-    @media ${media.medium} {
-        font-size: ${({ theme, isLarge }) =>
-            isLarge ? theme.fontSizes[8] : theme.fontSizes[6]};
-    }
+      isLarge ? theme.fontSizes[8] : theme.fontSizes[6]};
+  }
 `;

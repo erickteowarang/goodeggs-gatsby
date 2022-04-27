@@ -1,22 +1,22 @@
 {
-    "compilerOptions": {
-        "baseUrl": "./src",
-        "paths": {
-            "components": ["./src/components/*"],
-            "types": ["./src/types/*"],
-            "theme": ["./src/theme/*"],
-            "utils": ["./src/utils/*"]
-        },
-        "module": "commonjs",
-        "target": "esnext",
-        "jsx": "preserve",
-        "lib": ["dom", "esnext"],
-        "strict": true,
-        "noEmit": true,
-        "isolatedModules": true,
-        "esModuleInterop": true,
-        "noUnusedLocals": false,
-        "allowJs": true
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "components": ["./src/components/*"],
+      "types": ["./src/types/*"],
+      "theme": ["./src/theme/*"],
+      "utils": ["./src/utils/*"]
     },
-    "exclude": ["node_modules", "public", ".cache"]
+    "module": "commonjs",
+    "target": "esnext",
+    "jsx": "preserve",
+    "lib": ["dom", "esnext"],
+    "strict": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": false,
+    "allowJs": true
+  },
+  "exclude": ["node_modules", "public", ".cache"]
 }

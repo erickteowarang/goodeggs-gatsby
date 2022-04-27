@@ -1,7 +1,7 @@
 import { cloneDeep } from 'lodash';
 
 export const removeWrappingParagraphTag = (html: string) => {
-    return html.replace(/<\/?p[^>]*>/, '');
+  return html.replace(/<\/?p[^>]*>/, '');
 };
 
 /**
@@ -23,15 +23,15 @@ export const removeWrappingParagraphTag = (html: string) => {
  */
 
 export const combineFields = (data: any, acfFieldGroupNameToFlatten: any) => {
-    // Clone data so we don't delete anything from original object
-    const clonedData = cloneDeep(data);
-    // Make a copy of the acf fields
-    const acfFields = cloneDeep(data[acfFieldGroupNameToFlatten]);
-    // Delete the acf fields
-    delete clonedData[acfFieldGroupNameToFlatten];
+  // Clone data so we don't delete anything from original object
+  const clonedData = cloneDeep(data);
+  // Make a copy of the acf fields
+  const acfFields = cloneDeep(data[acfFieldGroupNameToFlatten]);
+  // Delete the acf fields
+  delete clonedData[acfFieldGroupNameToFlatten];
 
-    return {
-        ...clonedData,
-        ...acfFields,
-    };
+  return {
+    ...clonedData,
+    ...acfFields,
+  };
 };

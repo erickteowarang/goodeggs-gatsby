@@ -27,10 +27,10 @@ And the `create/createPages` file will stitch all those fragments together and s
 
 Required plugins for your wordpress installation:
 
--   Advanced Custom Fields PRO (or the standard version)
--   WP Gatsby
--   WP GraphQL
--   [WPGraphQL for Advanced Custom Fields](https://github.com/wp-graphql/wp-graphql-acf/archive/master.zip)
+- Advanced Custom Fields PRO (or the standard version)
+- WP Gatsby
+- WP GraphQL
+- [WPGraphQL for Advanced Custom Fields](https://github.com/wp-graphql/wp-graphql-acf/archive/master.zip)
 
 I've included the `acf-json` folder which contains the field groups used in the example components. You can copy/paste this folder into your Wordpress theme folder and import the field groups to test for yourself.
 

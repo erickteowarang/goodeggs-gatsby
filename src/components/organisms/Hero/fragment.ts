@@ -1,5 +1,5 @@
 module.exports = () => {
-    return `
+  return `
     heading
     text
     image {

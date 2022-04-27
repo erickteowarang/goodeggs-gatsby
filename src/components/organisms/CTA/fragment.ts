@@ -1,5 +1,5 @@
 module.exports = () => {
-    return `
+  return `
     id
     kicker
     heading

@@ -1,115 +1,113 @@
 import * as React from 'react';
 import {
-    Container,
-    Flex,
-    FlexList,
-    Box,
-    Space,
-    NavLink,
-    Text,
-    IconLink,
-    VisuallyHidden,
+  Container,
+  Flex,
+  FlexList,
+  Box,
+  Space,
+  NavLink,
+  Text,
+  IconLink,
+  VisuallyHidden,
 } from '../../ui';
 
 const data = {
-    links: [
-        {
-            id: 0,
-            href: '#!',
-            text: 'Products',
-        },
-        {
-            id: 1,
-            href: '#!',
-            text: 'Pricing',
-        },
-        {
-            id: 2,
-            href: '#!',
-            text: 'About',
-        },
-        {
-            id: 3,
-            href: '#!',
-            text: 'Blog',
-        },
-    ],
-    meta: [
-        {
-            id: 0,
-            href: '/terms',
-            text: 'Terms',
-        },
-        {
-            id: 1,
-            href: '/privacy',
-            text: 'Privacy Policy',
-        },
-    ],
-    socialLinks: [
-        {
-            service: 'TWITTER',
-            username: 'gatsbyjs',
-        },
-        {
-            service: 'INSTAGRAM',
-            username: 'gatsbyjs',
-        },
-        {
-            service: 'GITHUB',
-            username: 'gatsbyjs',
-        },
-        {
-            service: 'FACEBOOK',
-            username: 'gatsbyjs',
-        },
-        {
-            service: 'YOUTUBE',
-            username: 'gatsbyjs',
-        },
-        {
-            service: 'TWITCH',
-            username: 'gatsbyjs',
-        },
-    ],
-    copyright: '© 2022 Gatsby Inc. All rights reserved',
+  links: [
+    {
+      id: 0,
+      href: '#!',
+      text: 'Products',
+    },
+    {
+      id: 1,
+      href: '#!',
+      text: 'Pricing',
+    },
+    {
+      id: 2,
+      href: '#!',
+      text: 'About',
+    },
+    {
+      id: 3,
+      href: '#!',
+      text: 'Blog',
+    },
+  ],
+  meta: [
+    {
+      id: 0,
+      href: '/terms',
+      text: 'Terms',
+    },
+    {
+      id: 1,
+      href: '/privacy',
+      text: 'Privacy Policy',
+    },
+  ],
+  socialLinks: [
+    {
+      service: 'TWITTER',
+      username: 'gatsbyjs',
+    },
+    {
+      service: 'INSTAGRAM',
+      username: 'gatsbyjs',
+    },
+    {
+      service: 'GITHUB',
+      username: 'gatsbyjs',
+    },
+    {
+      service: 'FACEBOOK',
+      username: 'gatsbyjs',
+    },
+    {
+      service: 'YOUTUBE',
+      username: 'gatsbyjs',
+    },
+    {
+      service: 'TWITCH',
+      username: 'gatsbyjs',
+    },
+  ],
+  copyright: '© 2022 Gatsby Inc. All rights reserved',
 };
 
 const Footer = (props) => {
-    const { links, meta, socialLinks, copyright } = data;
+  const { links, meta, socialLinks, copyright } = data;
 
-    return (
-        <Box as="footer" paddingY={4}>
-            <Container>
-                <Space size={5} />
-                <Flex variant="start" responsive>
-                    <FlexList variant="start" responsive>
-                        {links &&
-                            links.map((link) => (
-                                <li key={link.id}>
-                                    <NavLink to={link.href}>
-                                        {link.text}
-                                    </NavLink>
-                                </li>
-                            ))}
-                    </FlexList>
-                    <Space />
-                    <FlexList>
-                        {meta &&
-                            meta.map((link) => (
-                                <li key={link.id}>
-                                    <NavLink to={link.href}>
-                                        <Text variant="small">{link.text}</Text>
-                                    </NavLink>
-                                </li>
-                            ))}
-                    </FlexList>
-                    <Text variant="small">{copyright}</Text>
-                </Flex>
-            </Container>
-            <Space size={3} />
-        </Box>
-    );
+  return (
+    <Box as="footer" paddingY={4}>
+      <Container>
+        <Space size={5} />
+        <Flex variant="start" responsive>
+          <FlexList variant="start" responsive>
+            {links &&
+              links.map((link) => (
+                <li key={link.id}>
+                  <NavLink to={link.href}>{link.text}</NavLink>
+                </li>
+              ))}
+          </FlexList>
+          <Space />
+          <FlexList>
+            {meta &&
+              meta.map((link) => (
+                <li key={link.id}>
+                  <NavLink to={link.href}>
+                    <Text variant="small">{link.text}</Text>
+                  </NavLink>
+                </li>
+              ))}
+          </FlexList>
+          <Text variant="small">{copyright}</Text>
+        </Flex>
+      </Container>
+      <Space size={3} />
+    </Box>
+  );
 };
 
 export default Footer;

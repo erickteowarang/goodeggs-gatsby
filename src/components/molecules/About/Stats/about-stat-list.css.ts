@@ -3,20 +3,20 @@ import { theme } from '../theme.css.ts';
 import { media } from './ui.css';
 
 export const statList = style({
-    '@media': {
-        [media.small]: {
-            gap: theme.space[6],
-        },
+  '@media': {
+    [media.small]: {
+      gap: theme.space[6],
     },
+  },
 });
 
 export const statContainer = style({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    '@media': {
-        [media.small]: {
-            alignItems: 'flex-start',
-        },
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  '@media': {
+    [media.small]: {
+      alignItems: 'flex-start',
     },
+  },
 });

@@ -9,7 +9,6 @@ import {
 import { SmallHeading, Text } from "components/atoms/Typography";
 import Link from "components/atoms/Link";
 
-
 export const VisuallyHidden = styled.span`
   border: 0;
   clip: rect(0 0 0 0);
@@ -31,6 +30,10 @@ export const InteractiveIcon = styled.button`
   width: 48;
   height: 48;
 `;
+
+export const CenteredContent = styled.div`
+  text-align: center;
+`
 
 export const TrimParagraphOptions: HTMLReactParserOptions = {
   replace: (domNode) => {

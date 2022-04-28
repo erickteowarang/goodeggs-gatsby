@@ -3,14 +3,14 @@ module.exports = () => {
     heading
     blockContent
     cards {
-      cardImage {
+      image: cardImage {
         id
         gatsbyImageData
         alt
         url
       }
-      cardHeading
-      cardContent
+      heading: cardHeading
+      content: cardContent
     }
   `;
 };

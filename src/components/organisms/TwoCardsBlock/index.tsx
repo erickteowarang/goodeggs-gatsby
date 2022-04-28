@@ -1,24 +1,20 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import parse from 'html-react-parser';
-import { GatsbyImageProps } from 'types/global';
 
 import Box from 'components/atoms/Box';
 import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
 import Section from 'components/atoms/Section';
 import { BlockHeading } from 'components/atoms/Typography';
+import { CardProps } from 'components/molecules/Card';
+import CardList from 'components/organisms/CardList';
 import { BlockContentOptions } from 'components/utils';
 
 type TwoCardsBlockProps = {
   heading: string;
   blockContent: string;
-  cards: Array<{
-    cardImage: GatsbyImageProps
-    cardHeading: string
-    cardContent: string
-  }>
+  cards: Array<CardProps>
 };
 
 
@@ -38,25 +34,14 @@ const TwoCardsBlock = ({ heading, blockContent, cards }: TwoCardsBlockProps) => 
   <Section>
     <Container>
       <Flex variant="spaceBetween" responsive>
-        <Box width="40%">
+        <Box width="34%">
           <BlockHeading>
             {heading}
           </BlockHeading>
           <BlockContent>{parse(blockContent, BlockContentOptions)}</BlockContent>
         </Box>
-        <Box width="50%">
-          {cards.map(card => (
-            <p>
-              <h2>{card.cardHeading}</h2>
-              {card.cardImage && (
-                <GatsbyImage
-                  alt={card.cardImage.alt}
-                  image={getImage(card.cardImage.gatsbyImageData)!}
-                />
-              )}
-              <span>{card.cardContent}</span>
-            </p>
-          ))}
+        <Box width="57%">
+          <CardList cards={cards} />
         </Box>
       </Flex>
     </Container>

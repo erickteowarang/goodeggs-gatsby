@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import parse from 'html-react-parser';
 import { CTAProps } from 'types/global';
 
@@ -7,7 +6,8 @@ import { Heading } from 'components/atoms/Typography';
 import Section from 'components/atoms/Section';
 import Flex from 'components/atoms/Flex';
 import Container from 'components/atoms/Container';
-import { TrimParagraphOptions } from 'components/utils';
+import Link from 'components/atoms/Link';
+import { CenteredContent, TrimParagraphOptions } from 'components/utils';
 
 type TextBannerProps = {
   text: string;
@@ -26,9 +26,10 @@ const TextBanner = ({ text, cta }: TextBannerProps) => (
         >
           {parse(text, TrimParagraphOptions)}
         </Heading>
-        {cta && <>
-            <p>{cta.title}</p>
-          </>
+        {cta && 
+          <CenteredContent>
+            <Link href={cta.url}>{cta.title}</Link>
+          </CenteredContent>
         }
       </Flex>
     </Container>

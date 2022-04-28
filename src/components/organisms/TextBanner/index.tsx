@@ -7,7 +7,7 @@ import { Heading } from 'components/atoms/Typography';
 import Section from 'components/atoms/Section';
 import Flex from 'components/atoms/Flex';
 import Container from 'components/atoms/Container';
-import { HTMLParserOptions } from 'components/utils';
+import { TrimParagraphOptions } from 'components/utils';
 
 type TextBannerProps = {
   text: string;
@@ -24,7 +24,7 @@ const TextBanner = ({ text, cta }: TextBannerProps) => (
           align='center'
           as='h3'
         >
-          {parse(text, HTMLParserOptions)}
+          {parse(text, TrimParagraphOptions)}
         </Heading>
         {cta && <>
             <p>{cta.title}</p>

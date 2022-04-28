@@ -10,12 +10,11 @@ import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
 import Section from 'components/atoms/Section';
 import { Text, Heading } from 'components/atoms/Typography';
-import { HTMLParserOptions } from 'components/utils';
+import { TrimParagraphOptions } from 'components/utils';
 
 import { theme } from 'theme/index'
 
 type HeroProps = {
-  id: string;
   heading: string;
   text: string;
   cta: CTAProps;
@@ -30,11 +29,11 @@ const HeroContent = styled(Text)`
 
 const Hero = ({ heading, text, cta, image }: HeroProps) => (
   <Section background={theme.colors.headerBackground}>
-    <Container customWidth="1250px">
+    <Container customWidth="1190px">
       <Flex variant="spaceBetween" responsive>
         <Box width="55%">
           <Heading as="h1" isLarge isHighlighted>
-            {parse(heading, HTMLParserOptions)}
+            {parse(heading, TrimParagraphOptions)}
           </Heading>
           <HeroContent>{text}</HeroContent>
           {cta && (

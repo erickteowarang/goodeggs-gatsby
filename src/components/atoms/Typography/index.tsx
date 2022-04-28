@@ -70,3 +70,26 @@ export const Heading = styled.h2<HeadingProps>`
       isLarge ? theme.fontSizes[8] : theme.fontSizes[6]};
   }
 `;
+
+export const BlockHeading = styled.h3`
+  margin: 0;
+  color: ${({ theme }) => theme.colors.text};
+  margin-bottom: ${({ theme }) => theme.space[3]};
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: ${({ theme }) => theme.fontSizes[4]};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  line-height: ${({ theme }) => theme.lineHeights.heading};
+
+  @media ${media.medium} {
+    margin-bottom: ${({ theme }) => theme.space[4]};
+    font-size: ${({ theme }) => theme.fontSizes[5]};
+  }
+`;
+
+export const SmallHeading = styled.h5`
+  color: ${({ theme }) => theme.colors.innerHeading};
+  font-family: ${({ theme }) => theme.fonts.text};
+  font-size: ${({ theme }) => theme.fontSizes[1]};
+  font-weight: ${({ theme }) => theme.fontWeights.normal};
+  line-height: ${({ theme }) => theme.lineHeights.heading};
+`

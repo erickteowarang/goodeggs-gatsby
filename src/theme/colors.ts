@@ -8,4 +8,7 @@ export const colors = {
   highlight: '#EBB74F',
   headerBackground: '#F6F6F6',
   grey: '#666666',
+  blockText: '#6E6E77',
+  innerHeading: '#A7A7AB',
+  linkBlue: '#01539D'
 };

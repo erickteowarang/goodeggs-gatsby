@@ -30,9 +30,6 @@ const BlockContent = styled.div`
   }
 
   a {
-    display: inline-block;
-    color: ${({ theme }) => theme.colors.linkBlue};
-    font-weight: ${({ theme }) => theme.fontWeights.semibold};
     margin-top: ${({ theme }) => theme.space[2]};
   }
 `;

@@ -56,8 +56,9 @@ const StyledButton = styled.button<ButtonProps>`
   display: inline-flex;
   text-decoration: none;
   font-size: ${({ theme }) => theme.fontSizes[2]};
+  font-weight: normal;
   line-height: ${({ theme }) => theme.lineHeights.solid};
-  padding: ${({ theme }) => theme.space[3]} ${({ theme }) => theme.space[4]};
+  padding: 19px 40px;
   transition: all 0.2s ease-out;
 
   ${({ variant }) => variant && getButtonVariants(variant)};

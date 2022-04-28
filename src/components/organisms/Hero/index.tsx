@@ -29,7 +29,7 @@ const HeroContent = styled(Text)`
 
 const Hero = ({ heading, text, cta, image }: HeroProps) => (
   <Section background={theme.colors.headerBackground}>
-    <Container customWidth="1190px">
+    <Container customWidth="1250px">
       <Flex variant="spaceBetween" responsive>
         <Box width="55%">
           <Heading as="h1" isLarge isHighlighted>
@@ -42,7 +42,7 @@ const Hero = ({ heading, text, cta, image }: HeroProps) => (
             </Button>
           )}
         </Box>
-        <Box width="40%">
+        <Box width="42%">
           {image && (
             <GatsbyImage
               alt={image.alt}

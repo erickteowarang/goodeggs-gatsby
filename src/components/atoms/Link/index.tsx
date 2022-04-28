@@ -12,6 +12,9 @@ export type LinkProps = {
 
 const StyledLink = styled.a`
   color: inherit;
+  display: inline-block;
+  color: ${({ theme }) => theme.colors.linkBlue};
+  font-weight: ${({ theme }) => theme.fontWeights.semibold};
 
   &:hover {
     color: ${({ theme }) => theme.colors.active};

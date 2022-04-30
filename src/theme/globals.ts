@@ -14,6 +14,23 @@ const Globals = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
+  // Override Swiper pagination styles
+  .swiper {
+    padding-bottom: 70px;
+  }
+
+  .custom-pagination-bullet {
+    width: 53px;
+    border-radius: 0;
+    height: 2px;
+    background: #CCCCCC;
+    opacity: 1;
+
+    &.swiper-pagination-bullet-active {
+      background: #000000;
+    }
+  }
+
   @keyframes zoomInUp {
     0% {
       transform: scale(0.95) translateY(10px) translateX(-50%);

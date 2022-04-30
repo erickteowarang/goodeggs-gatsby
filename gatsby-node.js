@@ -67,6 +67,12 @@ exports.createSchemaCustomization = async ({ actions }) => {
       url: String @proxy(from: "mediaItemUrl")
       mediaItemUrl: String
     }
+
+    type ManifestoHero implements Node {
+      heading: String
+      subtitle: String
+      image: GatsbyImage @link
+    }
   `);
 };
 

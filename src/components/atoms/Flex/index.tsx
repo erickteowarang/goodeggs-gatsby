@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ElementType, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 import { media } from '../../../theme/media';
 
@@ -7,6 +7,7 @@ type FlexVariants = 'columnStart' | 'column' | 'spaceBetween' | 'center';
 type AlignItemsOptions = 'start' | 'baseline' | 'end' | 'stretch';
 
 type FlexProps = {
+  as?: ElementType
   variant?: FlexVariants;
   gap?: number;
   gutter?: number;
@@ -127,6 +128,7 @@ const StyledFlexItem = styled.div<FlexProps>`
 `;
 
 const Flex = ({
+  as,
   variant,
   gap = 3,
   gutter,
@@ -141,6 +143,7 @@ const Flex = ({
 }: FlexProps) => {
   return (
     <StyledFlexItem
+      as={list ? "ul" : "div"}
       variant={variant}
       gap={gap}
       wrap={wrap}

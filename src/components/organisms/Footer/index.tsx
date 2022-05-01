@@ -1,15 +1,16 @@
 import * as React from 'react';
-import {
-  Container,
-  Flex,
-  FlexList,
-  Box,
-  Space,
-  NavLink,
-  Text,
-  IconLink,
-  VisuallyHidden,
-} from '../../ui';
+import { useStaticQuery, graphql } from 'gatsby';
+import styled from 'styled-components';
+
+import Box from 'components/atoms/Box';
+import Container from 'components/atoms/Container';
+import Flex from 'components/atoms/Flex';
+import Spacing from 'components/atoms/Spacing';
+import { Text } from 'components/atoms/Typography';
+import NavLink from 'components/molecules/NavLink';
+import CtaBlock from 'components/organisms/CtaBlock';
+import { theme } from 'theme/index';
+import { CTAProps } from 'types/global';
 
 const data = {
   links: [
@@ -33,81 +34,137 @@ const data = {
       href: '#!',
       text: 'Blog',
     },
-  ],
-  meta: [
-    {
-      id: 0,
-      href: '/terms',
-      text: 'Terms',
-    },
-    {
-      id: 1,
-      href: '/privacy',
-      text: 'Privacy Policy',
-    },
-  ],
-  socialLinks: [
-    {
-      service: 'TWITTER',
-      username: 'gatsbyjs',
-    },
-    {
-      service: 'INSTAGRAM',
-      username: 'gatsbyjs',
-    },
-    {
-      service: 'GITHUB',
-      username: 'gatsbyjs',
-    },
-    {
-      service: 'FACEBOOK',
-      username: 'gatsbyjs',
-    },
-    {
-      service: 'YOUTUBE',
-      username: 'gatsbyjs',
-    },
-    {
-      service: 'TWITCH',
-      username: 'gatsbyjs',
-    },
-  ],
-  copyright: '© 2022 Gatsby Inc. All rights reserved',
+  ]
 };
 
-const Footer = (props) => {
-  const { links, meta, socialLinks, copyright } = data;
+type FooterProps = {
+  backgroundColor: string
+  footerCtaHeading: string
+  overrideCtaLink?: CTAProps
+}
+
+const FooterDivider = styled.hr`
+  height: 1px;
+  background: #EEEEEE;
+  border: none;
+  margin-bottom: ${({ theme }) => theme.space[5]};
+`
+
+const FooterLineItem = styled.span`
+  display: block;
+  color: ${({ theme }) => theme.colors.blockText};
+
+  a {
+    color: inherit;
+  }
+`
+
+const FooterItemContainer = styled(Flex)`
+  padding-bottom: ${({ theme }) => theme.space[7]};
+  color: ${({ theme }) => theme.colors.blockText};
+`
+
+const CopyrightText = styled(Text)`
+  color: ${({ theme }) => theme.colors.blockText};
+  text-align: right;
+  margin: -${({ theme }) => theme.space[6]} -5px ${({ theme }) => theme.space[6]} 0;
+`
+
+const replaceLineBreaks = (mainString: string) => {
+  return mainString.split("\n").map((item, idx) => {
+    return (
+        <FooterLineItem key={idx}>
+          {item}
+          <br/>
+        </FooterLineItem>
+     )
+  })
+}
+
+const Footer = ({ 
+  backgroundColor,
+  footerCtaHeading,
+  overrideCtaLink,
+ }: FooterProps) => {
+  const footerQuery = useStaticQuery(graphql`
+    query FooterQuery {
+      wp {
+        contactDetails {
+          companyContactDetails {
+            address
+            email
+            phoneNumber
+          }
+        }
+      }
+    }
+  `);
+
+  const { links } = data;
+  const { wp } = footerQuery;
+  console.log(wp);
+
+  const getFooterBackground = () => {
+    if (backgroundColor === 'grey') {
+      return theme.colors.sectionBackground;
+    }
+
+    return '#FFFFFF';
+  }
 
   return (
-    <Box as="footer" paddingY={4}>
+    <Box as="footer" background={getFooterBackground()}>
       <Container>
-        <Space size={5} />
-        <Flex variant="start" responsive>
-          <FlexList variant="start" responsive>
-            {links &&
+        <CtaBlock 
+          heading={footerCtaHeading}
+          ctaLink={overrideCtaLink || {
+            id: "contact-page-link-footer",
+            url: "/contact-us",
+            title: "Contact us",
+          }}
+        />
+        <FooterDivider />
+        <FooterItemContainer variant="spaceBetween" responsive>
+          <div>
+            {replaceLineBreaks(wp.contactDetails.companyContactDetails.address)}
+          </div>
+          <div>
+            <FooterLineItem>
+              {wp.contactDetails.companyContactDetails.phoneNumber}
+            </FooterLineItem>
+            <FooterLineItem>
+              {wp.contactDetails.companyContactDetails.email}
+            </FooterLineItem>
+          </div>
+          <Flex variant='columnStart' alignItems='end'>
+            <Flex list>
+              {links &&
               links.map((link) => (
                 <li key={link.id}>
                   <NavLink to={link.href}>{link.text}</NavLink>
                 </li>
               ))}
-          </FlexList>
-          <Space />
-          <FlexList>
-            {meta &&
-              meta.map((link) => (
-                <li key={link.id}>
-                  <NavLink to={link.href}>
-                    <Text variant="small">{link.text}</Text>
-                  </NavLink>
-                </li>
-              ))}
-          </FlexList>
-          <Text variant="small">{copyright}</Text>
-        </Flex>
+            </Flex>
+          </Flex>
+        </FooterItemContainer>
+        <CopyrightText isSmall>
+          {`© The Good Egg Collective ${new Date().getFullYear()}. All Rights Reserved.`}
+        </CopyrightText>
       </Container>
-      <Space size={3} />
+      <Spacing size={3} />
     </Box>
   );
 };
 
 export default Footer;
+
+export const query = graphql`
+  fragment FooterFragment on WpPage_Footerfields {
+    backgroundColor
+    footerCtaHeading
+    overrideCtaLink {
+      title
+      url
+    }
+  }
+`

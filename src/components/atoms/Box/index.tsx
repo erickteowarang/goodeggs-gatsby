@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, ElementType } from 'react';
 import styled, { css } from 'styled-components';
 import { media } from 'theme/media';
 
@@ -11,8 +11,9 @@ type BoxWidthOptions =
   | string;
 
 type BoxProps = {
-  width: BoxWidthOptions;
-  background?: 'primary' | 'muted';
+  as?: ElementType
+  width?: BoxWidthOptions;
+  background?: string;
   padding?: number;
   paddingY?: number;
   radius?: 'button' | 'large' | 'circle';
@@ -21,7 +22,7 @@ type BoxProps = {
   children: ReactNode;
 };
 
-const getBoxWidth = (width: BoxWidthOptions) => {
+const getBoxWidth = (width?: BoxWidthOptions) => {
   let calcWidth;
   switch (width) {
     case 'full':
@@ -49,13 +50,10 @@ const getBoxWidth = (width: BoxWidthOptions) => {
 const StyledBox = styled.div<BoxProps>`
   ${({ width }) => getBoxWidth(width)};
 
-  ${({ theme, background }) =>
+  ${({ background }) =>
     background &&
     css`
-      color: ${theme.colors.primary};
-      background-color: ${background === 'muted'
-        ? theme.colors.muted
-        : theme.colors.primary};
+      background-color: ${background};
     `}
 
   ${({ padding }) =>
@@ -97,6 +95,7 @@ const StyledBox = styled.div<BoxProps>`
 `;
 
 const Box = ({
+  as,
   width = 'full',
   background,
   padding,
@@ -109,6 +108,7 @@ const Box = ({
 }: BoxProps) => {
   return (
     <StyledBox
+      as={as}
       width={width}
       background={background}
       padding={padding}

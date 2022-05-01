@@ -5,6 +5,7 @@ import { media } from '../../../theme/media';
 type TypographyProps = {
   center?: boolean;
   bold?: boolean;
+  isSmall?: boolean;
 };
 
 type HeadingProps = TypographyProps & {
@@ -24,8 +25,8 @@ export const Blockquote = styled.blockquote`
 
 export const Text = styled.p<TypographyProps>`
   margin: 0;
-  margin-bottom: ${({ theme }) => theme.space[3]};
-  font-size: ${({ theme }) => theme.fontSizes[2]};
+  margin-bottom: ${({ theme, isSmall }) => isSmall ? theme.space[2] : theme.space[3]};
+  font-size: ${({ theme, isSmall }) => isSmall ? theme.fontSizes[1]:  theme.fontSizes[2]};
   font-weight: ${({ bold, theme }) =>
     bold ? theme.fontWeights.bold : theme.fontWeights.normal};
   line-height: ${({ theme }) => theme.lineHeights.text};

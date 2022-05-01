@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import Button from 'components/atoms/Button';
 import Flex from 'components/atoms/Flex';
-import Section from 'components/atoms/Section';
 import { Heading } from 'components/atoms/Typography';
 import { CTAProps } from 'types/global';
 import Container from 'components/atoms/Container';
@@ -15,6 +14,11 @@ const CtaHeading = styled(Heading)`
   line-height: ${({ theme }) => theme.lineHeights.heading};
 `
 
+const CtaBlockContainer = styled.div`
+  padding-top: ${({ theme }) => theme.space[6]};
+  padding-bottom: ${({ theme }) => theme.space[5]};
+`
+
 const CtaBlock = ({
   heading,
   ctaLink,
@@ -22,14 +26,14 @@ const CtaBlock = ({
   heading: string
   ctaLink: CTAProps
 }) => (
-  <Section>
+  <CtaBlockContainer>
     <Container>
       <Flex variant='center'>
         <CtaHeading>{heading}</CtaHeading>
         <Button isLink url={ctaLink.url}>{ctaLink.title}</Button>
       </Flex>
     </Container>
-  </Section>
+  </CtaBlockContainer>
 );
 
 export default CtaBlock;

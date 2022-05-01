@@ -218,6 +218,10 @@ const createTemporaryPageTemplateFile = (
           title
           uri
           ${getComponentsQuery(postType, true, componentNames)}
+
+          footerFields {
+            ...FooterFragment
+          }
         }
       }
     \`

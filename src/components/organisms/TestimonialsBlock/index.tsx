@@ -84,7 +84,6 @@ const TestimonialBlock = ({
 }: TestimonialBlockProps) => (
   <Section background={theme.colors.sectionBackground}>
     <Container variant="tight">
-      {console.log(testimonials)}
       <Carousel slides={getTestimonialSlides(testimonials)} />
     </Container>
   </Section>

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'react-feather';
 import styled from 'styled-components';
-import { Logo } from 'components/atoms/Svg';
+
 import Container, { ContainerProps } from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
 import Spacing from 'components/atoms/Spacing';
+import { Logo } from 'components/atoms/Svg';
+import NavLink from 'components/molecules/NavLink';
 import { InteractiveIcon, VisuallyHidden } from 'components/utils';
 import { media } from 'theme/media';
-import NavLink from './NavLink';
 
 const data = {
   navItems: [

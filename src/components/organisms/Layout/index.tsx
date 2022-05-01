@@ -12,7 +12,7 @@ const Layout = (props: any) => (
     <Head {...props} />
     <Header />
     {props.children}
-    <Footer />
+    <Footer {...props.footerData} />
   </ThemeProvider>
 );
 

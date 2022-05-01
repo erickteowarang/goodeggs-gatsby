@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Link, { LinkProps } from '../../atoms/Link';
+import Link, { LinkProps } from 'components/atoms/Link';
 
 const StyledNavLink = styled(Link)`
   color: ${({ theme }) => theme.colors.grey};

@@ -5,6 +5,7 @@ import Layout from 'components/organisms/Layout';
 // ### COMPONENT IMPORTS ### DO NOT MODIFY OR MOVE THIS COMMENT ###
 
 const PageTemplate = (pageProps) => {
+  console.log(pageProps)
   let components;
   // ### COMPONENTS VARIABLE ### DO NOT MODIFY OR MOVE THIS COMMENT ###
   components = components.map((component) => {
@@ -15,7 +16,7 @@ const PageTemplate = (pageProps) => {
   });
 
   return (
-    <Layout title={pageProps.data.wpPage.title}>
+    <Layout title={pageProps.data.wpPage.title} footerData={pageProps.data.wpPage.footerFields}>
       {components.map((component, index) => {
         // ### COMPONENT RENDERING ### DO NOT MODIFY OR MOVE THIS COMMENT ###
         return <div>Error: The component {component.name} was not found</div>;

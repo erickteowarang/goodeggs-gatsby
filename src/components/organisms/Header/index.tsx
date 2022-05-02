@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import { Menu, X } from 'react-feather';
 import styled from 'styled-components';
 
@@ -9,35 +10,7 @@ import { Logo } from 'components/atoms/Svg';
 import NavLink from 'components/molecules/NavLink';
 import { InteractiveIcon, VisuallyHidden } from 'components/utils';
 import { media } from 'theme/media';
-
-const data = {
-  navItems: [
-    {
-      id: 0,
-      navItemType: 'Link',
-      href: '#!',
-      text: 'Products',
-    },
-    {
-      id: 1,
-      navItemType: 'Link',
-      href: '#!',
-      text: 'Pricing',
-    },
-    {
-      id: 2,
-      navItemType: 'Link',
-      href: '#!',
-      text: 'About',
-    },
-    {
-      id: 3,
-      navItemType: 'Link',
-      href: '#!',
-      text: 'Blog',
-    },
-  ],
-};
+import { MenuItem } from 'types/global';
 
 const DesktopNavWrapper = styled(Container)`
   position: relative;
@@ -103,8 +76,23 @@ const StyledHeader = styled.header`
 `
 
 const Header = () => {
-  const { navItems } = data;
   const [isOpen, setOpen] = useState(false);
+
+  const menuQuery = useStaticQuery(graphql`
+    query MenuQuery {
+      wpMenu(locations: {eq: MENU_1}) {
+        menuItems {
+          nodes {
+            id
+            path
+            label
+          }
+        }
+      }
+    }
+  `);
+
+  const { wpMenu } = menuQuery;
 
   useEffect(() => {
     if (isOpen) {
@@ -125,12 +113,12 @@ const Header = () => {
           </NavLink>
           <nav>
             <Flex list gap={4}>
-              {navItems &&
-                navItems.map((navItem) => (
-                  <li key={navItem.id}>
-                    <NavLink to={navItem.href}>{navItem.text}</NavLink>
-                  </li>
-                ))}
+            {
+              wpMenu?.menuItems?.nodes.map((node: MenuItem) => (
+                <li key={node.id}>
+                  <NavLink to={node.path}>{node.label}</NavLink>
+                </li>
+              ))}
             </Flex>
           </nav>
         </Flex>
@@ -159,10 +147,10 @@ const Header = () => {
         <MobileNavOverlay>
           <nav>
             <Flex list responsive alignItems="stretch">
-              {navItems?.map((navItem) => (
+              {wpMenu?.menuItems?.nodes.map((navItem: MenuItem) => (
                 <li key={navItem.id}>
-                  <MobileNavLink to={navItem.href}>
-                    {navItem.text}
+                  <MobileNavLink to={navItem.path}>
+                    {navItem.label}
                   </MobileNavLink>
                 </li>
               ))}

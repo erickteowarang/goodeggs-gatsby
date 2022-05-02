@@ -32,8 +32,8 @@ if (dev) {
 }
 
 const options = {
-  postTypes: ['Page'],
-  graphQLFieldGroupName: 'pageModules',
+  postTypes: ['Page', 'PortfolioItem'],
+  graphQLFieldGroupName: ['pageModules', 'portfolioPageModules'],
   graphQLFieldName: 'components',
 };
 
@@ -62,7 +62,7 @@ const getPages = async ({ graphql }) => {
   const query = `
     query GetAllPagesWithComponents {
       ${options.postTypes
-        .map((postType) => {
+        .map((postType, index) => {
           return `
           allWp${postType} {
             nodes {
@@ -74,7 +74,7 @@ const getPages = async ({ graphql }) => {
               template {
                 templateName
               }
-              ${getComponentsQuery(postType)}
+              ${getComponentsQuery(postType, index)}
             }
           }
         `;
@@ -101,8 +101,9 @@ const createPages = async (pages, gatsbyUtilities) => {
   return Promise.all(
     pages.map((page) => {
       // If page has no components yet, initialise as empty array rather than null
+      const index = options.postTypes.indexOf(page.nodeType);
       const components =
-        page[options.graphQLFieldGroupName][options.graphQLFieldName] || [];
+        page[options.graphQLFieldGroupName[index]][options.graphQLFieldName] || [];
 
       // Removes all duplicates, as we only need to import each component once
       // Also need to sort otherwise mini-css-extract has problems with chunk ordering
@@ -119,7 +120,8 @@ const createPages = async (pages, gatsbyUtilities) => {
           page.databaseId,
           page.nodeType,
           page.slug,
-          uniqueComponentNames
+          uniqueComponentNames,
+          index,
         );
         return gatsbyUtilities.actions.createPage({
           path: page.uri,
@@ -160,7 +162,8 @@ const createTemporaryPageTemplateFile = (
   databaseId,
   postType,
   slug,
-  componentNames
+  componentNames,
+  index,
 ) => {
   // Use page.js as the base template to work from
   let pageTemplateString = readFileSync(pageTemplateFile, 'utf8');
@@ -196,7 +199,7 @@ const createTemporaryPageTemplateFile = (
 
   // Create the string which sets the components variable
   const componentsVariableString = `
-    components = pageProps.data.wp${postType}['${options.graphQLFieldGroupName}']['${options.graphQLFieldName}'] || []
+    components = pageProps.data.wp${postType}['${options.graphQLFieldGroupName[index]}']['${options.graphQLFieldName}'] || []
   `;
 
   // Create the string which will conditionally render all the components this page needs
@@ -217,10 +220,17 @@ const createTemporaryPageTemplateFile = (
         wp${postType}(id: {eq: $id}) {
           title
           uri
-          ${getComponentsQuery(postType, true, componentNames)}
+          ${getComponentsQuery(postType, index, true, componentNames)}
 
           footerFields {
-            ...FooterFragment
+            ... on Wp${postType}_Footerfields {
+              backgroundColor
+              footerCtaHeading
+              overrideCtaLink {
+                title
+                url
+              }
+            }
           }
         }
       }
@@ -263,16 +273,17 @@ const createTemporaryPageTemplateFile = (
 
 const getComponentsQuery = (
   postType,
+  index,
   withFragments = false,
   componentNames = undefined
 ) => {
   return `
-    ${options.graphQLFieldGroupName} {
+    ${options.graphQLFieldGroupName[index]} {
       ${options.graphQLFieldName} {
         __typename
         ${
           withFragments
-            ? getComponentFragments(postType, componentNames, true)
+            ? getComponentFragments(postType, index, componentNames, true)
             : ''
         }
       }
@@ -281,11 +292,12 @@ const getComponentsQuery = (
 };
 
 /**
- * Crawls through all the fragment.js files in the components folders
+ * Crawls through all the fragment.ts files in the components folders
  * and combines the graphql fragments into a single query
  */
 const getComponentFragments = (
   postType,
+  index,
   componentNames = undefined,
   referenceFragment = false
 ) => {
@@ -311,7 +323,7 @@ const getComponentFragments = (
       const query = require(componentFragmentFile);
 
       const graphQLFieldGroupName = capitalizeFirstLetter(
-        options.graphQLFieldGroupName.toLowerCase()
+        options.graphQLFieldGroupName[index].toLowerCase()
       );
 
       const fieldName = capitalizeFirstLetter(options.graphQLFieldName);
@@ -358,8 +370,8 @@ const createFragments = () => {
     mkdirSync(fragmentsFolder, { recursive: true });
   }
   const fragments = options.postTypes
-    .map((postType) => {
-      return getComponentFragments(postType);
+    .map((postType, index) => {
+      return getComponentFragments(postType, index);
     })
     .join('');
 

@@ -139,14 +139,3 @@ const Footer = ({
 };
 
 export default Footer;
-
-export const query = graphql`
-  fragment FooterFragment on WpPage_Footerfields {
-    backgroundColor
-    footerCtaHeading
-    overrideCtaLink {
-      title
-      url
-    }
-  }
-`

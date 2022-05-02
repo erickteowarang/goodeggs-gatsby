@@ -53,6 +53,13 @@ exports.createSchemaCustomization = async ({ actions }) => {
       localFile: File
       url: String
     }
+
+    interface GatsbyCTA implements Node {
+      id: ID!
+      target: String
+      title: String
+      url: String
+    }
   `);
 
   // WordPress types
@@ -68,17 +75,30 @@ exports.createSchemaCustomization = async ({ actions }) => {
       mediaItemUrl: String
     }
 
+    type Hero implements Node {
+      heading: String
+      text: String
+      image: GatsbyImage @link
+      cta: GatsbyCTA
+    }
+
     type ManifestoHero implements Node {
       heading: String
       subtitle: String
       image: GatsbyImage @link
     }
+
+    type MainBanner implements Node {
+      heading: String
+      subtitle: String
+      bannerImage: GatsbyImage @link
+    }
   `);
 };
 
 setOptions({
-  postTypes: ['Page'],
-  graphQLFieldGroupName: 'pageModules',
+  postTypes: ['Page', 'PortfolioItem'],
+  graphQLFieldGroupName: ['pageModules', 'portfolioPageModules'],
   graphQLFieldName: 'components',
 });
 

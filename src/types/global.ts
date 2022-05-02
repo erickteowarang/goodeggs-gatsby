@@ -11,3 +11,9 @@ export type GatsbyImageProps = {
   gatsbyImageData: IGatsbyImageData;
   alt: string;
 };
+
+export type MenuItem = {
+  id: string;
+  path: string;
+  label: string;
+}

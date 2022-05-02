@@ -10,32 +10,7 @@ import { Text } from 'components/atoms/Typography';
 import NavLink from 'components/molecules/NavLink';
 import CtaBlock from 'components/organisms/CtaBlock';
 import { theme } from 'theme/index';
-import { CTAProps } from 'types/global';
-
-const data = {
-  links: [
-    {
-      id: 0,
-      href: '#!',
-      text: 'Products',
-    },
-    {
-      id: 1,
-      href: '#!',
-      text: 'Pricing',
-    },
-    {
-      id: 2,
-      href: '#!',
-      text: 'About',
-    },
-    {
-      id: 3,
-      href: '#!',
-      text: 'Blog',
-    },
-  ]
-};
+import { CTAProps, MenuItem } from 'types/global';
 
 type FooterProps = {
   backgroundColor: string
@@ -97,12 +72,19 @@ const Footer = ({
           }
         }
       }
+      wpMenu(locations: {eq: MENU_1}) {
+        menuItems {
+          nodes {
+            id
+            path
+            label
+          }
+        }
+      }
     }
   `);
 
-  const { links } = data;
-  const { wp } = footerQuery;
-  console.log(wp);
+  const { wp, wpMenu } = footerQuery;
 
   const getFooterBackground = () => {
     if (backgroundColor === 'grey') {
@@ -138,10 +120,10 @@ const Footer = ({
           </div>
           <Flex variant='columnStart' alignItems='end'>
             <Flex list>
-              {links &&
-              links.map((link) => (
-                <li key={link.id}>
-                  <NavLink to={link.href}>{link.text}</NavLink>
+              {
+              wpMenu?.menuItems?.nodes.map((node: MenuItem) => (
+                <li key={node.id}>
+                  <NavLink to={node.path}>{node.label}</NavLink>
                 </li>
               ))}
             </Flex>

@@ -18,6 +18,7 @@ module.exports = {
         url: process.env.WPGRAPHQL_URL,
       },
     },
+    'gatsby-plugin-styled-components',
     'gatsby-plugin-sharp',
     'gatsby-plugin-typescript',
     'gatsby-plugin-root-import',

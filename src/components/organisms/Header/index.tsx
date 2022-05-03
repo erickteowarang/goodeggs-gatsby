@@ -8,7 +8,7 @@ import Flex from 'components/atoms/Flex';
 import Spacing from 'components/atoms/Spacing';
 import { Logo } from 'components/atoms/Svg';
 import NavLink from 'components/molecules/NavLink';
-import { InteractiveIcon, VisuallyHidden } from 'components/utils';
+import { InteractiveIcon, VisuallyHidden } from 'components/generic';
 import { media } from 'theme/media';
 import { MenuItem } from 'types/global';
 

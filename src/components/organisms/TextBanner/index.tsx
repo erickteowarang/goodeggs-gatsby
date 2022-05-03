@@ -7,7 +7,7 @@ import Section from 'components/atoms/Section';
 import Flex from 'components/atoms/Flex';
 import Container from 'components/atoms/Container';
 import Link from 'components/atoms/Link';
-import { CenteredContent, TrimParagraphOptions } from 'components/utils';
+import { CenteredContent, TrimParagraphOptions } from 'components/generic';
 
 type TextBannerProps = {
   text: string;

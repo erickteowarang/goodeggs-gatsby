@@ -31,6 +31,7 @@ export const InteractiveIcon = styled.button`
   height: 48;
 `;
 
+
 export const CenteredContent = styled.div`
   text-align: center;
 `

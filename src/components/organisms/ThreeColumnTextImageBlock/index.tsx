@@ -7,7 +7,7 @@ import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
 import Section from 'components/atoms/Section';
 import { Text, PortfolioHeading } from 'components/atoms/Typography';
-import { TrimParagraphOptions } from 'components/utils';
+import { TrimParagraphOptions } from 'components/generic';
 import { GatsbyImageProps } from 'types/global';
 import Spacing from 'components/atoms/Spacing';
 

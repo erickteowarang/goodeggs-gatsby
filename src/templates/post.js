@@ -7,7 +7,6 @@ const PostTemplate = (pageProps) => {
   return (
     <>
       <p>This is a post</p>
-      {console.log(data)}
     </>
   );
 };

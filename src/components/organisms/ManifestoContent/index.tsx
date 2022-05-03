@@ -4,7 +4,7 @@ import parse from 'html-react-parser';
 
 import Container from 'components/atoms/Container';
 import Section from 'components/atoms/Section';
-import { TrimParagraphOptions } from 'components/utils';
+import { TrimParagraphOptions } from 'components/generic';
 
 
 const ContentContainer = styled.p`

@@ -5,12 +5,7 @@ import Layout from 'components/organisms/Layout';
 // ### COMPONENT IMPORTS ### DO NOT MODIFY OR MOVE THIS COMMENT ###
 
 const PageTemplate = (pageProps) => {
-  let accessor = '';
-  if (pageProps.path.includes('portfolio')) {
-    accessor = 'wpPortfolioItem';
-  } else {
-    accessor = 'wpPage';
-  }
+  const accessor = Object.keys(pageProps.data)[0];
 
   let components;
   // ### COMPONENTS VARIABLE ### DO NOT MODIFY OR MOVE THIS COMMENT ###
@@ -20,6 +15,8 @@ const PageTemplate = (pageProps) => {
       data: component,
     };
   });
+
+  console.log(accessor);
 
   return (
     <Layout title={pageProps.data[accessor].title} footerData={pageProps.data[accessor].footerFields}>

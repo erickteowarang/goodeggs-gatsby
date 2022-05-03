@@ -9,7 +9,7 @@ import Section from 'components/atoms/Section';
 import { BlockHeading } from 'components/atoms/Typography';
 import { CardProps } from 'components/molecules/Card';
 import CardList from 'components/organisms/CardList';
-import { BlockContentOptions } from 'components/utils';
+import { BlockContentOptions } from 'components/generic';
 
 type TwoCardsBlockProps = {
   heading: string;

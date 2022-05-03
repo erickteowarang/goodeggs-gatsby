@@ -26,7 +26,7 @@ const ThreeColumnTextImageBlock = ({
   servicesRendered,
   blockImage 
 }: ThreeColumnTextImageBlockProps) => (
-  <Section>
+  <Section smallPadding>
     <Container variant='narrow'>
       <Flex variant='spaceBetween' alignItems='start'>
         <Box width='third'>

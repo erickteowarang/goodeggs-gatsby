@@ -35,14 +35,15 @@ const FooterLineItem = styled.span`
 `
 
 const FooterItemContainer = styled(Flex)`
-  padding-bottom: ${({ theme }) => theme.space[7]};
+  padding-bottom: ${({ theme }) => theme.space[5]};
   color: ${({ theme }) => theme.colors.blockText};
+  line-height: 2;
 `
 
 const CopyrightText = styled(Text)`
   color: ${({ theme }) => theme.colors.blockText};
   text-align: right;
-  margin: -${({ theme }) => theme.space[6]} -5px ${({ theme }) => theme.space[6]} 0;
+  margin-top: ${({ theme }) => theme.space[4]};
 `
 
 const replaceLineBreaks = (mainString: string) => {
@@ -106,20 +107,24 @@ const Footer = ({
           }}
         />
         <FooterDivider />
-        <FooterItemContainer variant="spaceBetween" responsive>
+        <FooterItemContainer variant="spaceBetween" alignItems='start' responsive>
           <div>
             {replaceLineBreaks(wp.contactDetails.companyContactDetails.address)}
           </div>
           <div>
             <FooterLineItem>
-              {wp.contactDetails.companyContactDetails.phoneNumber}
+              <a href={`tel:${wp.contactDetails.companyContactDetails.phoneNumber}`}>
+                {wp.contactDetails.companyContactDetails.phoneNumber}
+              </a>
             </FooterLineItem>
             <FooterLineItem>
-              {wp.contactDetails.companyContactDetails.email}
+              <a href={`mailto:${wp.contactDetails.companyContactDetails.email}`}>
+                {wp.contactDetails.companyContactDetails.email}
+              </a>
             </FooterLineItem>
           </div>
           <Flex variant='columnStart' alignItems='end'>
-            <Flex list>
+            <Flex list marginY={3}>
               {
               wpMenu?.menuItems?.nodes.map((node: MenuItem) => (
                 <li key={node.id}>
@@ -127,13 +132,12 @@ const Footer = ({
                 </li>
               ))}
             </Flex>
+            <CopyrightText isSmall>
+              {`© The Good Egg Collective ${new Date().getFullYear()}. All Rights Reserved.`}
+            </CopyrightText>
           </Flex>
         </FooterItemContainer>
-        <CopyrightText isSmall>
-          {`© The Good Egg Collective ${new Date().getFullYear()}. All Rights Reserved.`}
-        </CopyrightText>
       </Container>
-      <Spacing size={3} />
     </Box>
   );
 };

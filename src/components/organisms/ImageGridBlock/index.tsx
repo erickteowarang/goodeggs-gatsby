@@ -1,11 +1,13 @@
 import * as React from 'react';
+import parse from 'html-react-parser'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
 import Section from 'components/atoms/Section';
-import { Text, Heading, SmallHeading } from 'components/atoms/Typography';
+import { Text, BlockHeading } from 'components/atoms/Typography';
 import { GatsbyImageProps } from 'types/global';
+import Spacing from 'components/atoms/Spacing';
 
 type ImageGridBlockProps = {
   heading: string;
@@ -20,21 +22,25 @@ const ImageGridBlock = ({
   content,
   gridImages 
 }: ImageGridBlockProps) => (
-  <Section>
+  <Section smallPadding>
     <Container variant='tight'>
-        <Heading as="h1">
-          {heading}
-        </Heading>
-        <Text>{content}</Text>
+      <BlockHeading>
+        {heading}
+      </BlockHeading>
+      <Text isBlock>{parse(content)}</Text>
     </Container>
+    <Spacing size={5} />
     <Container>
-      {gridImages.map(singleImage => (
-        <GatsbyImage
-          alt={singleImage.image.alt}
-          image={getImage(singleImage.image.gatsbyImageData)!}
-        />
-      ))}
+      <Flex variant='spaceBetween' gap={4}>
+        {gridImages.map(singleImage => (
+          <GatsbyImage
+            alt={singleImage.image.alt}
+            image={getImage(singleImage.image.gatsbyImageData)!}
+          />
+        ))}
+      </Flex>
     </Container>
+    <Spacing size={5} />
   </Section>
 );
 

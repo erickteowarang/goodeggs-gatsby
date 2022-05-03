@@ -75,6 +75,14 @@ exports.createSchemaCustomization = async ({ actions }) => {
       mediaItemUrl: String
     }
 
+    type ServiceRendered implements Node {
+      serviceType: String
+    }
+
+    type GridImage implements Node {
+      image: GatsbyImage @link
+    }
+
     type Hero implements Node {
       heading: String
       text: String
@@ -92,6 +100,19 @@ exports.createSchemaCustomization = async ({ actions }) => {
       heading: String
       subtitle: String
       bannerImage: GatsbyImage @link
+    }
+
+    type ThreeColumnTextImageBlock implements Node {
+      heading: String
+      mainContent: String
+      servicesRendered: [ServiceRendered]
+      blockImage: GatsbyImage @link
+    }
+
+    type ImageGridBlock implements Node {
+      heading: String
+      content: String
+      gridImages: [GridImage]
     }
   `);
 };

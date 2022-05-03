@@ -41,7 +41,7 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: ['Palanquin:400,500,700,400italic,700italic', 'Poppins:300,400,500,700,300italic,400italic'],
+          families: ['Palanquin:400,500,600,700,400italic,700italic', 'Poppins:300,400,500,700,300italic,400italic'],
         },
       },
     },

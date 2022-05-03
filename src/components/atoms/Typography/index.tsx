@@ -6,6 +6,7 @@ type TypographyProps = {
   center?: boolean;
   bold?: boolean;
   isSmall?: boolean;
+  isBlock?: boolean;
 };
 
 type HeadingProps = TypographyProps & {
@@ -36,6 +37,16 @@ export const Text = styled.p<TypographyProps>`
     center &&
     css`
       text-align: center;
+    `};
+
+  ${({ isBlock }) =>
+    isBlock &&
+    css`
+      color: ${({ theme }) => theme.colors.blockText};
+
+      p:first-child {
+        margin-top: 0;
+      }
     `};
 `;
 
@@ -93,4 +104,15 @@ export const SmallHeading = styled.h5`
   font-size: ${({ theme }) => theme.fontSizes[1]};
   font-weight: ${({ theme }) => theme.fontWeights.normal};
   line-height: ${({ theme }) => theme.lineHeights.heading};
+`
+
+export const PortfolioHeading = styled.h3`
+  margin: 0;
+  color: ${({ theme }) => theme.colors.text};
+  margin-bottom: ${({ theme }) => theme.space[3]};
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 45px;
+  font-weight: ${({ theme }) => theme.fontWeights.semibold};
+  line-height: ${({ theme }) => theme.lineHeights.heading};
+  margin-top: -8px;
 `

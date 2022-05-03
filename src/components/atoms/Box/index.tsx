@@ -24,20 +24,28 @@ type BoxProps = {
 
 const getBoxWidth = (width?: BoxWidthOptions) => {
   let calcWidth;
+  console.log(width);
   switch (width) {
     case 'full':
       calcWidth = '100%';
+      break;
     case 'half':
       calcWidth = '50%';
+      break;
     case 'quarter':
       calcWidth = '25%';
+      break;
     case 'third':
       calcWidth = '33.3333%';
+      break;
     case 'fitContent':
       calcWidth = 'fit-content';
+      break;
     default:
       calcWidth = width;
   }
+
+  console.log(calcWidth);
 
   return css`
     width: 100%;

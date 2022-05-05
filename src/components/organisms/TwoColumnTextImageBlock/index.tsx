@@ -20,14 +20,8 @@ type TwoColumnTextImageBlockProps = {
 
 const TwoColumnTextImageBlock = ({ heading, content, image }: TwoColumnTextImageBlockProps) => (
   <Section>
-    <Container>
+    <Container variant='blockContent'>
       <Flex variant="spaceBetween" responsive>
-        <Box width="half">
-          <BlockHeading>
-            {heading}
-          </BlockHeading>
-          <BlockContent>{parse(content, BlockContentOptions)}</BlockContent>
-        </Box>
         <Box width="half">
           {image && (
             <GatsbyImage
@@ -35,6 +29,12 @@ const TwoColumnTextImageBlock = ({ heading, content, image }: TwoColumnTextImage
               image={getImage(image.gatsbyImageData)!}
             />
           )}
+        </Box>
+        <Box width="half">
+          <BlockHeading>
+            {heading}
+          </BlockHeading>
+          <BlockContent>{parse(content, BlockContentOptions)}</BlockContent>
         </Box>
       </Flex>
     </Container>

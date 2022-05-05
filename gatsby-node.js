@@ -114,6 +114,18 @@ exports.createSchemaCustomization = async ({ actions }) => {
       content: String
       gridImages: [GridImage]
     }
+
+    type TwoColumnTextImageBlock implements Node {
+      heading: String
+      content: String
+      image: GatsbyImage @link
+    }
+
+    type OurValuesBlock implements Node {
+      heading: String
+      values: String
+      image: GatsbyImage @link
+    }
   `);
 };
 

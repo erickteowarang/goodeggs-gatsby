@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css, DefaultTheme } from 'styled-components';
 import { media } from '../../../theme/media';
 
-type ContainerVariants = 'wide' | 'narrow' | 'tight' | 'full';
+type ContainerVariants = 'wide' | 'narrow' | 'tight' | 'full' | 'blockContent';
 
 export type ContainerProps = {
   children: React.ReactNode;
@@ -20,6 +20,8 @@ const getMaxWidth = (theme: DefaultTheme, variant?: ContainerVariants) => {
         return theme.sizes.narrow;
       case 'tight':
         return theme.sizes.tight;
+      case 'blockContent':
+        return theme.sizes.blockContent;
       default:
         return theme.sizes.container;
     }

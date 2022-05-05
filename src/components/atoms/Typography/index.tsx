@@ -132,6 +132,10 @@ export const BlockContent = styled.div`
     color: ${({ theme }) => theme.colors.blockText};
   }
 
+  strong {
+    color: ${({ theme }) => theme.colors.text};
+  }
+
   a {
     margin-top: ${({ theme }) => theme.space[2]};
   }

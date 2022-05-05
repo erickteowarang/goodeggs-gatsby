@@ -29,13 +29,13 @@ const getBoxWidth = (width?: BoxWidthOptions) => {
       calcWidth = '100%';
       break;
     case 'half':
-      calcWidth = '50%';
+      calcWidth = '48%';
       break;
     case 'quarter':
       calcWidth = '25%';
       break;
     case 'third':
-      calcWidth = '33.3333%';
+      calcWidth = '30%';
       break;
     case 'fitContent':
       calcWidth = 'fit-content';

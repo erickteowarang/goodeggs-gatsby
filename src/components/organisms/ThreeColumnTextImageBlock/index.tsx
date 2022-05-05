@@ -29,7 +29,7 @@ const ThreeColumnTextImageBlock = ({
   <Section smallPadding>
     <Container variant='narrow'>
       <Flex variant='spaceBetween' alignItems='start'>
-        <Box width='third'>
+        <Box width='33.3%'>
           <PortfolioHeading>
             {heading}
           </PortfolioHeading>

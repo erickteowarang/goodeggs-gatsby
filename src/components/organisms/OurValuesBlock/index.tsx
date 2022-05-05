@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from 'styled-components';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import parse from 'html-react-parser';
 
@@ -10,22 +11,24 @@ import { BlockHeading, BlockContent } from 'components/atoms/Typography';
 import { BlockContentOptions } from 'components/generic';
 import { GatsbyImageProps } from 'types/global';
 
-
 type OurValuesBlockProps = {
   heading: string;
   values: string;
   image: GatsbyImageProps
 };
 
+const ValuesHeading = styled(BlockHeading)`
+  text-align: center;
+`
 
 const OurValuesBlock = ({ heading, image, values }: OurValuesBlockProps) => (
   <Section>
-    <Container>
+    <Container variant='blockContent'>
       <Flex variant="spaceBetween" responsive>
         <Box width="45%">
-          <BlockHeading>
+          <ValuesHeading>
             {heading}
-          </BlockHeading>
+          </ValuesHeading>
           {image && (
             <GatsbyImage
               alt={image.alt}

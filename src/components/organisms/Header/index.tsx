@@ -84,7 +84,7 @@ const Header = () => {
         menuItems {
           nodes {
             id
-            path
+            url
             label
           }
         }
@@ -116,7 +116,7 @@ const Header = () => {
             {
               wpMenu?.menuItems?.nodes.map((node: MenuItem) => (
                 <li key={node.id}>
-                  <NavLink to={node.path}>{node.label}</NavLink>
+                  <NavLink to={node.url}>{node.label}</NavLink>
                 </li>
               ))}
             </Flex>

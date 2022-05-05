@@ -14,6 +14,6 @@ export type GatsbyImageProps = {
 
 export type MenuItem = {
   id: string;
-  path: string;
+  url: string;
   label: string;
 }

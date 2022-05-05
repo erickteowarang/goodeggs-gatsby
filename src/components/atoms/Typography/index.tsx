@@ -7,6 +7,7 @@ type TypographyProps = {
   bold?: boolean;
   isSmall?: boolean;
   isBlock?: boolean;
+  isUppercase?: boolean;
 };
 
 type HeadingProps = TypographyProps & {
@@ -48,6 +49,13 @@ export const Text = styled.p<TypographyProps>`
         margin-top: 0;
       }
     `};
+
+    ${({ isUppercase }) =>
+      isUppercase &&
+      css`
+        text-transform: uppercase;
+      `};
+
 `;
 
 export const Heading = styled.h2<HeadingProps>`
@@ -116,3 +124,15 @@ export const PortfolioHeading = styled.h3`
   line-height: ${({ theme }) => theme.lineHeights.heading};
   margin-top: -8px;
 `
+
+export const BlockContent = styled.div`
+  margin: ${({ theme }) => theme.space[3]} 0;
+
+  p {
+    color: ${({ theme }) => theme.colors.blockText};
+  }
+
+  a {
+    margin-top: ${({ theme }) => theme.space[2]};
+  }
+`;

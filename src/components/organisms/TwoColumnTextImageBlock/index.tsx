@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import parse from 'html-react-parser';
 
 import Box from 'components/atoms/Box';
@@ -6,32 +7,38 @@ import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
 import Section from 'components/atoms/Section';
 import { BlockHeading, BlockContent } from 'components/atoms/Typography';
-import { CardProps } from 'components/molecules/Card';
-import CardList from 'components/organisms/CardList';
 import { BlockContentOptions } from 'components/generic';
+import { GatsbyImageProps } from 'types/global';
 
-type TwoCardsBlockProps = {
+
+type TwoColumnTextImageBlockProps = {
   heading: string;
-  blockContent: string;
-  cards: Array<CardProps>
+  content: string;
+  image: GatsbyImageProps
 };
 
-const TwoCardsBlock = ({ heading, blockContent, cards }: TwoCardsBlockProps) => (
+
+const TwoColumnTextImageBlock = ({ heading, content, image }: TwoColumnTextImageBlockProps) => (
   <Section>
     <Container>
       <Flex variant="spaceBetween" responsive>
-        <Box width="34%">
+        <Box width="half">
           <BlockHeading>
             {heading}
           </BlockHeading>
-          <BlockContent>{parse(blockContent, BlockContentOptions)}</BlockContent>
+          <BlockContent>{parse(content, BlockContentOptions)}</BlockContent>
         </Box>
-        <Box width="57%">
-          <CardList cards={cards} />
+        <Box width="half">
+          {image && (
+            <GatsbyImage
+              alt={image.alt}
+              image={getImage(image.gatsbyImageData)!}
+            />
+          )}
         </Box>
       </Flex>
     </Container>
   </Section>
 );
 
-export default TwoCardsBlock;
+export default TwoColumnTextImageBlock;

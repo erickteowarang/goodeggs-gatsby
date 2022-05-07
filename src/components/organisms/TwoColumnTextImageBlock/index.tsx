@@ -10,13 +10,11 @@ import { BlockHeading, BlockContent } from 'components/atoms/Typography';
 import { BlockContentOptions } from 'components/generic';
 import { GatsbyImageProps } from 'types/global';
 
-
 type TwoColumnTextImageBlockProps = {
   heading: string;
   content: string;
   image: GatsbyImageProps
 };
-
 
 const TwoColumnTextImageBlock = ({ heading, content, image }: TwoColumnTextImageBlockProps) => (
   <Section>

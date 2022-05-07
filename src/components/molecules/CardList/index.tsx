@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Card, { CardProps } from 'components/molecules/Card';
+import Card, { CardProps } from 'components/atoms/Card';
 
 import Flex from 'components/atoms/Flex';
 

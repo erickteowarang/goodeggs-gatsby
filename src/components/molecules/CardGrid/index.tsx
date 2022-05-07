@@ -1,4 +1,4 @@
-import React from 'react;
+import React from 'react';
 
 import Card, { CardProps } from 'components/atoms/Card';
 import Container from 'components/atoms/Container';

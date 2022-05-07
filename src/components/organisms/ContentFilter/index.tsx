@@ -19,6 +19,7 @@ const FilterItem = styled.a<{
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: ${({ theme }) => theme.fontSizes[4]};
   color: ${({ theme, isActive }) => isActive ? theme.colors.text : theme.colors.mutedText};
+  text-decoration: ${({ isActive }) => isActive ? 'underline' : 'none'};
 `
 
 const ContentFilter = ({

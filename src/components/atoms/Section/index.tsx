@@ -11,7 +11,11 @@ type SectionProps = {
   children: ReactNode
 };
 
-const getPadding = (theme: CustomThemeProps, isSmall?: boolean, isLarge?: boolean) => {
+const getPadding = (
+  theme: CustomThemeProps,
+  isSmall?: boolean,
+  isLarge?: boolean
+) => {
   if (isLarge) {
     return theme.space[7]
   } else if (isSmall) {

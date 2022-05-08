@@ -1,24 +1,29 @@
 import React from 'react';
+import styled from 'styled-components';
 
+import Box from 'components/atoms/Box';
 import Card, { CardProps } from 'components/atoms/Card';
 import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
-import Section from 'components/atoms/Section';
+
+const CardGridContainer = styled(Container)`
+  margin-bottom: ${({ theme }) => theme.space[7]};
+`
 
 const CardGrid = ({ 
   cards 
 }: {
   cards: Array<CardProps>;
 }) => (
-  <Section>
-    <Container>
-      <Flex variant='spaceBetween'>
-        {cards.map(card => (
+  <CardGridContainer>
+    <Flex variant='spaceBetween'>
+      {cards.map(card => (
+        <Box width='third'>
           <Card {...card} />
-        ))}
-      </Flex>
-    </Container>
-  </Section>
+        </Box>
+      ))}
+    </Flex>
+  </CardGridContainer>
 );
 
 export default CardGrid;

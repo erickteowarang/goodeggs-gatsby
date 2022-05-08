@@ -13,4 +13,5 @@ export const colors = {
   innerHeading: '#A7A7AB',
   linkBlue: '#01539D',
   mutedText: '#D2D6D9',
+  tagBlue: '#01539D',
 };

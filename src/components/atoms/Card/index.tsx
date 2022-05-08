@@ -1,4 +1,5 @@
 import React from 'react';
+import parse from 'html-react-parser';
 import styled from 'styled-components';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { GatsbyImageProps } from 'types/global';
@@ -7,6 +8,7 @@ export type CardProps = {
   image: GatsbyImageProps
   heading: string
   content: string
+  tags?: Array<string>
 }
 
 const StyledCard = styled.div`
@@ -21,15 +23,32 @@ const CardHeading = styled.h4`
 `
 
 const CardContent = styled.p`
-  font-size: 15px;
   color: ${({ theme }) => theme.colors.blockText};
   margin: ${({ theme }) => theme.space[3]} 0;
+`
+
+const CardTags = styled.span`
+  color: ${({ theme }) => theme.colors.tagBlue};
+
+  &::before {
+    content: '/';
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  &:first-of-type {
+    &::before {
+      content: none;
+    }
+  }
 `
 
 const Card = ({
   image,
   heading,
   content,
+  tags,
 }: CardProps) => (
   <StyledCard>
     {image && (
@@ -39,7 +58,10 @@ const Card = ({
       />
     )}
     <CardHeading>{heading}</CardHeading>
-    <CardContent>{content}</CardContent>
+    <CardContent>{parse(content)}</CardContent>
+    {tags?.map(tag => (
+      <CardTags>{tag}</CardTags>
+    ))}
   </StyledCard>
 );
 

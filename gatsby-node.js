@@ -62,7 +62,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
     }
   `);
 
-  // WordPress types
+  // WordPress types and components
   actions.createTypes(/* GraphQL */ `
     type WpMediaItem implements Node & RemoteFile & GatsbyImage {
       id: ID!
@@ -127,7 +127,46 @@ exports.createSchemaCustomization = async ({ actions }) => {
       image: GatsbyImage @link
     }
   `);
+
+  // pages
+  actions.createTypes(/* GraphQL */ `
+    type PortfolioItem implements Node {
+      id: ID!
+      slug: String!
+      title: String
+      description: String
+      excerpt: String
+      image: GatsbyImage @link
+      categories: [WpCategory] @link
+      html: String
+    }
+  `)
 };
+
+exports.onCreateNode = ({
+  node,
+  actions,
+  createNodeId,
+}) => {
+  if (!node.internal.type.includes("Wp")) return
+
+  if (node.internal.type === "WpPortfolioItem") {
+        actions.createNode({
+          id: createNodeId(`${node.id} >>> PortfolioItem ${node.slug}`),
+          internal: {
+            type: "PortfolioItem",
+            contentDigest: node.internal.contentDigest,
+          },
+          parent: node.id,
+          slug: node.slug,
+          title: node.title,
+          excerpt: node.excerpt,
+          image: node.featuredImage?.node?.id,
+          categories: node.categories?.nodes?.map(category => category.id),
+          html: node.content,
+        });
+    }
+  }
 
 setOptions({
   postTypes: ['Page', 'PortfolioItem'],

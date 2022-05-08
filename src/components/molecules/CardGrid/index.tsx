@@ -16,10 +16,10 @@ const CardGrid = ({
   cards: Array<CardProps>;
 }) => (
   <CardGridContainer>
-    <Flex variant='spaceBetween'>
+    <Flex gap={4}>
       {cards.map(card => (
-        <Box width='third'>
-          <Card {...card} />
+        <Box width='33.3%'>
+          <Card {...card} fullWidth />
         </Box>
       ))}
     </Flex>

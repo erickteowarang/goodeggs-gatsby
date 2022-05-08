@@ -8,11 +8,17 @@ export type CardProps = {
   image: GatsbyImageProps
   heading: string
   content: string
+  fullWidth?: boolean
   tags?: Array<string>
 }
 
-const StyledCard = styled.div`
-  width: 333px;
+const StyledCard = styled.div<{ fullWidth?: boolean}>`
+  width: ${({ fullWidth }) => fullWidth ? '100%' : '333px'};
+
+  .card-image {
+    width: 100%;
+    border-radius: 20px;
+  }
 `
 
 const CardHeading = styled.h4`
@@ -49,12 +55,15 @@ const Card = ({
   heading,
   content,
   tags,
+  fullWidth,
 }: CardProps) => (
-  <StyledCard>
+  <StyledCard fullWidth={fullWidth}>
     {image && (
       <GatsbyImage
         alt={image.alt}
         image={getImage(image.gatsbyImageData)!}
+        className="card-image"
+        objectFit='cover'
       />
     )}
     <CardHeading>{heading}</CardHeading>

@@ -16,9 +16,9 @@ const CardGrid = ({
   cards: Array<CardProps>;
 }) => (
   <CardGridContainer>
-    <Flex gap={4}>
+    <Flex gap={9}>
       {cards.map(card => (
-        <Box width='33.3%'>
+        <Box width='31.2%'>
           <Card {...card} fullWidth />
         </Box>
       ))}

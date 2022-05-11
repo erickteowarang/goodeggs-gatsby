@@ -73,14 +73,14 @@ const StyledHeader = styled.header`
   position: absolute;
   height: ${headerHeight};
   width: 100%;
-`
+`;
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
 
   const menuQuery = useStaticQuery(graphql`
     query MenuQuery {
-      wpMenu(locations: {eq: MENU_1}) {
+      wpMenu(locations: { eq: MENU_1 }) {
         menuItems {
           nodes {
             id
@@ -113,8 +113,7 @@ const Header = () => {
           </NavLink>
           <nav>
             <Flex list gap={4}>
-            {
-              wpMenu?.menuItems?.nodes.map((node: MenuItem) => (
+              {wpMenu?.menuItems?.nodes.map((node: MenuItem) => (
                 <li key={node.id}>
                   <NavLink to={node.url}>{node.label}</NavLink>
                 </li>

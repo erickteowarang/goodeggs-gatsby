@@ -19,7 +19,10 @@ const PageTemplate = (pageProps) => {
   console.log(accessor);
 
   return (
-    <Layout title={pageProps.data[accessor].title} footerData={pageProps.data[accessor].footerFields}>
+    <Layout
+      title={pageProps.data[accessor].title}
+      footerData={pageProps.data[accessor].footerFields}
+    >
       {components.map((component, index) => {
         // ### COMPONENT RENDERING ### DO NOT MODIFY OR MOVE THIS COMMENT ###
         return <div>Error: The component {component.name} was not found</div>;

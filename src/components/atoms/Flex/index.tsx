@@ -7,7 +7,7 @@ type FlexVariants = 'columnStart' | 'column' | 'spaceBetween' | 'center';
 type AlignItemsOptions = 'start' | 'baseline' | 'end' | 'stretch';
 
 type FlexProps = {
-  as?: ElementType
+  as?: ElementType;
   variant?: FlexVariants;
   gap?: number;
   gutter?: number;
@@ -143,7 +143,7 @@ const Flex = ({
 }: FlexProps) => {
   return (
     <StyledFlexItem
-      as={list ? "ul" : "div"}
+      as={list ? 'ul' : 'div'}
       variant={variant}
       gap={gap}
       wrap={wrap}

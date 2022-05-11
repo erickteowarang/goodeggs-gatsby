@@ -18,7 +18,7 @@ type ManifestoHeroProps = {
 const HeroTitle = styled(Heading)`
   font-size: 60px;
   color: ${({ theme }) => theme.colors.text};
-`
+`;
 
 const HeroSubtitle = styled(Text)`
   margin: ${({ theme }) => theme.space[4]} 0;
@@ -28,10 +28,10 @@ const HeroSubtitle = styled(Text)`
 
 const HeroDivider = styled.hr`
   height: 4px;
-  background: #EEEEEE;
+  background: #eeeeee;
   border: none;
   margin-top: ${({ theme }) => theme.space[5]};
-`
+`;
 
 const ManifestoHero = ({ heading, subtitle, image }: ManifestoHeroProps) => (
   <Section smallPadding>
@@ -46,9 +46,7 @@ const ManifestoHero = ({ heading, subtitle, image }: ManifestoHeroProps) => (
           )}
         </Box>
         <Box width="40%">
-          <HeroTitle as="h1">
-            {heading}
-          </HeroTitle>
+          <HeroTitle as="h1">{heading}</HeroTitle>
           <HeroSubtitle>{subtitle}</HeroSubtitle>
         </Box>
       </Flex>

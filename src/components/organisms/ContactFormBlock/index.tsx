@@ -11,13 +11,13 @@ import { Text, Heading } from 'components/atoms/Typography';
 import Form from 'components/atoms/Form';
 
 type ContactFormBlockProps = {
-  heading: string
+  heading: string;
 };
 
 const ContactFormBlock = ({ heading }: ContactFormBlockProps) => {
   const formData = useStaticQuery(graphql`
     query ContactFormQuery {
-      wpGfForm(databaseId: {eq: 1}) {
+      wpGfForm(databaseId: { eq: 1 }) {
         formFields {
           nodes {
             id
@@ -37,13 +37,13 @@ const ContactFormBlock = ({ heading }: ContactFormBlockProps) => {
   const { wpGfForm } = formData;
 
   return (
-      <Section>
-        <Container>
-          {heading && <Heading>{heading}</Heading>}
-          {wpGfForm.formFields && <Form formFields={wpGfForm.formFields.nodes} />}
-        </Container>
-      </Section>
-    );
-  }
+    <Section>
+      <Container>
+        {heading && <Heading>{heading}</Heading>}
+        {wpGfForm.formFields && <Form formFields={wpGfForm.formFields.nodes} />}
+      </Container>
+    </Section>
+  );
+};
 
 export default ContactFormBlock;

@@ -12,25 +12,27 @@ const CtaHeading = styled(Heading)`
   font-size: 36px;
   margin-right: ${({ theme }) => theme.space[3]};
   line-height: ${({ theme }) => theme.lineHeights.heading};
-`
+`;
 
 const CtaBlockContainer = styled.div`
   padding-top: ${({ theme }) => theme.space[6]};
   padding-bottom: ${({ theme }) => theme.space[5]};
-`
+`;
 
 const CtaBlock = ({
   heading,
   ctaLink,
 }: {
-  heading: string
-  ctaLink: CTAProps
+  heading: string;
+  ctaLink: CTAProps;
 }) => (
   <CtaBlockContainer>
     <Container>
-      <Flex variant='center'>
+      <Flex variant="center">
         <CtaHeading>{heading}</CtaHeading>
-        <Button isLink url={ctaLink.url}>{ctaLink.title}</Button>
+        <Button isLink url={ctaLink.url}>
+          {ctaLink.title}
+        </Button>
       </Flex>
     </Container>
   </CtaBlockContainer>

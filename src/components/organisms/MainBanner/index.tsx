@@ -19,16 +19,14 @@ type MainBannerProps = {
 const MainHeading = styled(Heading)`
   font-size: 55px;
   color: ${({ theme }) => theme.colors.text};
-`
+`;
 
 const MainBanner = ({ heading, subtitle, bannerImage }: MainBannerProps) => (
   <Section>
     <Container>
-      <Flex variant='center'>
-        <Box width='40%'>
-          <MainHeading as="h1">
-            {heading}
-          </MainHeading>
+      <Flex variant="center">
+        <Box width="40%">
+          <MainHeading as="h1">{heading}</MainHeading>
           <Text isBlock>{subtitle}</Text>
         </Box>
       </Flex>

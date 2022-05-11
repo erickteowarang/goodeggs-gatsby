@@ -1,4 +1,5 @@
 import React from "react";
+import styled from 'styled-components';
 
 type InputWrapperProps = {
   children: React.ReactNode
@@ -14,13 +15,11 @@ const InputWrapper = ({
   inputData: {
     isRequired,
     label,
-    maxLength,
     type,
   },
   labelFor,
   wrapId
 }: InputWrapperProps) => {
-  console.log(label);
   const joinedLabel = `${label}${
     isRequired ? '<span class="gfield_required">*</span>' : ""
   }`;
@@ -30,17 +29,11 @@ const InputWrapper = ({
       id={wrapId}
     >
       <label
-        className="gravityform__label gfield_label"
         htmlFor={labelFor}
         dangerouslySetInnerHTML={{ __html: joinedLabel }}
       />
       <div>
         {children}
-        {maxLength > 0 && (
-          <div className="charleft ginput_counter warningTextareaInfo">
-            {maxLengthSentence(maxLength, type)}
-          </div>
-        )}
       </div>
       {errors && (
         <div
@@ -52,11 +45,6 @@ const InputWrapper = ({
       )}
     </li>
   );
-};
-
-const maxLengthSentence = (length: number, type: string) => {
-  let word = type === "number" ? "numbers" : "characters";
-  return length && ` (maximum ${length} ${word})`;
 };
 
 export default InputWrapper;

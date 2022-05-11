@@ -14,7 +14,7 @@ type HeadingProps = TypographyProps & {
   isLarge?: boolean;
   isHighlighted?: boolean;
   isLight?: boolean;
-  align?: 'center' | 'right'
+  align?: 'center' | 'right';
 };
 
 export const Blockquote = styled.blockquote`
@@ -27,8 +27,10 @@ export const Blockquote = styled.blockquote`
 
 export const Text = styled.p<TypographyProps>`
   margin: 0;
-  margin-bottom: ${({ theme, isSmall }) => isSmall ? theme.space[2] : theme.space[3]};
-  font-size: ${({ theme, isSmall }) => isSmall ? theme.fontSizes[1]:  theme.fontSizes[2]};
+  margin-bottom: ${({ theme, isSmall }) =>
+    isSmall ? theme.space[2] : theme.space[3]};
+  font-size: ${({ theme, isSmall }) =>
+    isSmall ? theme.fontSizes[1] : theme.fontSizes[2]};
   font-weight: ${({ bold, theme }) =>
     bold ? theme.fontWeights.bold : theme.fontWeights.normal};
   line-height: ${({ theme }) => theme.lineHeights.text};
@@ -50,22 +52,23 @@ export const Text = styled.p<TypographyProps>`
       }
     `};
 
-    ${({ isUppercase }) =>
-      isUppercase &&
-      css`
-        text-transform: uppercase;
-      `};
-
+  ${({ isUppercase }) =>
+    isUppercase &&
+    css`
+      text-transform: uppercase;
+    `};
 `;
 
 export const Heading = styled.h2<HeadingProps>`
   margin: 0;
-  color: ${({ theme, isLight }) => isLight ? theme.colors.text : theme.colors.primary};
+  color: ${({ theme, isLight }) =>
+    isLight ? theme.colors.text : theme.colors.primary};
   margin-bottom: ${({ theme }) => theme.space[3]};
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: ${({ theme, isLarge }) =>
     isLarge ? theme.fontSizes[6] : theme.fontSizes[5]};
-  font-weight: ${({ theme, isLight }) => isLight ? theme.fontWeights.normal : theme.fontWeights.bold};
+  font-weight: ${({ theme, isLight }) =>
+    isLight ? theme.fontWeights.normal : theme.fontWeights.bold};
   line-height: ${({ theme }) => theme.lineHeights.tight};
 
   ${({ isHighlighted }) =>
@@ -112,7 +115,7 @@ export const SmallHeading = styled.h5`
   font-size: ${({ theme }) => theme.fontSizes[1]};
   font-weight: ${({ theme }) => theme.fontWeights.normal};
   line-height: ${({ theme }) => theme.lineHeights.heading};
-`
+`;
 
 export const PortfolioHeading = styled.h3`
   margin: 0;
@@ -123,7 +126,7 @@ export const PortfolioHeading = styled.h3`
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
   line-height: ${({ theme }) => theme.lineHeights.heading};
   margin-top: -8px;
-`
+`;
 
 export const BlockContent = styled.div`
   margin: ${({ theme }) => theme.space[3]} 0;

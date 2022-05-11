@@ -15,33 +15,31 @@ type ThreeColumnTextImageBlockProps = {
   heading: string;
   mainContent: string;
   servicesRendered: Array<{
-    serviceType: string
+    serviceType: string;
   }>;
-  blockImage: GatsbyImageProps
+  blockImage: GatsbyImageProps;
 };
 
-const ThreeColumnTextImageBlock = ({ 
+const ThreeColumnTextImageBlock = ({
   heading,
   mainContent,
   servicesRendered,
-  blockImage 
+  blockImage,
 }: ThreeColumnTextImageBlockProps) => (
   <Section smallPadding>
-    <Container variant='narrow'>
-      <Flex variant='spaceBetween' alignItems='start'>
-        <Box width='33.3%'>
-          <PortfolioHeading>
-            {heading}
-          </PortfolioHeading>
+    <Container variant="narrow">
+      <Flex variant="spaceBetween" alignItems="start">
+        <Box width="33.3%">
+          <PortfolioHeading>{heading}</PortfolioHeading>
         </Box>
-        <Box width='35%'>
+        <Box width="35%">
           <Text isBlock>{parse(mainContent)}</Text>
         </Box>
-        <Box width='20%'>
-          <Text as='h4' bold>
+        <Box width="20%">
+          <Text as="h4" bold>
             Services
           </Text>
-          {servicesRendered.map(service => (
+          {servicesRendered.map((service) => (
             <Text isBlock>{service.serviceType}</Text>
           ))}
         </Box>

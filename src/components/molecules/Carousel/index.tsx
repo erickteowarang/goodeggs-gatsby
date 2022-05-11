@@ -1,33 +1,31 @@
 import React, { ReactElement } from 'react';
-import { Pagination } from "swiper";
+import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import "swiper/css/pagination";
+import 'swiper/css/pagination';
 
 type CarouselProps = {
-  slides: Array<ReactElement>
-}
+  slides: Array<ReactElement>;
+};
 
-const Carousel = ({
-  slides
-}: CarouselProps) => (
+const Carousel = ({ slides }: CarouselProps) => (
   <Swiper
-    slidesPerView={"auto"}
+    slidesPerView={'auto'}
     centeredSlides={true}
     spaceBetween={30}
     pagination={{
-			clickable: true,
+      clickable: true,
       renderBullet: (index, className) => {
-        return '<span class="' + className + ' custom-pagination-bullet"></span>';
+        return (
+          '<span class="' + className + ' custom-pagination-bullet"></span>'
+        );
       },
     }}
     modules={[Pagination]}
     className="mySwiper"
   >
-    {slides.map(slide => (
-      <SwiperSlide>
-        {slide}
-      </SwiperSlide>
+    {slides.map((slide) => (
+      <SwiperSlide>{slide}</SwiperSlide>
     ))}
   </Swiper>
 );

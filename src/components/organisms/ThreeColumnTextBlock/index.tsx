@@ -12,25 +12,29 @@ type ThreeColumnTextBlockProps = {
   heading: string;
   sectionBackground?: 'grey' | 'white';
   textBlocks: Array<{
-    blockHeading: string
-    blockContent: string
+    blockHeading: string;
+    blockContent: string;
   }>;
 };
 
-const ThreeColumnTextImageBlock = ({ 
+const ThreeColumnTextImageBlock = ({
   heading,
   sectionBackground,
-  textBlocks
+  textBlocks,
 }: ThreeColumnTextBlockProps) => (
-  <Section background={sectionBackground === 'grey' ? theme.colors.sectionBackground : '#FFFFFF' }>
+  <Section
+    background={
+      sectionBackground === 'grey' ? theme.colors.sectionBackground : '#FFFFFF'
+    }
+  >
     <Container>
-      <BlockHeading>
-        {heading}
-      </BlockHeading>
-      <Flex variant='spaceBetween' alignItems='start'>
-        {textBlocks.map(block => (
-          <Box width='third'>
-            <Text as="h6" bold>{block.blockHeading}</Text>
+      <BlockHeading>{heading}</BlockHeading>
+      <Flex variant="spaceBetween" alignItems="start">
+        {textBlocks.map((block) => (
+          <Box width="third">
+            <Text as="h6" bold>
+              {block.blockHeading}
+            </Text>
             <Text isBlock>{parse(block.blockContent)}</Text>
           </Box>
         ))}

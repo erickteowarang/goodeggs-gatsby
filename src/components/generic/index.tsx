@@ -1,13 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  domToReact,
-  HTMLReactParserOptions,
-  Element,
-} from 'html-react-parser';
+import { domToReact, HTMLReactParserOptions, Element } from 'html-react-parser';
 
-import { SmallHeading, Text } from "components/atoms/Typography";
-import Link from "components/atoms/Link";
+import { SmallHeading, Text } from 'components/atoms/Typography';
+import Link from 'components/atoms/Link';
 
 export const VisuallyHidden = styled.span`
   border: 0;
@@ -31,10 +27,9 @@ export const InteractiveIcon = styled.button`
   height: 48;
 `;
 
-
 export const CenteredContent = styled.div`
   text-align: center;
-`
+`;
 
 export const TrimParagraphOptions: HTMLReactParserOptions = {
   replace: (domNode) => {
@@ -46,13 +41,17 @@ export const TrimParagraphOptions: HTMLReactParserOptions = {
 
 export const BlockContentOptions: HTMLReactParserOptions = {
   replace: (domNode) => {
-    if (domNode instanceof Element) { 
+    if (domNode instanceof Element) {
       if (domNode.name === 'p') {
         return <Text>{domToReact(domNode.children, BlockContentOptions)}</Text>;
       } else if (domNode.name === 'a') {
         return <Link>{domToReact(domNode.children)}</Link>;
       } else if (domNode.name === 'h5' || domNode.name === 'h6') {
-        return <SmallHeading as={domNode.name}>{domToReact(domNode.children)}</SmallHeading>;
+        return (
+          <SmallHeading as={domNode.name}>
+            {domToReact(domNode.children)}
+          </SmallHeading>
+        );
       }
     }
   },

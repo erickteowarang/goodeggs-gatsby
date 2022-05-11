@@ -1,17 +1,17 @@
-import React from "react";
-import { useForm, FormProvider } from "react-hook-form";
-import FormBuilder from "./FormBuilder";
+import React from 'react';
+import { useForm, FormProvider } from 'react-hook-form';
+import FormBuilder from './FormBuilder';
 
 type FormProps = {
   formFields: Array<{
-    label: string
-    description?: string
+    label: string;
+    description?: string;
     choices?: {
-      text: string
-      value: string
-    }
-  }>
-}
+      text: string;
+      value: string;
+    };
+  }>;
+};
 
 const Form = ({ formFields }: FormProps) => {
   const methods = useForm();
@@ -26,6 +26,6 @@ const Form = ({ formFields }: FormProps) => {
       </form>
     </FormProvider>
   );
-}
+};
 
 export default Form;

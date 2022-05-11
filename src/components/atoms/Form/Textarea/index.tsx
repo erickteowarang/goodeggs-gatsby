@@ -1,29 +1,24 @@
-import { graphql } from "gatsby";
-import React from "react";
-import { useFormContext } from "react-hook-form";
-import InputWrapper from "../InputWrapper";
+import { graphql } from 'gatsby';
+import React from 'react';
+import { useFormContext } from 'react-hook-form';
+import InputWrapper from '../InputWrapper';
 
 type TextAreaProps = {
   fieldData: {
-    description?: string,
-    label: string,
-    descriptionPlacement?: string,
-    maxLength?: number,
-    placeholder?: string,
-    isRequired: boolean,
-    defaultValue?: string,
-  }
-  name: string
-  wrapId: string
-}
+    description?: string;
+    label: string;
+    descriptionPlacement?: string;
+    maxLength?: number;
+    placeholder?: string;
+    isRequired: boolean;
+    defaultValue?: string;
+  };
+  name: string;
+  wrapId: string;
+};
 
 const Textarea = ({ fieldData, name, wrapId }: TextAreaProps) => {
-  const {
-    isRequired,
-    maxLength,
-    placeholder,
-    defaultValue,
-  } = fieldData;
+  const { isRequired, maxLength, placeholder, defaultValue } = fieldData;
 
   const {
     register,

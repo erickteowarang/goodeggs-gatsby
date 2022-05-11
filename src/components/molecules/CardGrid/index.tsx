@@ -8,17 +8,13 @@ import Flex from 'components/atoms/Flex';
 
 const CardGridContainer = styled(Container)`
   margin-bottom: ${({ theme }) => theme.space[7]};
-`
+`;
 
-const CardGrid = ({ 
-  cards 
-}: {
-  cards: Array<CardProps>;
-}) => (
+const CardGrid = ({ cards }: { cards: Array<CardProps> }) => (
   <CardGridContainer>
     <Flex gap={9}>
-      {cards.map(card => (
-        <Box width='31.2%'>
+      {cards.map((card) => (
+        <Box width="31.2%">
           <Card {...card} fullWidth />
         </Box>
       ))}

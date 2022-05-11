@@ -11,42 +11,46 @@ const PortfolioItemPage = (pageProps) => {
 
   const getCategories = () => {
     let allCategories = ['All'];
-    allPortfolioItem.nodes.forEach(node => {
-      node.categories.forEach(category => {
+    allPortfolioItem.nodes.forEach((node) => {
+      node.categories.forEach((category) => {
         if (!allCategories.includes(category.name)) {
           allCategories.push(category.name);
         }
       });
     });
-    
+
     return allCategories;
   };
 
   const getCards = () => {
     let allPortfolioItems = allPortfolioItem.nodes;
     if (activeFilter !== 'All') {
-      allPortfolioItems = allPortfolioItems
-        .filter(node => node.categories.some(category => category.name === activeFilter)) 
+      allPortfolioItems = allPortfolioItems.filter((node) =>
+        node.categories.some((category) => category.name === activeFilter)
+      );
     }
 
-    return allPortfolioItems.map(node => ({
+    return allPortfolioItems.map((node) => ({
       heading: node.title,
       content: node.excerpt,
       image: node.image,
-      tags: node.categories.map(category => category.name),
+      tags: node.categories.map((category) => category.name),
     }));
-  }
+  };
 
   useEffect(() => {
     setCards(getCards());
   }, [activeFilter]);
 
   return (
-    <Layout title='Selected work' footerData={{
-      backgroundColor: 'grey',
-      footerCtaHeading: `Let's talk digital`,
-    }}>
-      <ContentFilter 
+    <Layout
+      title="Selected work"
+      footerData={{
+        backgroundColor: 'grey',
+        footerCtaHeading: `Let's talk digital`,
+      }}
+    >
+      <ContentFilter
         heading="Selected work"
         filters={getCategories()}
         setActiveFilter={setActiveFilter}
@@ -77,4 +81,4 @@ export const portfolioItemPageQuery = graphql`
       }
     }
   }
-`
+`;

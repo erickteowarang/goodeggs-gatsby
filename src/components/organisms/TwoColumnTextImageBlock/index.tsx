@@ -13,12 +13,16 @@ import { GatsbyImageProps } from 'types/global';
 type TwoColumnTextImageBlockProps = {
   heading: string;
   content: string;
-  image: GatsbyImageProps
+  image: GatsbyImageProps;
 };
 
-const TwoColumnTextImageBlock = ({ heading, content, image }: TwoColumnTextImageBlockProps) => (
+const TwoColumnTextImageBlock = ({
+  heading,
+  content,
+  image,
+}: TwoColumnTextImageBlockProps) => (
   <Section>
-    <Container variant='blockContent'>
+    <Container variant="blockContent">
       <Flex variant="spaceBetween" responsive>
         <Box width="half">
           {image && (
@@ -29,9 +33,7 @@ const TwoColumnTextImageBlock = ({ heading, content, image }: TwoColumnTextImage
           )}
         </Box>
         <Box width="half">
-          <BlockHeading>
-            {heading}
-          </BlockHeading>
+          <BlockHeading>{heading}</BlockHeading>
           <BlockContent>{parse(content, BlockContentOptions)}</BlockContent>
         </Box>
       </Flex>

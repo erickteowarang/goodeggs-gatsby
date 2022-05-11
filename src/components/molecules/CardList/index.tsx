@@ -8,15 +8,11 @@ const CardListContainer = styled(Flex)`
   > div:nth-child(2) {
     margin-top: ${({ theme }) => theme.space[6]};
   }
-`
+`;
 
-const CardList = ({
-  cards
-}: {
-  cards: Array<CardProps>
-}) => (
-  <CardListContainer variant='spaceBetween' alignItems='start'>
-    {cards.map(card => (
+const CardList = ({ cards }: { cards: Array<CardProps> }) => (
+  <CardListContainer variant="spaceBetween" alignItems="start">
+    {cards.map((card) => (
       <Card {...card} key={card.heading} />
     ))}
   </CardListContainer>

@@ -16,4 +16,4 @@ export type MenuItem = {
   id: string;
   url: string;
   label: string;
-}
+};

@@ -11,7 +11,7 @@ type BoxWidthOptions =
   | string;
 
 type BoxProps = {
-  as?: ElementType
+  as?: ElementType;
   width?: BoxWidthOptions;
   background?: string;
   padding?: number;

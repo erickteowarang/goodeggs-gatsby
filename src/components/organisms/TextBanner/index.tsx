@@ -16,21 +16,16 @@ type TextBannerProps = {
 
 const TextBanner = ({ text, cta }: TextBannerProps) => (
   <Section largePadding>
-    <Container variant='narrow'>
-      <Flex variant='center'>
-        <Heading 
-          isHighlighted
-          isLight
-          align='center'
-          as='h3'
-        >
+    <Container variant="narrow">
+      <Flex variant="center">
+        <Heading isHighlighted isLight align="center" as="h3">
           {parse(text, TrimParagraphOptions)}
         </Heading>
-        {cta && 
+        {cta && (
           <CenteredContent>
             <Link href={cta.url}>{cta.title}</Link>
           </CenteredContent>
-        }
+        )}
       </Flex>
     </Container>
   </Section>

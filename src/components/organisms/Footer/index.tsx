@@ -13,17 +13,17 @@ import { theme } from 'theme/index';
 import { CTAProps, MenuItem } from 'types/global';
 
 type FooterProps = {
-  backgroundColor: string
-  footerCtaHeading: string
-  overrideCtaLink?: CTAProps
-}
+  backgroundColor: string;
+  footerCtaHeading: string;
+  overrideCtaLink?: CTAProps;
+};
 
 const FooterDivider = styled.hr`
   height: 1px;
-  background: #EEEEEE;
+  background: #eeeeee;
   border: none;
   margin-bottom: ${({ theme }) => theme.space[5]};
-`
+`;
 
 const FooterLineItem = styled.span`
   display: block;
@@ -32,36 +32,36 @@ const FooterLineItem = styled.span`
   a {
     color: inherit;
   }
-`
+`;
 
 const FooterItemContainer = styled(Flex)`
   padding-bottom: ${({ theme }) => theme.space[5]};
   color: ${({ theme }) => theme.colors.blockText};
   line-height: 2;
-`
+`;
 
 const CopyrightText = styled(Text)`
   color: ${({ theme }) => theme.colors.blockText};
   text-align: right;
   margin-top: ${({ theme }) => theme.space[4]};
-`
+`;
 
 const replaceLineBreaks = (mainString: string) => {
-  return mainString.split("\n").map((item, idx) => {
+  return mainString.split('\n').map((item, idx) => {
     return (
-        <FooterLineItem key={idx}>
-          {item}
-          <br/>
-        </FooterLineItem>
-     )
-  })
-}
+      <FooterLineItem key={idx}>
+        {item}
+        <br />
+      </FooterLineItem>
+    );
+  });
+};
 
-const Footer = ({ 
+const Footer = ({
   backgroundColor,
   footerCtaHeading,
   overrideCtaLink,
- }: FooterProps) => {
+}: FooterProps) => {
   const footerQuery = useStaticQuery(graphql`
     query FooterQuery {
       wp {
@@ -73,7 +73,7 @@ const Footer = ({
           }
         }
       }
-      wpMenu(locations: {eq: MENU_1}) {
+      wpMenu(locations: { eq: MENU_1 }) {
         menuItems {
           nodes {
             id
@@ -93,40 +93,49 @@ const Footer = ({
     }
 
     return '#FFFFFF';
-  }
+  };
 
   return (
     <Box as="footer" background={getFooterBackground()}>
       <Container>
-        <CtaBlock 
+        <CtaBlock
           heading={footerCtaHeading}
-          ctaLink={overrideCtaLink || {
-            id: "contact-page-link-footer",
-            url: "/contact-us",
-            title: "Contact us",
-          }}
+          ctaLink={
+            overrideCtaLink || {
+              id: 'contact-page-link-footer',
+              url: '/contact-us',
+              title: 'Contact us',
+            }
+          }
         />
         <FooterDivider />
-        <FooterItemContainer variant="spaceBetween" alignItems='start' responsive>
+        <FooterItemContainer
+          variant="spaceBetween"
+          alignItems="start"
+          responsive
+        >
           <div>
             {replaceLineBreaks(wp.contactDetails.companyContactDetails.address)}
           </div>
           <div>
             <FooterLineItem>
-              <a href={`tel:${wp.contactDetails.companyContactDetails.phoneNumber}`}>
+              <a
+                href={`tel:${wp.contactDetails.companyContactDetails.phoneNumber}`}
+              >
                 {wp.contactDetails.companyContactDetails.phoneNumber}
               </a>
             </FooterLineItem>
             <FooterLineItem>
-              <a href={`mailto:${wp.contactDetails.companyContactDetails.email}`}>
+              <a
+                href={`mailto:${wp.contactDetails.companyContactDetails.email}`}
+              >
                 {wp.contactDetails.companyContactDetails.email}
               </a>
             </FooterLineItem>
           </div>
-          <Flex variant='columnStart' alignItems='end'>
+          <Flex variant="columnStart" alignItems="end">
             <Flex list marginY={3}>
-              {
-              wpMenu?.menuItems?.nodes.map((node: MenuItem) => (
+              {wpMenu?.menuItems?.nodes.map((node: MenuItem) => (
                 <li key={node.id}>
                   <NavLink to={node.url}>{node.label}</NavLink>
                 </li>

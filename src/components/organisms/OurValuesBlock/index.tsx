@@ -14,21 +14,19 @@ import { GatsbyImageProps } from 'types/global';
 type OurValuesBlockProps = {
   heading: string;
   values: string;
-  image: GatsbyImageProps
+  image: GatsbyImageProps;
 };
 
 const ValuesHeading = styled(BlockHeading)`
   text-align: center;
-`
+`;
 
 const OurValuesBlock = ({ heading, image, values }: OurValuesBlockProps) => (
   <Section>
-    <Container variant='blockContent'>
+    <Container variant="blockContent">
       <Flex variant="spaceBetween" responsive>
         <Box width="45%">
-          <ValuesHeading>
-            {heading}
-          </ValuesHeading>
+          <ValuesHeading>{heading}</ValuesHeading>
           {image && (
             <GatsbyImage
               alt={image.alt}
@@ -39,7 +37,6 @@ const OurValuesBlock = ({ heading, image, values }: OurValuesBlockProps) => (
         <Box width="half">
           <BlockContent>{parse(values, BlockContentOptions)}</BlockContent>
         </Box>
-        
       </Flex>
     </Container>
   </Section>

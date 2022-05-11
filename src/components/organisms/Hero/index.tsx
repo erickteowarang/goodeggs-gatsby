@@ -12,7 +12,7 @@ import Section from 'components/atoms/Section';
 import { Text, Heading } from 'components/atoms/Typography';
 import { TrimParagraphOptions } from 'components/generic';
 
-import { theme } from 'theme/index'
+import { theme } from 'theme/index';
 
 type HeroProps = {
   heading: string;

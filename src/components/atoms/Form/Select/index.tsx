@@ -1,24 +1,24 @@
-import React from "react";
-import { graphql } from "gatsby";
+import React from 'react';
+import { graphql } from 'gatsby';
 
-import { useFormContext } from "react-hook-form";
-import InputWrapper from "components/atoms/Form/InputWrapper";
+import { useFormContext } from 'react-hook-form';
+import InputWrapper from 'components/atoms/Form/InputWrapper';
 
 type SelectProps = {
   fieldData: {
-    label: string
+    label: string;
     choices: Array<{
-      isSelected?: boolean
-      text: string
-      value: string
-    }>
-    cssClass: string
-    isRequired: boolean
-    size: string
-  }
-  name: string
-  wrapId: string
-}
+      isSelected?: boolean;
+      text: string;
+      value: string;
+    }>;
+    cssClass: string;
+    isRequired: boolean;
+    size: string;
+  };
+  name: string;
+  wrapId: string;
+};
 
 const Select = ({ fieldData, name, wrapId }: SelectProps) => {
   const { label, choices, isRequired } = fieldData;
@@ -40,7 +40,7 @@ const Select = ({ fieldData, name, wrapId }: SelectProps) => {
         aria-required={isRequired}
         id={name}
         {...register(name, {
-          required: isRequired && "This field is required",
+          required: isRequired && 'This field is required',
         })}
       >
         {choices.map(({ isSelected, text, value }, index) => {

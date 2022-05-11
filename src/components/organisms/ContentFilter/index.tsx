@@ -11,12 +11,12 @@ type ContentFilterProps = {
   filters: Array<string>;
   activeFilter: string;
   setActiveFilter: Function;
-}
+};
 
 const FilterHeading = styled(Heading)`
   color: ${({ theme }) => theme.colors.text};
   font-size: 56px;
-`
+`;
 
 const FilterItem = styled.a<{
   isActive?: boolean;
@@ -24,22 +24,23 @@ const FilterItem = styled.a<{
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: ${({ theme }) => theme.fontSizes[4]};
   font-weight: bold;
-  color: ${({ theme, isActive }) => isActive ? theme.colors.text : theme.colors.mutedText};
-  text-decoration: ${({ isActive }) => isActive ? 'underline' : 'none'};
+  color: ${({ theme, isActive }) =>
+    isActive ? theme.colors.text : theme.colors.mutedText};
+  text-decoration: ${({ isActive }) => (isActive ? 'underline' : 'none')};
   cursor: pointer;
 
   &:hover {
-    color: ${({ theme }) =>  theme.colors.text};
+    color: ${({ theme }) => theme.colors.text};
     text-decoration: underline;
   }
-`
+`;
 
 const FilterContainer = styled(Flex)`
   width: 500px;
   margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
-`
+`;
 
 const ContentFilter = ({
   heading,
@@ -48,14 +49,14 @@ const ContentFilter = ({
   setActiveFilter,
 }: ContentFilterProps) => (
   <Section>
-    <Container variant='tight'>
-      <FilterHeading as="h1" align='center'>
+    <Container variant="tight">
+      <FilterHeading as="h1" align="center">
         {heading}
       </FilterHeading>
-      <FilterContainer variant='spaceBetween'>
-        {filters.map(filter => (
-          <FilterItem 
-            onClick={() => setActiveFilter(filter)} 
+      <FilterContainer variant="spaceBetween">
+        {filters.map((filter) => (
+          <FilterItem
+            onClick={() => setActiveFilter(filter)}
             isActive={activeFilter === filter}
           >
             {filter}

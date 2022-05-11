@@ -13,18 +13,22 @@ import { BlockContentOptions } from 'components/generic';
 type TwoCardsBlockProps = {
   heading: string;
   blockContent: string;
-  cards: Array<CardProps>
+  cards: Array<CardProps>;
 };
 
-const TwoCardsBlock = ({ heading, blockContent, cards }: TwoCardsBlockProps) => (
+const TwoCardsBlock = ({
+  heading,
+  blockContent,
+  cards,
+}: TwoCardsBlockProps) => (
   <Section>
     <Container>
       <Flex variant="spaceBetween" responsive>
         <Box width="34%">
-          <BlockHeading>
-            {heading}
-          </BlockHeading>
-          <BlockContent>{parse(blockContent, BlockContentOptions)}</BlockContent>
+          <BlockHeading>{heading}</BlockHeading>
+          <BlockContent>
+            {parse(blockContent, BlockContentOptions)}
+          </BlockContent>
         </Box>
         <Box width="57%">
           <CardList cards={cards} />

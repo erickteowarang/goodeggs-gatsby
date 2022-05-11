@@ -5,33 +5,33 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { GatsbyImageProps } from 'types/global';
 
 export type CardProps = {
-  image: GatsbyImageProps
-  heading: string
-  content: string
-  fullWidth?: boolean
-  tags?: Array<string>
-}
+  image: GatsbyImageProps;
+  heading: string;
+  content: string;
+  fullWidth?: boolean;
+  tags?: Array<string>;
+};
 
-const StyledCard = styled.div<{ fullWidth?: boolean}>`
-  width: ${({ fullWidth }) => fullWidth ? '100%' : '333px'};
+const StyledCard = styled.div<{ fullWidth?: boolean }>`
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : '333px')};
 
   .card-image {
     width: 100%;
     border-radius: 20px;
   }
-`
+`;
 
 const CardHeading = styled.h4`
   font-family: ${({ theme }) => theme.fonts.text};
   font-size: ${({ theme }) => theme.fontSizes[2]};
   font-weight: bold;
   margin-bottom: ${({ theme }) => theme.space[2]};
-`
+`;
 
 const CardContent = styled.p`
   color: ${({ theme }) => theme.colors.blockText};
   margin: ${({ theme }) => theme.space[3]} 0;
-`
+`;
 
 const CardTags = styled.span`
   color: ${({ theme }) => theme.colors.tagBlue};
@@ -48,27 +48,21 @@ const CardTags = styled.span`
       content: none;
     }
   }
-`
+`;
 
-const Card = ({
-  image,
-  heading,
-  content,
-  tags,
-  fullWidth,
-}: CardProps) => (
+const Card = ({ image, heading, content, tags, fullWidth }: CardProps) => (
   <StyledCard fullWidth={fullWidth}>
     {image && (
       <GatsbyImage
         alt={image.alt}
         image={getImage(image.gatsbyImageData)!}
         className="card-image"
-        objectFit='cover'
+        objectFit="cover"
       />
     )}
     <CardHeading>{heading}</CardHeading>
     <CardContent>{parse(content)}</CardContent>
-    {tags?.map(tag => (
+    {tags?.map((tag) => (
       <CardTags>{tag}</CardTags>
     ))}
   </StyledCard>

@@ -10,21 +10,21 @@ import { BlockContentOptions } from 'components/generic';
 
 type TwoColumnTextBlockProps = {
   textBlocks: Array<{
-    blockHeading: string
-    blockContent: string
-  }>
+    blockHeading: string;
+    blockContent: string;
+  }>;
 };
 
 const TwoColumnTextBlock = ({ textBlocks }: TwoColumnTextBlockProps) => (
   <Section>
-    <Container variant='blockContent'>
-      <Flex variant="spaceBetween" alignItems='start' responsive>
+    <Container variant="blockContent">
+      <Flex variant="spaceBetween" alignItems="start" responsive>
         {textBlocks.map((block, index) => (
           <Box width={index === 0 ? '35%' : '60%'}>
-            <BlockHeading>
-              {block.blockHeading}
-            </BlockHeading>
-            <BlockContent>{parse(block.blockContent, BlockContentOptions)}</BlockContent>
+            <BlockHeading>{block.blockHeading}</BlockHeading>
+            <BlockContent>
+              {parse(block.blockContent, BlockContentOptions)}
+            </BlockContent>
           </Box>
         ))}
       </Flex>

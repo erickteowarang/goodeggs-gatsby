@@ -1,42 +1,37 @@
-import React from "react";
-import { useFormContext } from "react-hook-form";
-import { graphql } from "gatsby";
+import React from 'react';
+import { useFormContext } from 'react-hook-form';
+import { graphql } from 'gatsby';
 
-import InputWrapper from "../InputWrapper";
+import InputWrapper from '../InputWrapper';
 
-type InputProps = { 
-  defaultValue?: string,
+type InputProps = {
+  defaultValue?: string;
   fieldData: {
-    inputMaskValue?: string,
-    maxLength?: number,
-    placeholder?: string,
-    isRequired: boolean,
-    type: string,
-    size?: string,
-  }
-  value?: string,
-  name: string,
-  wrapId: string
-}
+    inputMaskValue?: string;
+    maxLength?: number;
+    placeholder?: string;
+    isRequired: boolean;
+    type: string;
+    size?: string;
+  };
+  value?: string;
+  name: string;
+  wrapId: string;
+};
 
 const standardType = (type: string) => {
   switch (type) {
-    case "phone":
-      return "tel";
-    case "fileupload":
-      return "file";
+    case 'phone':
+      return 'tel';
+    case 'fileupload':
+      return 'file';
     default:
       return type;
   }
 };
 
 const Input = ({ defaultValue, fieldData, name, wrapId }: InputProps) => {
-  const {
-    isRequired,
-    maxLength,
-    placeholder,
-    type,
-  } = fieldData;
+  const { isRequired, maxLength, placeholder, type } = fieldData;
 
   let inputType = standardType(type);
 

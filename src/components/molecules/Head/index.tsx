@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from 'gatsby';
 
 type HeadProps = {
   title: string;
@@ -25,7 +25,7 @@ const Head = ({ title, description, image, ...props }: HeadProps) => {
     `
   );
 
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription = description || site.siteMetadata.description;
 
   return (
     <Helmet
@@ -42,7 +42,7 @@ const Head = ({ title, description, image, ...props }: HeadProps) => {
         content={metaDescription}
       />
       <meta property="og:title" content={title} />
-      <meta property="og:type" content='website' />
+      <meta property="og:type" content="website" />
       {image && <meta property="og:image" content={image.url} />}
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:author" content={site.siteMetadata.author} />
@@ -50,7 +50,7 @@ const Head = ({ title, description, image, ...props }: HeadProps) => {
       <meta name="twitter:description" content={metaDescription} />
       {image && <meta name="twitter:image" content={image.url} />}
     </Helmet>
-  )
+  );
 };
 
 export default Head;

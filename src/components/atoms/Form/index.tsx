@@ -1,5 +1,8 @@
 import React from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
+
+import Container from 'components/atoms/Container';
+import Flex from 'components/atoms/Flex';
 import FormBuilder from './FormBuilder';
 
 type FormProps = {
@@ -21,8 +24,12 @@ const Form = ({ formFields }: FormProps) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <FormBuilder formFields={formFields} />
-        <input type="submit" />
+        <Container variant='tight'>
+          <Flex variant='spaceBetween'>
+            <FormBuilder formFields={formFields} />
+            <input type="submit" />
+          </Flex>
+        </Container>
       </form>
     </FormProvider>
   );

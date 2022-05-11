@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import styled from 'styled-components';
 
-import Box from 'components/atoms/Box';
 import Container from 'components/atoms/Container';
-import Flex from 'components/atoms/Flex';
 import Section from 'components/atoms/Section';
-import Spacing from 'components/atoms/Spacing';
-import { Text, Heading } from 'components/atoms/Typography';
+import { Heading } from 'components/atoms/Typography';
 import Form from 'components/atoms/Form';
+
+import { theme } from 'theme/index';
 
 type ContactFormBlockProps = {
   heading: string;
@@ -37,7 +35,7 @@ const ContactFormBlock = ({ heading }: ContactFormBlockProps) => {
   const { wpGfForm } = formData;
 
   return (
-    <Section>
+    <Section background={theme.colors.sectionBackground}>
       <Container>
         {heading && <Heading>{heading}</Heading>}
         {wpGfForm.formFields && <Form formFields={wpGfForm.formFields.nodes} />}

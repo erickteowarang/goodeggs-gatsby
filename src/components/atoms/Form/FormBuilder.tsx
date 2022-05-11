@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Box from 'components/atoms/Box';
+
 import Input from './Input';
 import Textarea from './Textarea';
 import Select from './Select';
@@ -13,7 +15,7 @@ type FormBuilderProps = {
   presetValues: any;
 };
 
-const FormBuilder = ({
+const FormBuilder: Function = ({
   databaseId,
   formFields,
   presetValues,
@@ -39,26 +41,32 @@ const FormBuilder = ({
       case 'DATE':
       case 'PHONE':
         return (
-          <Input
-            fieldData={field}
-            key={id}
-            name={inputName}
-            defaultValue={defaultValue}
-            wrapId={wrapId}
-          />
+          <Box width='half'>
+            <Input
+              fieldData={field}
+              key={id}
+              name={inputName}
+              defaultValue={defaultValue}
+              wrapId={wrapId}
+            />
+          </Box>
         );
       case 'TEXTAREA':
         return (
-          <Textarea
-            fieldData={field}
-            key={id}
-            name={inputName}
-            wrapId={wrapId}
-          />
+          <Box width='full'>
+            <Textarea
+              fieldData={field}
+              key={id}
+              name={inputName}
+              wrapId={wrapId}
+            />
+          </Box>
         );
       case 'SELECT':
         return (
-          <Select fieldData={field} key={id} name={inputName} wrapId={wrapId} />
+          <Box width='full'>
+            <Select fieldData={field} key={id} name={inputName} wrapId={wrapId} />
+          </Box>
         );
       // case "FILEUPLOAD":
       //   return (
@@ -72,7 +80,7 @@ const FormBuilder = ({
       //   );
 
       default:
-        return null;
+        return <></>;
     }
   });
 };

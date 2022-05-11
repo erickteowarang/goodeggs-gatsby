@@ -1,40 +1,49 @@
-import React from "react";
-import styled from 'styled-components';
+import React from 'react';
+import styled, { css } from 'styled-components';
+
+import Flex from 'components/atoms/Flex';
+import Box from 'components/atoms/Box';
+
+const InputLabel = styled.label<{ isSelect?: boolean }>`
+  ${({ isSelect }) =>
+    isSelect
+      ? css`
+          font-family: ${({ theme }) => theme.fonts.heading};
+          font-size: ${({ theme }) => theme.fontSizes[4]};
+          font-weight: bold;
+        `
+      : css``}
+`;
 
 type InputWrapperProps = {
-  children: React.ReactNode
-  errors: any
-  inputData: any
-  labelFor: string
-  wrapId: string
-}
+  children: React.ReactNode;
+  errors: any;
+  inputData: any;
+  labelFor: string;
+  wrapId: string;
+};
 
 const InputWrapper = ({
   children,
   errors,
-  inputData: {
-    isRequired,
-    label,
-    type,
-  },
+  inputData: { isRequired, label, type },
   labelFor,
-  wrapId
+  wrapId,
 }: InputWrapperProps) => {
   const joinedLabel = `${label}${
-    isRequired ? '<span class="gfield_required">*</span>' : ""
+    isRequired ? '<span class="gfield_required">*</span>' : ''
   }`;
 
+  const isSelect = type === 'SELECT';
+
   return (
-    <li
-      id={wrapId}
-    >
-      <label
+    <Flex variant={isSelect ? 'spaceBetween' : 'column'} alignItems='start'>
+      <InputLabel
+        isSelect={isSelect}
         htmlFor={labelFor}
         dangerouslySetInnerHTML={{ __html: joinedLabel }}
       />
-      <div>
-        {children}
-      </div>
+      <div>{children}</div>
       {errors && (
         <div
           aria-live="polite"
@@ -43,7 +52,7 @@ const InputWrapper = ({
           {errors.message}
         </div>
       )}
-    </li>
+    </Flex>
   );
 };
 

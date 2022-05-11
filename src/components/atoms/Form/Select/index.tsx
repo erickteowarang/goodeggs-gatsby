@@ -21,7 +21,7 @@ type SelectProps = {
 };
 
 const Select = ({ fieldData, name, wrapId }: SelectProps) => {
-  const { label, choices, isRequired } = fieldData;
+  const { choices, isRequired } = fieldData;
 
   const {
     register,
@@ -36,7 +36,7 @@ const Select = ({ fieldData, name, wrapId }: SelectProps) => {
       wrapId={wrapId}
     >
       <select
-        aria-invalid={errors}
+        aria-invalid={errors ? true : false}
         aria-required={isRequired}
         id={name}
         {...register(name, {

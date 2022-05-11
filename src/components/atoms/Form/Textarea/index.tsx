@@ -1,0 +1,76 @@
+import { graphql } from "gatsby";
+import React from "react";
+import { useFormContext } from "react-hook-form";
+import InputWrapper from "../InputWrapper";
+
+type TextAreaProps = {
+  fieldData: {
+    description?: string,
+    label: string,
+    descriptionPlacement?: string,
+    maxLength?: number,
+    placeholder?: string,
+    isRequired: boolean,
+    defaultValue?: string,
+  }
+  name: string
+  wrapId: string
+}
+
+const Textarea = ({ fieldData, name, wrapId }: TextAreaProps) => {
+  const {
+    isRequired,
+    maxLength,
+    placeholder,
+    defaultValue,
+  } = fieldData;
+
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  return (
+    <InputWrapper
+      errors={errors?.[name] || {}}
+      inputData={fieldData}
+      labelFor={name}
+      wrapId={wrapId}
+    >
+      <textarea
+        aria-invalid={Boolean(errors?.[name])}
+        aria-required={isRequired}
+        defaultValue={defaultValue}
+        id={name}
+        maxLength={maxLength && maxLength > 0 ? maxLength : undefined}
+        placeholder={placeholder}
+        {...register(name, {
+          required: isRequired && 'This field is required',
+        })}
+      />
+    </InputWrapper>
+  );
+};
+
+export default Textarea;
+
+export const TextAreaField = graphql`
+  fragment TextAreaField on WpTextAreaField {
+    adminLabel
+    canPrepopulate
+    cssClass
+    defaultValue
+    description
+    descriptionPlacement
+    errorMessage
+    inputName
+    isRequired
+    label
+    maxLength
+    shouldAllowDuplicates
+    placeholder
+    size
+    hasRichTextEditor
+    value
+  }
+`;

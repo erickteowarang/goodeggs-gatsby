@@ -8,6 +8,7 @@ import Flex from 'components/atoms/Flex';
 import Section from 'components/atoms/Section';
 import Spacing from 'components/atoms/Spacing';
 import { Text, Heading } from 'components/atoms/Typography';
+import Form from 'components/atoms/Form';
 
 type ContactFormBlockProps = {
   heading: string
@@ -21,17 +22,11 @@ const ContactFormBlock = ({ heading }: ContactFormBlockProps) => {
           nodes {
             id
             type
-            ... on WpTextField {
-              label
-              description
-            }
-            ... on WpSelectField {
-              label
-              choices {
-                text
-                value
-              }
-            }
+            ...TextField
+            ...SelectField
+            ...EmailField
+            ...PhoneField
+            ...TextAreaField
           }
         }
       }
@@ -39,11 +34,13 @@ const ContactFormBlock = ({ heading }: ContactFormBlockProps) => {
   `);
 
   console.log(formData);
+  const { wpGfForm } = formData;
 
   return (
       <Section>
         <Container>
-          {heading && <Heading>{heading}</Heading> }
+          {heading && <Heading>{heading}</Heading>}
+          {wpGfForm.formFields && <Form formFields={wpGfForm.formFields.nodes} />}
         </Container>
       </Section>
     );

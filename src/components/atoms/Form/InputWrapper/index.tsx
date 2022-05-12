@@ -1,16 +1,17 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import Flex from 'components/atoms/Flex';
 import Box from 'components/atoms/Box';
+import Flex from 'components/atoms/Flex';
 
-const InputLabel = styled.label<{ isSelect?: boolean }>`
-  ${({ isSelect }) =>
-    isSelect
+const InputLabel = styled.label<{ isFull?: boolean }>`
+  ${({ isFull }) =>
+    isFull
       ? css`
           font-family: ${({ theme }) => theme.fonts.heading};
-          font-size: ${({ theme }) => theme.fontSizes[4]};
+          font-size: 22px;
           font-weight: bold;
+          width: 45%;
         `
       : css``}
 `;
@@ -28,30 +29,33 @@ const InputWrapper = ({
   errors,
   inputData: { isRequired, label, type },
   labelFor,
-  wrapId,
 }: InputWrapperProps) => {
   const joinedLabel = `${label}${
     isRequired ? '<span class="gfield_required">*</span>' : ''
   }`;
 
-  const isSelect = type === 'SELECT';
+  const isFull = type === 'SELECT' || type === 'FILEUPLOAD';
 
   return (
-    <Flex variant={isSelect ? 'spaceBetween' : 'column'} alignItems='start'>
-      <InputLabel
-        isSelect={isSelect}
-        htmlFor={labelFor}
-        dangerouslySetInnerHTML={{ __html: joinedLabel }}
-      />
-      <div>{children}</div>
-      {errors && (
-        <div
-          aria-live="polite"
-          className="gravityform__error_message gfield_description validation_message"
-        >
-          {errors.message}
-        </div>
-      )}
+    <Flex variant={isFull ? 'spaceBetween' : 'column'} alignItems={!isFull ? 'start' : undefined}>
+      <Box width={isFull ? 'half' : 'full'}>
+        <InputLabel
+          isFull={isFull}
+          htmlFor={labelFor}
+          dangerouslySetInnerHTML={{ __html: joinedLabel }}
+        />
+      </Box>
+      <Box width={isFull ? 'half' : 'full'}>
+        {children}
+        {errors && (
+          <div
+            aria-live="polite"
+            className="gravityform__error_message gfield_description validation_message"
+          >
+            {errors.message}
+          </div>
+        )}
+      </Box>
     </Flex>
   );
 };

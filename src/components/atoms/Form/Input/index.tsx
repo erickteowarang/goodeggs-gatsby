@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useFormContext } from 'react-hook-form';
 import { graphql } from 'gatsby';
 
@@ -30,6 +31,13 @@ const standardType = (type: string) => {
   }
 };
 
+const StyledInput = styled.input`
+  height: 48px;
+  width: 100%;
+  border: 1px solid #E3E5E5;
+  border-radius: 5px;
+`
+
 const Input = ({ defaultValue, fieldData, name, wrapId }: InputProps) => {
   const { isRequired, maxLength, placeholder, type } = fieldData;
 
@@ -47,7 +55,7 @@ const Input = ({ defaultValue, fieldData, name, wrapId }: InputProps) => {
       labelFor={name}
       wrapId={wrapId}
     >
-      <input
+      <StyledInput
         aria-invalid={Boolean(errors?.[name])}
         aria-required={isRequired}
         defaultValue={defaultValue}

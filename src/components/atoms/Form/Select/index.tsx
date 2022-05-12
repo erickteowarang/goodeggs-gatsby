@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ReactSelect from 'react-select';
 import { graphql } from 'gatsby';
 
 import { useFormContext } from 'react-hook-form';
@@ -22,11 +23,25 @@ type SelectProps = {
 
 const Select = ({ fieldData, name, wrapId }: SelectProps) => {
   const { choices, isRequired } = fieldData;
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const {
     register,
     formState: { errors },
   } = useFormContext();
+
+  const reactSelectOptions = choices.map(choice => ({
+    value: choice.value,
+    label: choice.text,
+  }));
+
+  const customStyles = {
+    control: (provided: any) => ({
+      ...provided,
+      height: 48,
+    }),
+  }
+  
 
   return (
     <InputWrapper
@@ -35,26 +50,19 @@ const Select = ({ fieldData, name, wrapId }: SelectProps) => {
       labelFor={name}
       wrapId={wrapId}
     >
-      <select
+      <ReactSelect
         aria-invalid={errors ? true : false}
         aria-required={isRequired}
+        styles={customStyles}
         id={name}
         {...register(name, {
           required: isRequired && 'This field is required',
         })}
-      >
-        {choices.map(({ isSelected, text, value }, index) => {
-          return (
-            <option
-              defaultValue={isSelected}
-              key={`${name}-${index}`}
-              value={value}
-            >
-              {text}
-            </option>
-          );
-        })}
-      </select>
+        isSearchable={false}
+        defaultValue={selectedOption}
+        onChange={setSelectedOption}
+        options={reactSelectOptions}
+      />
     </InputWrapper>
   );
 };

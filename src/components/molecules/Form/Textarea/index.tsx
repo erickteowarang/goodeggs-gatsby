@@ -24,6 +24,9 @@ const StyledTextarea = styled.textarea`
   border: 1px solid #E3E5E5;
   border-radius: 5px;
   min-height: 205px;
+  padding: 15px 12px;
+  font-size: ${({ theme }) => theme.fontSizes[2]};
+  font-family: ${({ theme }) => theme.fonts.text};
 `
 
 const Textarea = ({ fieldData, name, wrapId }: TextAreaProps) => {

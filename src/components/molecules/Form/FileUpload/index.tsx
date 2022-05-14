@@ -23,9 +23,10 @@ const StyledFileInput = styled.input`
   display: none;
 `
 
-const FileUploadButton = styled.button`
+const FileUploadButton = styled.span`
   display: flex;
   align-items: center;
+  background: none;
   justify-content: center;
   height: 48px;
   width: 100%;

@@ -16,6 +16,14 @@ const InputLabel = styled.label<{ isFull?: boolean }>`
       : css``}
 `;
 
+const ErrorMessageContainer = styled.span`
+  color: red;
+  font-size: ${({ theme }) => theme.fontSizes[1]};
+  position: absolute;
+  left: 0;
+  bottom: -${({ theme }) => theme.fontSizes[4]};
+`
+
 type InputWrapperProps = {
   children: React.ReactNode;
   errors: any;
@@ -45,15 +53,14 @@ const InputWrapper = ({
           dangerouslySetInnerHTML={{ __html: joinedLabel }}
         />
       </Box>
-      <Box width={isFull ? 'half' : 'full'}>
+      <Box width={isFull ? 'half' : 'full'} relative>
         {children}
         {errors && (
-          <div
+          <ErrorMessageContainer
             aria-live="polite"
-            className="gravityform__error_message gfield_description validation_message"
           >
             {errors.message}
-          </div>
+          </ErrorMessageContainer>
         )}
       </Box>
     </Flex>

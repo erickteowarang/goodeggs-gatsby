@@ -20,6 +20,7 @@ type BoxProps = {
   center?: boolean;
   order?: 0 | 1 | 2 | 3;
   children: ReactNode;
+  relative?: boolean;
 };
 
 const getBoxWidth = (width?: BoxWidthOptions) => {
@@ -81,6 +82,12 @@ const StyledBox = styled.div<BoxProps>`
       border-radius: ${({ theme }) => theme.radii[radius]};
     `}
 
+  ${({ relative }) =>
+    relative &&
+    css`
+      position: relative;
+    `}
+
   ${({ center }) =>
     center &&
     css`
@@ -109,6 +116,7 @@ const Box = ({
   center = false,
   order,
   children,
+  relative,
   ...props
 }: BoxProps) => {
   return (
@@ -121,6 +129,7 @@ const Box = ({
       radius={radius}
       center={center}
       order={order}
+      relative={relative}
       {...props}
     >
       {children}

@@ -25,7 +25,7 @@ const FormButtonContainer = styled.div`
 const Form = ({ formFields }: FormProps) => {
   const methods = useForm();
   const onSubmit = (data: any) => console.log(data);
-  console.log(methods.formState.isDirty); // make sure formState is read before render to enable the Proxy
+  console.log(methods.formState); // make sure formState is read before render to enable the Proxy
 
   return (
     <FormProvider {...methods}>

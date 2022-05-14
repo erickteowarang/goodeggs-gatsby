@@ -37,7 +37,7 @@ const InputWrapper = ({
   const isFull = type === 'SELECT' || type === 'FILEUPLOAD';
 
   return (
-    <Flex variant={isFull ? 'spaceBetween' : 'column'} alignItems={!isFull ? 'start' : undefined}>
+    <Flex variant={isFull ? 'spaceBetween' : 'column'} alignItems={!isFull ? 'start' : undefined} gap={isFull ? 3 : 2}>
       <Box width={isFull ? 'half' : 'full'}>
         <InputLabel
           isFull={isFull}

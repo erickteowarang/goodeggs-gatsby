@@ -3,7 +3,7 @@ import ReactSelect from 'react-select';
 import { graphql } from 'gatsby';
 
 import { useFormContext } from 'react-hook-form';
-import InputWrapper from 'components/atoms/Form/InputWrapper';
+import InputWrapper from 'components/molecules/Form/InputWrapper';
 
 type SelectProps = {
   fieldData: {

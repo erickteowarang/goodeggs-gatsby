@@ -1,10 +1,12 @@
 import React from 'react';
 
 import Box from 'components/atoms/Box';
+import Spacing from 'components/atoms/Spacing';
 
 import Input from './Input';
 import Textarea from './Textarea';
 import Select from './Select';
+import FileUpload from './FileUpload';
 
 type FormBuilderProps = {
   databaseId: number;
@@ -49,6 +51,7 @@ const FormBuilder: Function = ({
               defaultValue={defaultValue}
               wrapId={wrapId}
             />
+            <Spacing size={3} />
           </Box>
         );
       case 'TEXTAREA':
@@ -60,24 +63,28 @@ const FormBuilder: Function = ({
               name={inputName}
               wrapId={wrapId}
             />
+            <Spacing size={3} />
           </Box>
         );
       case 'SELECT':
         return (
           <Box width='full'>
             <Select fieldData={field} key={id} name={inputName} wrapId={wrapId} />
+            <Spacing size={3} />
           </Box>
         );
-      // case "FILEUPLOAD":
-      //   return (
-      //     <SelectorList
-      //       fieldData={field}
-      //       key={id}
-      //       gfId={id}
-      //       name={inputName}
-      //       wrapId={wrapId}
-      //     />
-      //   );
+      case 'FILEUPLOAD':
+        return (
+          <Box width='full'>
+            <FileUpload
+              fieldData={field}
+              key={id}
+              name={inputName}
+              wrapId={wrapId}
+            />
+            <Spacing size={3} />
+          </Box>
+        )
 
       default:
         return <></>;

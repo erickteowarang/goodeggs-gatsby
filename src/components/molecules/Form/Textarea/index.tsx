@@ -1,6 +1,8 @@
-import { graphql } from 'gatsby';
 import React from 'react';
+import { graphql } from 'gatsby';
 import { useFormContext } from 'react-hook-form';
+import styled from 'styled-components';
+
 import InputWrapper from '../InputWrapper';
 
 type TextAreaProps = {
@@ -17,6 +19,13 @@ type TextAreaProps = {
   wrapId: string;
 };
 
+const StyledTextarea = styled.textarea`
+  width: 100%;
+  border: 1px solid #E3E5E5;
+  border-radius: 5px;
+  min-height: 205px;
+`
+
 const Textarea = ({ fieldData, name, wrapId }: TextAreaProps) => {
   const { isRequired, maxLength, placeholder, defaultValue } = fieldData;
 
@@ -32,7 +41,7 @@ const Textarea = ({ fieldData, name, wrapId }: TextAreaProps) => {
       labelFor={name}
       wrapId={wrapId}
     >
-      <textarea
+      <StyledTextarea
         aria-invalid={Boolean(errors?.[name])}
         aria-required={isRequired}
         defaultValue={defaultValue}

@@ -2,13 +2,14 @@ import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 import Link from '../Link';
 
-type ButtonVariantTypes = 'primary' | 'inverted' | 'link';
+type ButtonVariantTypes = 'primary' | 'inverted' | 'link' | 'form';
 
 type ButtonProps = {
   variant?: ButtonVariantTypes;
   url?: string;
   isLink?: boolean;
   children: ReactNode;
+  type?: string
 };
 
 const getButtonVariants = (variant: ButtonVariantTypes) => {
@@ -18,6 +19,19 @@ const getButtonVariants = (variant: ButtonVariantTypes) => {
         color: white;
         background-color: ${({ theme }) => theme.colors.primary};
         border: 2px solid ${({ theme }) => theme.colors.primary};
+
+        &:hover,
+        &:focus {
+          color: ${({ theme }) => theme.colors.primary};
+          background-color: white;
+        }
+      `;
+    case 'form': 
+      return css`
+        color: white;
+        background-color: ${({ theme }) => theme.colors.primary};
+        border: 2px solid ${({ theme }) => theme.colors.primary};
+        padding: 15px 50px;
 
         &:hover,
         &:focus {
@@ -69,8 +83,9 @@ const Button = ({
   children,
   url,
   isLink,
+  type,
 }: ButtonProps) => (
-  <StyledButton variant={variant} href={url} as={isLink ? Link : 'button'}>
+  <StyledButton variant={variant} href={url} as={isLink ? Link : 'button'} type={type}>
     {children}
   </StyledButton>
 );

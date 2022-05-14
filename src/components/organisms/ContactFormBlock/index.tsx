@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import Container from 'components/atoms/Container';
 import Section from 'components/atoms/Section';
 import { Heading } from 'components/atoms/Typography';
-import Form from 'components/atoms/Form';
+import Form from 'components/molecules/Form';
 
 import { theme } from 'theme/index';
 
@@ -25,13 +25,13 @@ const ContactFormBlock = ({ heading }: ContactFormBlockProps) => {
             ...EmailField
             ...PhoneField
             ...TextAreaField
+            ...FileUploadField
           }
         }
       }
     }
   `);
 
-  console.log(formData);
   const { wpGfForm } = formData;
 
   return (

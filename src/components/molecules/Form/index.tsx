@@ -1,6 +1,8 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useForm, FormProvider } from 'react-hook-form';
 
+import Button from 'components/atoms/Button';
 import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
 import FormBuilder from './FormBuilder';
@@ -16,6 +18,10 @@ type FormProps = {
   }>;
 };
 
+const FormButtonContainer = styled.div`
+  margin-left: auto;
+`
+
 const Form = ({ formFields }: FormProps) => {
   const methods = useForm();
   const onSubmit = (data: any) => console.log(data);
@@ -27,7 +33,11 @@ const Form = ({ formFields }: FormProps) => {
         <Container variant='tight'>
           <Flex variant='spaceBetween'>
             <FormBuilder formFields={formFields} />
-            <input type="submit" />
+            <FormButtonContainer>
+              <Button type="submit" variant='form'>
+                Send
+              </Button>
+            </FormButtonContainer>
           </Flex>
         </Container>
       </form>

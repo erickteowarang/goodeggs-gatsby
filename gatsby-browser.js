@@ -1,4 +1,15 @@
-// import '@fontsource/dm-sans';
-// import '@fontsource/dm-sans/700.css';
-// import '@fontsource/dm-mono';
-// import '@fontsource/dm-mono/500.css';
+import * as React from "react";
+import fetch from "cross-fetch";
+import { ApolloClient, ApolloProvider, InMemoryCache, HttpLink } from "@apollo/client";
+
+export const wrapRootElement = ({ element }) => {
+  const client = new ApolloClient({
+    link: new HttpLink({
+      uri: process.env.WPGRAPHQL_URL,
+      fetch,
+    }),
+    cache: new InMemoryCache(),
+  });
+
+  return <ApolloProvider client={client}>{element}</ApolloProvider>;
+};

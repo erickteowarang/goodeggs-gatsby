@@ -38,7 +38,7 @@ const ContactFormBlock = ({ heading }: ContactFormBlockProps) => {
     <Section background={theme.colors.sectionBackground}>
       <Container>
         {heading && <Heading>{heading}</Heading>}
-        {wpGfForm.formFields && <Form formFields={wpGfForm.formFields.nodes} />}
+        {wpGfForm.formFields && <Form id={1} formFields={wpGfForm.formFields.nodes} />}
       </Container>
     </Section>
   );

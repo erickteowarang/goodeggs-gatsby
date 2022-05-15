@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import ReactSelect, { SingleValue } from 'react-select';
+import React from 'react';
+import ReactSelect from 'react-select';
 import { graphql } from 'gatsby';
 
 import { useFormContext, Controller } from 'react-hook-form';
@@ -51,6 +51,7 @@ const Select = ({ fieldData, name, wrapId }: SelectProps) => {
       <Controller
         name={name}
         control={control}
+        rules={{ required: isRequired && 'This field is required' }}
         render={({ field }) => 
           <ReactSelect 
             {...field} 
@@ -58,6 +59,7 @@ const Select = ({ fieldData, name, wrapId }: SelectProps) => {
             aria-required={isRequired}
             styles={customStyles}
             options={reactSelectOptions} 
+            isSearchable={false}
           />
         }
       />

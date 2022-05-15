@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "@apollo/client": "^3.3.20",
     "@fontsource/dm-mono": "^4.5.2",
     "@fontsource/dm-sans": "^4.5.0",
     "@types/react-helmet": "^6.1.5",
@@ -28,6 +29,7 @@
     "gatsby-theme-datocms-blog": "1.0.0-1",
     "gatsby-theme-wordpress-blog": "1.0.0-1",
     "gatsby-transformer-sharp": "^4.4.0",
+    "graphql": "^15.8.0",
     "html-react-parser": "^1.4.10",
     "is-absolute-url": "^4.0.1",
     "lodash.clonedeep": "^4.5.0",

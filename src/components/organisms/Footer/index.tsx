@@ -73,7 +73,7 @@ const Footer = ({
           }
         }
       }
-      wpMenu(locations: { eq: MENU_1 }) {
+      wpMenu(locations: { eq: PRIMARY }) {
         menuItems {
           nodes {
             id

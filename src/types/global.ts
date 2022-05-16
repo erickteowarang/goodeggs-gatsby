@@ -17,3 +17,11 @@ export type MenuItem = {
   url: string;
   label: string;
 };
+
+export type PortfolioItemCard = {
+  title: string;
+  featuredImage: {
+    node: GatsbyImageProps;
+  };
+  excerpt: string;
+}

@@ -3,14 +3,20 @@ module.exports = () => {
     heading
     blockContent
     cards {
-      image: cardImage {
-        id
-        gatsbyImageData
-        alt
-        url
+      portfolioItem {
+        ... on WpPortfolioItem {
+          id
+          title
+          excerpt
+          featuredImage {
+            node {
+              id
+              alt
+              gatsbyImageData
+            }
+          }
+        }
       }
-      heading: cardHeading
-      content: cardContent
     }
   `;
 };

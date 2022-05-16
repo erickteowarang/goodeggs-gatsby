@@ -9,12 +9,26 @@ import { BlockHeading, BlockContent } from 'components/atoms/Typography';
 import { CardProps } from 'components/atoms/Card';
 import CardList from 'components/molecules/CardList';
 import { BlockContentOptions } from 'components/generic';
+import { PortfolioItemCard } from 'types/global';
 
 type TwoCardsBlockProps = {
   heading: string;
   blockContent: string;
-  cards: Array<CardProps>;
+  cards: Array<{
+    portfolioItem: PortfolioItemCard
+  }>;
 };
+
+const mapPortfolioItemToCards = (cards : Array<{
+  portfolioItem: PortfolioItemCard
+}>) => {
+  console.log(cards);
+  return cards.map(item => ({
+    heading: item.portfolioItem.title,
+    image: item.portfolioItem.featuredImage.node,
+    content: item.portfolioItem.excerpt
+  }))
+}
 
 const TwoCardsBlock = ({
   heading,
@@ -31,7 +45,7 @@ const TwoCardsBlock = ({
           </BlockContent>
         </Box>
         <Box width="57%">
-          <CardList cards={cards} />
+          <CardList cards={mapPortfolioItemToCards(cards)} />
         </Box>
       </Flex>
     </Container>

@@ -76,9 +76,22 @@ export const Heading = styled.h2<HeadingProps>`
     css`
       text-decoration-color: ${({ theme }) => theme.colors.highlight};
 
+      u {
+        text-decoration: none;
+        display: inline-block;
+
+        &::after {
+          content: '';
+          display: block;
+          height: 8px;
+          width: 98%;
+          background: ${({ theme }) => theme.colors.highlight};
+          margin-top: -5px;
+        }
+      }
+
       span {
-        text-decoration-color: ${({ theme }) =>
-          theme.colors.highlight} !important;
+        text-decoration-color: ${({ theme }) => theme.colors.highlight} !important; 
       }
     `}
 

@@ -16,11 +16,10 @@ const PageTemplate = (pageProps) => {
     };
   });
 
-  console.log(accessor);
-
   return (
     <Layout
       title={pageProps.data[accessor].title}
+      url={pageProps.data[accessor].uri}
       footerData={pageProps.data[accessor].footerFields}
     >
       {components.map((component, index) => {

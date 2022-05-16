@@ -10,7 +10,7 @@ const Layout = (props: any) => (
   <ThemeProvider theme={theme}>
     <Globals />
     <Head {...props} />
-    <Header />
+    <Header pageTitle={props.title} />
     {props.children}
     <Footer {...props.footerData} />
   </ThemeProvider>

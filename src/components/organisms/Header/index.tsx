@@ -75,7 +75,7 @@ const StyledHeader = styled.header`
   width: 100%;
 `;
 
-const Header = () => {
+const Header = ({ pageTitle }: { pageTitle: string }) => {
   const [isOpen, setOpen] = useState(false);
 
   const menuQuery = useStaticQuery(graphql`
@@ -115,7 +115,7 @@ const Header = () => {
             <Flex list gap={4}>
               {wpMenu?.menuItems?.nodes.map((node: MenuItem) => (
                 <li key={node.id}>
-                  <NavLink to={node.url}>{node.label}</NavLink>
+                  <NavLink to={node.url} isActive={node.label === pageTitle}>{node.label}</NavLink>
                 </li>
               ))}
             </Flex>

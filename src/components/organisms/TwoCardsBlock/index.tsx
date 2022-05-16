@@ -6,7 +6,6 @@ import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
 import Section from 'components/atoms/Section';
 import { BlockHeading, BlockContent } from 'components/atoms/Typography';
-import { CardProps } from 'components/atoms/Card';
 import CardList from 'components/molecules/CardList';
 import { BlockContentOptions } from 'components/generic';
 import { PortfolioItemCard } from 'types/global';
@@ -22,7 +21,6 @@ type TwoCardsBlockProps = {
 const mapPortfolioItemToCards = (cards : Array<{
   portfolioItem: PortfolioItemCard
 }>) => {
-  console.log(cards);
   return cards.map(item => ({
     heading: item.portfolioItem.title,
     image: item.portfolioItem.featuredImage.node,

@@ -8,6 +8,7 @@ module.exports = () => {
           id
           title
           excerpt
+          uri
           featuredImage {
             node {
               id

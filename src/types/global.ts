@@ -24,4 +24,5 @@ export type PortfolioItemCard = {
     node: GatsbyImageProps;
   };
   excerpt: string;
+  uri: string;
 }

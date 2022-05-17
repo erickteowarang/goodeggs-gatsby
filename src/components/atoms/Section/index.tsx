@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import { motion } from "framer-motion"
 import styled, { css, ThemeProps } from 'styled-components';
 import { headerHeight } from 'components/organisms/Header';
 import { media } from 'theme/media';
@@ -65,7 +66,13 @@ const Section = ({
     largePadding={largePadding}
     smallPadding={smallPadding}
   >
-    {children}
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+    >
+      {children}
+    </motion.div>
   </StyledSection>
 );
 

@@ -35,6 +35,7 @@ const PortfolioItemPage = (pageProps) => {
       content: node.excerpt,
       image: node.image,
       tags: node.categories.map((category) => category.name),
+      link: node.uri
     }));
   };
 
@@ -75,6 +76,7 @@ export const portfolioItemPageQuery = graphql`
           alt
           url
         }
+        uri
         categories {
           name
         }

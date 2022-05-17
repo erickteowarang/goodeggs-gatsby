@@ -139,6 +139,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       image: GatsbyImage @link
       categories: [WpCategory] @link
       html: String
+      uri: String
     }
   `)
 };
@@ -164,6 +165,7 @@ exports.onCreateNode = ({
           image: node.featuredImage?.node?.id,
           categories: node.categories?.nodes?.map(category => category.id),
           html: node.content,
+          uri: node.uri,
         });
     }
   }

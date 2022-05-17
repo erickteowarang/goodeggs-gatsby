@@ -24,7 +24,8 @@ const mapPortfolioItemToCards = (cards : Array<{
   return cards.map(item => ({
     heading: item.portfolioItem.title,
     image: item.portfolioItem.featuredImage.node,
-    content: item.portfolioItem.excerpt
+    content: item.portfolioItem.excerpt,
+    link: item.portfolioItem.uri,
   }))
 }
 

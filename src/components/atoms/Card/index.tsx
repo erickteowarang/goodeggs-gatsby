@@ -1,6 +1,7 @@
 import React from 'react';
 import parse from 'html-react-parser';
-import styled from 'styled-components';
+import { navigate } from 'gatsby';
+import styled, { css } from 'styled-components';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { GatsbyImageProps } from 'types/global';
 
@@ -10,15 +11,20 @@ export type CardProps = {
   content: string;
   fullWidth?: boolean;
   tags?: Array<string>;
+  link?: string;
 };
 
-const StyledCard = styled.div<{ fullWidth?: boolean }>`
+const StyledCard = styled.div<{ fullWidth?: boolean, hasLink?: boolean }>`
   width: ${({ fullWidth }) => (fullWidth ? '100%' : '333px')};
 
   .card-image {
     width: 100%;
     border-radius: 20px;
   }
+
+  ${({ hasLink }) => hasLink && css`
+    cursor: pointer;
+  `}
 `;
 
 const CardHeading = styled.h4`
@@ -50,8 +56,18 @@ const CardTags = styled.span`
   }
 `;
 
-const Card = ({ image, heading, content, tags, fullWidth }: CardProps) => (
-  <StyledCard fullWidth={fullWidth}>
+const handleCardClick = (link?: string) => {
+  if (link) {
+    navigate(link);
+  }
+}
+
+const Card = ({ image, heading, content, tags, fullWidth, link }: CardProps) => (
+  <StyledCard 
+    fullWidth={fullWidth} 
+    hasLink={link ? true : false} 
+    onClick={() => handleCardClick(link)}
+  >
     {image && (
       <GatsbyImage
         alt={image.alt}

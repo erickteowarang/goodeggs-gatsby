@@ -94,6 +94,10 @@ const Header = ({ pageTitle }: { pageTitle: string }) => {
 
   const { wpMenu } = menuQuery;
 
+  const isPageActive = (linkLabel: string) => {
+    return (linkLabel === pageTitle) || (pageTitle === 'Selected work' && linkLabel === 'Work');
+  }
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflowY = 'hidden';
@@ -115,7 +119,7 @@ const Header = ({ pageTitle }: { pageTitle: string }) => {
             <Flex list gap={4}>
               {wpMenu?.menuItems?.nodes.map((node: MenuItem) => (
                 <li key={node.id}>
-                  <NavLink to={node.url} isActive={node.label === pageTitle}>{node.label}</NavLink>
+                  <NavLink to={node.url} isActive={isPageActive(node.label)}>{node.label}</NavLink>
                 </li>
               ))}
             </Flex>

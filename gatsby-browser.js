@@ -1,5 +1,7 @@
 import * as React from "react";
 import fetch from "cross-fetch";
+import 'swiper/css';
+import 'swiper/css/pagination';
 import { ApolloClient, ApolloProvider, InMemoryCache, HttpLink } from "@apollo/client";
 
 export const wrapRootElement = ({ element }) => {

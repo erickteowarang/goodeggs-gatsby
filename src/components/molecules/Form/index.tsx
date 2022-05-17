@@ -5,7 +5,10 @@ import { gql, useMutation } from '@apollo/client';
 
 import Button from 'components/atoms/Button';
 import Container from 'components/atoms/Container';
+import ErrorMessage from 'components/atoms/ErrorMessage';
 import Flex from 'components/atoms/Flex';
+import { Heading, Text } from 'components/atoms/Typography';
+import { CenteredContent } from 'components/generic';
 import formatPayload from 'utils/formatPayload';
 import FormBuilder from './FormBuilder';
 
@@ -29,11 +32,9 @@ const FormButtonContainer = styled.div`
 
 const Form = ({ id, formFields }: FormProps) => {
   const methods = useForm();
-  const [submitForm, { data: submissionData, loading }] = useMutation(SUBMIT_FORM);
+  const [submitForm, { loading }] = useMutation(SUBMIT_FORM);
   const [submissionError, setSubmissionError] = useState('');
-  const hasBeenSubmitted = Boolean(submissionData?.submitGfForm);
-  const haveFieldErrors = Boolean(submissionData?.submitGfForm?.errors?.length);
-  const wasSuccessfullySubmitted = hasBeenSubmitted && !haveFieldErrors;
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
 
   const onSubmitCallback = async (values: any) => {
     if (loading) return;
@@ -48,15 +49,18 @@ const Form = ({ id, formFields }: FormProps) => {
         formId: id,
         fieldValues: formRes,
       }
-    }).then((data) => {
-        console.log(data);
+    }).then((data: any) => {
         // Success if no errors returned.
-        console.log('here');
+        if (!Boolean(data?.submitGfForm?.errors?.length)) {
+          setSubmissionSuccess(true);
+        } else {
+          setSubmissionError(data?.submitGfForm?.errors[0]);
+        }
       }
     )
     .catch((error) => {
       console.error(error);
-      setSubmissionError("unknownError");
+      setSubmissionError("Unknown Error");
     });
   }
 
@@ -64,14 +68,22 @@ const Form = ({ id, formFields }: FormProps) => {
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmitCallback)}>
         <Container variant='tight'>
-          <Flex variant='spaceBetween'>
-            <FormBuilder formFields={formFields} />
-            <FormButtonContainer>
-              <Button type="submit" variant='form'>
-                Send
-              </Button>
-            </FormButtonContainer>
-          </Flex>
+          {submissionSuccess ? (
+            <CenteredContent>
+              <Heading>Your submission is successful</Heading>
+              <Text>We'll reach out to you as soon as we can</Text>
+            </CenteredContent>
+          ) : (
+            <Flex variant='spaceBetween'>
+              {submissionError && <ErrorMessage message={submissionError} />}
+              <FormBuilder formFields={formFields} />
+              <FormButtonContainer>
+                <Button type="submit" variant='form'>
+                  Send
+                </Button>
+              </FormButtonContainer>
+            </Flex>
+          )}          
         </Container>
       </form>
     </FormProvider>

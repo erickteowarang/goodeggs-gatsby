@@ -3,10 +3,12 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 import Container from 'components/atoms/Container';
 import Section from 'components/atoms/Section';
-import { Heading } from 'components/atoms/Typography';
+import { BlockHeading } from 'components/atoms/Typography';
 import Form from 'components/molecules/Form';
 
 import { theme } from 'theme/index';
+import { CenteredContent } from 'components/generic';
+import Spacing from 'components/atoms/Spacing';
 
 type ContactFormBlockProps = {
   heading: string;
@@ -37,7 +39,12 @@ const ContactFormBlock = ({ heading }: ContactFormBlockProps) => {
   return (
     <Section background={theme.colors.sectionBackground}>
       <Container>
-        {heading && <Heading>{heading}</Heading>}
+        {heading && (
+          <CenteredContent>
+            <BlockHeading>{heading}</BlockHeading>
+            <Spacing size={5} />
+          </CenteredContent>
+        )}
         {wpGfForm.formFields && <Form id={1} formFields={wpGfForm.formFields.nodes} />}
       </Container>
     </Section>

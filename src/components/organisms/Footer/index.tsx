@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import Box from 'components/atoms/Box';
 import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
-import Spacing from 'components/atoms/Spacing';
 import { Text } from 'components/atoms/Typography';
 import NavLink from 'components/molecules/NavLink';
 import CtaBlock from 'components/organisms/CtaBlock';
 import { theme } from 'theme/index';
+import { media } from 'theme/media';
 import { CTAProps, MenuItem } from 'types/global';
 
 type FooterProps = {
@@ -40,10 +40,23 @@ const FooterItemContainer = styled(Flex)`
   line-height: 2;
 `;
 
+const FooterMenuContainer = styled(Flex)`
+  align-items: center;
+
+  @media ${media.large} {
+    align-items: flex-end;
+  }
+`;
+
 const CopyrightText = styled(Text)`
   color: ${({ theme }) => theme.colors.blockText};
-  text-align: right;
-  margin-top: ${({ theme }) => theme.space[4]};
+  text-align: center;
+  margin-top: ${({ theme }) => theme.space[3]};
+
+  @media ${media.large} {
+    text-align: right;
+    margin-top: ${({ theme }) => theme.space[4]};
+  }
 `;
 
 const replaceLineBreaks = (mainString: string) => {
@@ -133,7 +146,7 @@ const Footer = ({
               </a>
             </FooterLineItem>
           </div>
-          <Flex variant="columnStart" alignItems="end">
+          <FooterMenuContainer variant="columnStart">
             <Flex list marginY={3}>
               {wpMenu?.menuItems?.nodes.map((node: MenuItem) => (
                 <li key={node.id}>
@@ -144,7 +157,7 @@ const Footer = ({
             <CopyrightText isSmall>
               {`© The Good Egg Collective ${new Date().getFullYear()}. All Rights Reserved.`}
             </CopyrightText>
-          </Flex>
+          </FooterMenuContainer>
         </FooterItemContainer>
       </Container>
     </Box>

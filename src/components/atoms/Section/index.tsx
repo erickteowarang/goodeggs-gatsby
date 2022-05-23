@@ -27,11 +27,11 @@ const getPadding = (
 };
 
 const StyledSection = styled.section<SectionProps>`
-  padding-top: ${({ theme }) => theme.space[5]};
-  padding-bottom: ${({ theme }) => theme.space[5]};
+  padding-top: 40px;
+  padding-bottom: 40px;
 
   &:first-of-type {
-    padding-top: calc(${({ theme }) => theme.space[4]} + ${headerHeight});
+    padding-top: calc(40px + ${headerHeight});
   }
 
   ${({ background }) =>
@@ -41,6 +41,15 @@ const StyledSection = styled.section<SectionProps>`
     `}
 
   @media ${media.small} {
+    padding-top: ${({ theme }) => theme.space[5]};
+    padding-bottom: ${({ theme }) => theme.space[5]};
+
+    &:first-of-type {
+      padding-top: calc(${({ theme }) => theme.space[5]} + ${headerHeight});
+    }
+  }
+
+  @media ${media.large} {
     padding-top: ${({ theme, largePadding, smallPadding }) =>
       getPadding(theme, smallPadding, largePadding)};
     padding-bottom: ${({ theme, largePadding, smallPadding }) =>

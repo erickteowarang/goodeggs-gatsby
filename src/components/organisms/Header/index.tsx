@@ -152,7 +152,7 @@ const Header = ({ pageTitle }: { pageTitle: string }) => {
             <Flex list responsive alignItems="stretch">
               {wpMenu?.menuItems?.nodes.map((navItem: MenuItem) => (
                 <li key={navItem.id}>
-                  <MobileNavLink to={navItem.path}>
+                  <MobileNavLink to={navItem.url}>
                     {navItem.label}
                   </MobileNavLink>
                 </li>

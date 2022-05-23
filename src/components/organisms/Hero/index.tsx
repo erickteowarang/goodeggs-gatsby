@@ -9,6 +9,7 @@ import Button from 'components/atoms/Button';
 import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
 import Section from 'components/atoms/Section';
+import Spacing from 'components/atoms/Spacing';
 import { Text, Heading } from 'components/atoms/Typography';
 import { TrimParagraphOptions } from 'components/generic';
 
@@ -42,6 +43,7 @@ const Hero = ({ heading, text, cta, image }: HeroProps) => (
             </Button>
           )}
         </Box>
+        <Spacing size={3} mobileOnly />
         <Box width="42%">
           {image && (
             <GatsbyImage

@@ -3,10 +3,15 @@ import styled from 'styled-components';
 import Card, { CardProps } from 'components/atoms/Card';
 
 import Flex from 'components/atoms/Flex';
+import { media } from 'theme/media';
 
 const CardListContainer = styled(Flex)`
-  > div:nth-child(2) {
-    margin-top: ${({ theme }) => theme.space[6]};
+  margin-top: 20px;
+
+  @media ${media.large} {
+    > div:nth-child(2) {
+      margin-top: ${({ theme }) => theme.space[6]};
+    }
   }
 `;
 

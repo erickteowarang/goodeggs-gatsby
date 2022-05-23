@@ -12,7 +12,7 @@ const CardGridContainer = styled(Container)`
 
 const CardGrid = ({ cards }: { cards: Array<CardProps> }) => (
   <CardGridContainer>
-    <Flex gap={9}>
+    <Flex gap={9} wrap>
       {cards.map((card) => (
         <Box width="31.2%">
           <Card {...card} fullWidth />

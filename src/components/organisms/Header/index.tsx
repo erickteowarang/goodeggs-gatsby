@@ -9,6 +9,7 @@ import Spacing from 'components/atoms/Spacing';
 import { Logo } from 'components/atoms/Svg';
 import NavLink from 'components/molecules/NavLink';
 import { InteractiveIcon, VisuallyHidden } from 'components/generic';
+import { theme } from 'theme/index';
 import { media } from 'theme/media';
 import { MenuItem } from 'types/global';
 
@@ -141,7 +142,7 @@ const Header = ({ pageTitle }: { pageTitle: string }) => {
               title="Toggle menu"
               onClick={() => setOpen(!isOpen)}
             >
-              {isOpen ? <X /> : <Menu />}
+              {isOpen ? <X size={36} color="white" /> : <Menu size={36} color={theme.colors.primary} />}
             </InteractiveIcon>
           </Flex>
         </Flex>

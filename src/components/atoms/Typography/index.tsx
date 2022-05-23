@@ -135,10 +135,14 @@ export const PortfolioHeading = styled.h3`
   color: ${({ theme }) => theme.colors.text};
   margin-bottom: ${({ theme }) => theme.space[3]};
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 45px;
+  font-size: 32px;
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
   line-height: ${({ theme }) => theme.lineHeights.heading};
   margin-top: -8px;
+
+  @media ${media.medium} {
+    font-size: 45px;
+  }
 `;
 
 export const BlockContent = styled.div`

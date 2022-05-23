@@ -7,7 +7,9 @@ import Box from 'components/atoms/Box';
 import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
 import Section from 'components/atoms/Section';
+import Spacing from 'components/atoms/Spacing';
 import { Text, Heading } from 'components/atoms/Typography';
+import { media } from 'theme/media';
 
 type ManifestoHeroProps = {
   heading: string;
@@ -30,7 +32,11 @@ const HeroDivider = styled.hr`
   height: 4px;
   background: #eeeeee;
   border: none;
-  margin-top: ${({ theme }) => theme.space[5]};
+  margin-top: ${({ theme }) => theme.space[3]};
+
+  @media ${media.medium} {
+    margin-top: ${({ theme }) => theme.space[5]};
+  }
 `;
 
 const ManifestoHero = ({ heading, subtitle, image }: ManifestoHeroProps) => (
@@ -45,6 +51,7 @@ const ManifestoHero = ({ heading, subtitle, image }: ManifestoHeroProps) => (
             />
           )}
         </Box>
+        <Spacing size={4} mobileOnly />
         <Box width="40%">
           <HeroTitle as="h1">{heading}</HeroTitle>
           <HeroSubtitle>{subtitle}</HeroSubtitle>

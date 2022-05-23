@@ -3,15 +3,20 @@ import styled, { css } from 'styled-components';
 
 import Box from 'components/atoms/Box';
 import Flex from 'components/atoms/Flex';
+import { media } from 'theme/media';
 
 const InputLabel = styled.label<{ isFull?: boolean }>`
   ${({ isFull }) =>
     isFull
       ? css`
           font-family: ${({ theme }) => theme.fonts.heading};
-          font-size: 22px;
+          font-size: 18px;
           font-weight: bold;
           width: 45%;
+
+          @media ${media.medium} {
+            font-size: 22px;
+          }
         `
       : css``}
 `;

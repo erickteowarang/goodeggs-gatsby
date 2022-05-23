@@ -6,6 +6,8 @@ import Box from 'components/atoms/Box';
 import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
 import Section from 'components/atoms/Section';
+import Spacing from 'components/atoms/Spacing';
+
 import { BlockHeading, BlockContent } from 'components/atoms/Typography';
 import { BlockContentOptions } from 'components/generic';
 import { GatsbyImageProps } from 'types/global';
@@ -32,6 +34,7 @@ const TwoColumnTextImageBlock = ({
             />
           )}
         </Box>
+        <Spacing size={3} mobileOnly />
         <Box width="half">
           <BlockHeading>{heading}</BlockHeading>
           <BlockContent>{parse(content, BlockContentOptions)}</BlockContent>

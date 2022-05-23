@@ -48,8 +48,13 @@ const StyledContainer = styled.div<ContainerProps>`
       `;
     } else {
       return css`
-        padding-left: ${({ theme }) => theme.space[4]};
-        padding-right: ${({ theme }) => theme.space[4]};
+        padding-left: 20px;
+        padding-right: 20px;
+
+        @media ${media.medium} {
+          padding-left: ${({ theme }) => theme.space[4]};
+          padding-right: ${({ theme }) => theme.space[4]};
+        }
       `;
     }
   }}

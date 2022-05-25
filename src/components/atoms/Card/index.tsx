@@ -14,7 +14,7 @@ export type CardProps = {
   link?: string;
 };
 
-const StyledCard = styled.div<{ fullWidth?: boolean, hasLink?: boolean }>`
+const StyledCard = styled.div<{ fullWidth?: boolean; hasLink?: boolean }>`
   width: ${({ fullWidth }) => (fullWidth ? '100%' : '333px')};
 
   .card-image {
@@ -22,9 +22,11 @@ const StyledCard = styled.div<{ fullWidth?: boolean, hasLink?: boolean }>`
     border-radius: 20px;
   }
 
-  ${({ hasLink }) => hasLink && css`
-    cursor: pointer;
-  `}
+  ${({ hasLink }) =>
+    hasLink &&
+    css`
+      cursor: pointer;
+    `}
 `;
 
 const CardHeading = styled.h4`
@@ -60,12 +62,19 @@ const handleCardClick = (link?: string) => {
   if (link) {
     navigate(link);
   }
-}
+};
 
-const Card = ({ image, heading, content, tags, fullWidth, link }: CardProps) => (
-  <StyledCard 
-    fullWidth={fullWidth} 
-    hasLink={link ? true : false} 
+const Card = ({
+  image,
+  heading,
+  content,
+  tags,
+  fullWidth,
+  link,
+}: CardProps) => (
+  <StyledCard
+    fullWidth={fullWidth}
+    hasLink={link ? true : false}
     onClick={() => handleCardClick(link)}
   >
     {image && (

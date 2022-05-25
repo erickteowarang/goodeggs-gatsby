@@ -29,7 +29,7 @@ const Select = ({ fieldData, name, wrapId }: SelectProps) => {
     formState: { errors },
   } = useFormContext();
 
-  const reactSelectOptions = choices.map(choice => ({
+  const reactSelectOptions = choices.map((choice) => ({
     value: choice.value,
     label: choice.text,
   }));
@@ -39,7 +39,7 @@ const Select = ({ fieldData, name, wrapId }: SelectProps) => {
       ...provided,
       height: 48,
     }),
-  }
+  };
 
   return (
     <InputWrapper
@@ -52,16 +52,16 @@ const Select = ({ fieldData, name, wrapId }: SelectProps) => {
         name={name}
         control={control}
         rules={{ required: isRequired && 'This field is required' }}
-        render={({ field }) => 
-          <ReactSelect 
-            {...field} 
+        render={({ field }) => (
+          <ReactSelect
+            {...field}
             aria-invalid={errors ? true : false}
             aria-required={isRequired}
             styles={customStyles}
-            options={reactSelectOptions} 
+            options={reactSelectOptions}
             isSearchable={false}
           />
-        }
+        )}
       />
     </InputWrapper>
   );

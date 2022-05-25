@@ -21,7 +21,7 @@ type FileUploadProps = {
 
 const StyledFileInput = styled.input`
   display: none;
-`
+`;
 
 const FileUploadButton = styled.span`
   display: flex;
@@ -31,11 +31,11 @@ const FileUploadButton = styled.span`
   height: 48px;
   width: 100%;
   content: 'Browse files';
-  color: #72777A;
+  color: #72777a;
   -webkit-user-select: none;
   cursor: pointer;
-  border: 1px dotted #72777A;
-`
+  border: 1px dotted #72777a;
+`;
 
 const FileUpload = ({ fieldData, name, wrapId }: FileUploadProps) => {
   const { isRequired, placeholder } = fieldData;
@@ -65,16 +65,14 @@ const FileUpload = ({ fieldData, name, wrapId }: FileUploadProps) => {
       labelFor={name}
       wrapId={wrapId}
     >
-      <FileUploadButton onClick={handleClick}>
-        {fileLabel}
-      </FileUploadButton>
+      <FileUploadButton onClick={handleClick}>{fileLabel}</FileUploadButton>
       <StyledFileInput
         aria-invalid={Boolean(errors?.[name])}
         aria-required={isRequired}
         id={name}
         placeholder={placeholder}
         {...register(name, {
-          required: isRequired && 'This field is required'
+          required: isRequired && 'This field is required',
         })}
         type="file"
         ref={hiddenFileInput}

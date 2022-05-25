@@ -34,11 +34,11 @@ const standardType = (type: string) => {
 const StyledInput = styled.input`
   height: 48px;
   width: 100%;
-  border: 1px solid #E3E5E5;
+  border: 1px solid #e3e5e5;
   border-radius: 5px;
   padding: 15px 12px;
   font-size: ${({ theme }) => theme.fontSizes[2]};
-`
+`;
 
 const Input = ({ defaultValue, fieldData, name, wrapId }: InputProps) => {
   const { isRequired, maxLength, placeholder, type } = fieldData;

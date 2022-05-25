@@ -17,9 +17,7 @@ const StyledNavLink = styled(Link)<{ isActive?: boolean }>`
     css`
       text-decoration: underline;
       text-decoration-color: ${({ theme }) => theme.colors.highlight};
-    `
-  };
-
+    `};
 
   &:hover {
     color: ${({ theme }) => theme.colors.active};

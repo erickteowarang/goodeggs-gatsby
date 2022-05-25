@@ -35,7 +35,7 @@ const BannerSpacing = styled.div`
   @media ${media.large} {
     margin: ${({ theme }) => theme.space[6]};
   }
-`
+`;
 
 const MainBanner = ({ heading, subtitle, bannerImage }: MainBannerProps) => (
   <Section>

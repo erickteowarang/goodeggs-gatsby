@@ -41,7 +41,7 @@ const FooterItemContainer = styled(Flex)`
 `;
 
 const FooterMenuContainer = styled(Flex)`
-  margin-top: ${({ theme }) => theme.space[3]}; 
+  margin-top: ${({ theme }) => theme.space[3]};
   align-items: center;
 
   @media ${media.large} {

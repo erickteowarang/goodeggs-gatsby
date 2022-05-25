@@ -43,7 +43,7 @@ const FormBuilder: Function = ({
       case 'DATE':
       case 'PHONE':
         return (
-          <Box width='half'>
+          <Box width="half">
             <Input
               fieldData={field}
               key={id}
@@ -56,7 +56,7 @@ const FormBuilder: Function = ({
         );
       case 'TEXTAREA':
         return (
-          <Box width='full'>
+          <Box width="full">
             <Textarea
               fieldData={field}
               key={id}
@@ -68,14 +68,19 @@ const FormBuilder: Function = ({
         );
       case 'SELECT':
         return (
-          <Box width='full'>
-            <Select fieldData={field} key={id} name={inputName} wrapId={wrapId} />
+          <Box width="full">
+            <Select
+              fieldData={field}
+              key={id}
+              name={inputName}
+              wrapId={wrapId}
+            />
             <Spacing size={3} />
           </Box>
         );
       case 'FILEUPLOAD':
         return (
-          <Box width='full'>
+          <Box width="full">
             <FileUpload
               fieldData={field}
               key={id}
@@ -84,7 +89,7 @@ const FormBuilder: Function = ({
             />
             <Spacing size={3} />
           </Box>
-        )
+        );
 
       default:
         return <></>;

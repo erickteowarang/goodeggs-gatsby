@@ -50,7 +50,7 @@ const FilterContainer = styled(Flex)`
   padding: 0 15px;
   margin-left: auto;
   margin-right: auto;
-  
+
   @media ${media.medium} {
     width: 500px;
     margin-top: 40px;
@@ -69,7 +69,7 @@ const ContentFilter = ({
       <FilterHeading as="h1" align="center">
         {heading}
       </FilterHeading>
-      <FilterContainer variant='spaceBetween'>
+      <FilterContainer variant="spaceBetween">
         {filters.map((filter) => (
           <FilterItem
             onClick={() => setActiveFilter(filter)}

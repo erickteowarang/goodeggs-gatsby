@@ -13,10 +13,10 @@ import formatPayload from 'utils/formatPayload';
 import FormBuilder from './FormBuilder';
 
 type FormProps = {
-  id: number
+  id: number;
   formFields: Array<{
-    id: number
-    type: string
+    id: number;
+    type: string;
     label: string;
     description?: string;
     choices?: {
@@ -28,7 +28,7 @@ type FormProps = {
 
 const FormButtonContainer = styled.div`
   margin-left: auto;
-`
+`;
 
 const Form = ({ id, formFields }: FormProps) => {
   const methods = useForm();
@@ -48,42 +48,42 @@ const Form = ({ id, formFields }: FormProps) => {
       variables: {
         formId: id,
         fieldValues: formRes,
-      }
-    }).then((data: any) => {
+      },
+    })
+      .then((data: any) => {
         // Success if no errors returned.
         if (!Boolean(data?.submitGfForm?.errors?.length)) {
           setSubmissionSuccess(true);
         } else {
           setSubmissionError(data?.submitGfForm?.errors[0]);
         }
-      }
-    )
-    .catch((error) => {
-      console.error(error);
-      setSubmissionError("Unknown Error");
-    });
-  }
+      })
+      .catch((error) => {
+        console.error(error);
+        setSubmissionError('Unknown Error');
+      });
+  };
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmitCallback)}>
-        <Container variant='tight'>
+        <Container variant="tight">
           {submissionSuccess ? (
             <CenteredContent>
               <Heading>Your submission is successful</Heading>
               <Text>We'll reach out to you as soon as we can</Text>
             </CenteredContent>
           ) : (
-            <Flex variant='spaceBetween'>
+            <Flex variant="spaceBetween">
               {submissionError && <ErrorMessage message={submissionError} />}
               <FormBuilder formFields={formFields} />
               <FormButtonContainer>
-                <Button type="submit" variant='form'>
+                <Button type="submit" variant="form">
                   Send
                 </Button>
               </FormButtonContainer>
             </Flex>
-          )}          
+          )}
         </Container>
       </form>
     </FormProvider>
@@ -94,10 +94,7 @@ export default Form;
 
 const SUBMIT_FORM = gql`
   mutation submitForm($formId: ID!, $fieldValues: [FormFieldValuesInput]!) {
-    submitGfForm(input: {
-      id: $formId
-      fieldValues: $fieldValues
-    }) {
+    submitGfForm(input: { id: $formId, fieldValues: $fieldValues }) {
       errors {
         id
         message

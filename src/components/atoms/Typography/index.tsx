@@ -91,7 +91,8 @@ export const Heading = styled.h2<HeadingProps>`
       }
 
       span {
-        text-decoration-color: ${({ theme }) => theme.colors.highlight} !important; 
+        text-decoration-color: ${({ theme }) =>
+          theme.colors.highlight} !important;
       }
     `}
 

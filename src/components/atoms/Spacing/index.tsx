@@ -10,16 +10,15 @@ type SpacingProps = {
 
 const StyledSpacing = styled.div<SpacingProps>`
   margin: ${({ theme, size, auto }) =>
-        auto || !size ? 'auto' : theme.space[size]};
+    auto || !size ? 'auto' : theme.space[size]};
 
-  ${({ mobileOnly }) => 
+  ${({ mobileOnly }) =>
     mobileOnly &&
     css`
       @media ${media.small} {
         margin: auto;
       }
-    `
-  }
+    `}
 `;
 
 const Spacing = ({ size, auto, mobileOnly }: SpacingProps) => (

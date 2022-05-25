@@ -96,8 +96,11 @@ const Header = ({ pageTitle }: { pageTitle: string }) => {
   const { wpMenu } = menuQuery;
 
   const isPageActive = (linkLabel: string) => {
-    return (linkLabel === pageTitle) || (pageTitle === 'Selected work' && linkLabel === 'Work');
-  }
+    return (
+      linkLabel === pageTitle ||
+      (pageTitle === 'Selected work' && linkLabel === 'Work')
+    );
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -120,7 +123,9 @@ const Header = ({ pageTitle }: { pageTitle: string }) => {
             <Flex list gap={4}>
               {wpMenu?.menuItems?.nodes.map((node: MenuItem) => (
                 <li key={node.id}>
-                  <NavLink to={node.url} isActive={isPageActive(node.label)}>{node.label}</NavLink>
+                  <NavLink to={node.url} isActive={isPageActive(node.label)}>
+                    {node.label}
+                  </NavLink>
                 </li>
               ))}
             </Flex>
@@ -142,7 +147,11 @@ const Header = ({ pageTitle }: { pageTitle: string }) => {
               title="Toggle menu"
               onClick={() => setOpen(!isOpen)}
             >
-              {isOpen ? <X size={36} color="white" /> : <Menu size={36} color={theme.colors.primary} />}
+              {isOpen ? (
+                <X size={36} color="white" />
+              ) : (
+                <Menu size={36} color={theme.colors.primary} />
+              )}
             </InteractiveIcon>
           </Flex>
         </Flex>

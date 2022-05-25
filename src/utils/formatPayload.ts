@@ -1,38 +1,38 @@
-const formatter = ({ 
- fieldResponse,
- type
+const formatter = ({
+  fieldResponse,
+  type,
 }: {
   fieldResponse: any;
   type: string;
 }) => {
   switch (type) {
-    case "EMAIL":
+    case 'EMAIL':
       return {
         emailValues: {
           value: fieldResponse,
         },
       };
-    case "SELECT":
+    case 'SELECT':
       return {
         value: fieldResponse.label,
       };
-    case "CONSENT":
-    case "DATE":
-    case "HIDDEN":
-    case "NUMBER":
-    case "PHONE":
-    case "POSTCONTENT":
-    case "POSTEXCERPT":
-    case "POSTTITLE":
-    case "RADIO":
-    case "SIGNATURE":
-    case "TEXTAREA":
-    case "TEXT":
-    case "WEBSITE":
+    case 'CONSENT':
+    case 'DATE':
+    case 'HIDDEN':
+    case 'NUMBER':
+    case 'PHONE':
+    case 'POSTCONTENT':
+    case 'POSTEXCERPT':
+    case 'POSTTITLE':
+    case 'RADIO':
+    case 'SIGNATURE':
+    case 'TEXTAREA':
+    case 'TEXT':
+    case 'WEBSITE':
       return {
         value: fieldResponse,
       };
-    case "FILEUPLOAD":
+    case 'FILEUPLOAD':
       return {
         fileUploadValues: fieldResponse,
       };
@@ -41,15 +41,15 @@ const formatter = ({
   }
 };
 
-export default ({ serverData, clientData }: {
+export default ({
+  serverData,
+  clientData,
+}: {
   serverData: any;
   clientData: any;
 }) => {
   const formattedData = serverData
-    .map(({ type, id }: {
-      type: string;
-      id: number;
-    }) => {
+    .map(({ type, id }: { type: string; id: number }) => {
       // Does this particular field have a response?
       const fieldResponse = clientData[`input_${id}`];
 

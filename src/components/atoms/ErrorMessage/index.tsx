@@ -11,10 +11,10 @@ const StyledAlert = styled.div`
   color: #842029;
   background-color: #f8d7da;
   border-color: #f5c2c7;
-`
+`;
 
-const ErrorMessage = ({ message }: { message: string}) => (
+const ErrorMessage = ({ message }: { message: string }) => (
   <StyledAlert>{message}</StyledAlert>
-)
+);
 
 export default ErrorMessage;

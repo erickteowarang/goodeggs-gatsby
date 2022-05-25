@@ -45,7 +45,9 @@ const ContactFormBlock = ({ heading }: ContactFormBlockProps) => {
             <Spacing size={5} />
           </CenteredContent>
         )}
-        {wpGfForm.formFields && <Form id={1} formFields={wpGfForm.formFields.nodes} />}
+        {wpGfForm.formFields && (
+          <Form id={1} formFields={wpGfForm.formFields.nodes} />
+        )}
       </Container>
     </Section>
   );

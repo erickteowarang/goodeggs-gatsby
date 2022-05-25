@@ -27,7 +27,7 @@ const ErrorMessageContainer = styled.span`
   position: absolute;
   left: 0;
   bottom: -${({ theme }) => theme.fontSizes[4]};
-`
+`;
 
 type InputWrapperProps = {
   children: React.ReactNode;
@@ -50,7 +50,11 @@ const InputWrapper = ({
   const isFull = type === 'SELECT' || type === 'FILEUPLOAD';
 
   return (
-    <Flex variant={isFull ? 'spaceBetween' : 'column'} alignItems={!isFull ? 'start' : undefined} gap={isFull ? 3 : 2}>
+    <Flex
+      variant={isFull ? 'spaceBetween' : 'column'}
+      alignItems={!isFull ? 'start' : undefined}
+      gap={isFull ? 3 : 2}
+    >
       <Box width={isFull ? 'half' : 'full'}>
         <InputLabel
           isFull={isFull}
@@ -61,9 +65,7 @@ const InputWrapper = ({
       <Box width={isFull ? 'half' : 'full'} relative>
         {children}
         {errors && (
-          <ErrorMessageContainer
-            aria-live="polite"
-          >
+          <ErrorMessageContainer aria-live="polite">
             {errors.message}
           </ErrorMessageContainer>
         )}

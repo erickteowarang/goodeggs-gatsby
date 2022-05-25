@@ -14,20 +14,22 @@ type TwoCardsBlockProps = {
   heading: string;
   blockContent: string;
   cards: Array<{
-    portfolioItem: PortfolioItemCard
+    portfolioItem: PortfolioItemCard;
   }>;
 };
 
-const mapPortfolioItemToCards = (cards : Array<{
-  portfolioItem: PortfolioItemCard
-}>) => {
-  return cards.map(item => ({
+const mapPortfolioItemToCards = (
+  cards: Array<{
+    portfolioItem: PortfolioItemCard;
+  }>
+) => {
+  return cards.map((item) => ({
     heading: item.portfolioItem.title,
     image: item.portfolioItem.featuredImage.node,
     content: item.portfolioItem.excerpt,
     link: item.portfolioItem.uri,
-  }))
-}
+  }));
+};
 
 const TwoCardsBlock = ({
   heading,

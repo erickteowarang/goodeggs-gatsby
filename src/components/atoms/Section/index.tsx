@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion';
 import styled, { css, ThemeProps } from 'styled-components';
 import { headerHeight } from 'components/organisms/Header';
 import { media } from 'theme/media';

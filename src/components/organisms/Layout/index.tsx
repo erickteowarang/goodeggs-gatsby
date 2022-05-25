@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion';
 import { ThemeProvider } from 'styled-components';
 import Header from 'components/organisms/Header';
 import Footer from 'components/organisms//Footer';

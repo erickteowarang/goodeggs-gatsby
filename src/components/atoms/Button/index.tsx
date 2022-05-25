@@ -9,7 +9,7 @@ type ButtonProps = {
   url?: string;
   isLink?: boolean;
   children: ReactNode;
-  type?: string
+  type?: string;
 };
 
 const getButtonVariants = (variant: ButtonVariantTypes) => {
@@ -26,7 +26,7 @@ const getButtonVariants = (variant: ButtonVariantTypes) => {
           background-color: white;
         }
       `;
-    case 'form': 
+    case 'form':
       return css`
         color: white;
         background-color: ${({ theme }) => theme.colors.primary};
@@ -85,7 +85,12 @@ const Button = ({
   isLink,
   type,
 }: ButtonProps) => (
-  <StyledButton variant={variant} href={url} as={isLink ? Link : 'button'} type={type}>
+  <StyledButton
+    variant={variant}
+    href={url}
+    as={isLink ? Link : 'button'}
+    type={type}
+  >
     {children}
   </StyledButton>
 );

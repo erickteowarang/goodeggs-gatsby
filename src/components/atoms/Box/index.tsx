@@ -47,7 +47,7 @@ const getBoxWidth = (width?: BoxWidthOptions) => {
 
   return css`
     width: 100%;
-    
+
     @media ${media.small} {
       width: ${calcWidth};
     }

@@ -9,6 +9,7 @@ export type ContainerProps = {
   className?: string;
   variant?: ContainerVariants;
   customWidth?: string;
+  overflow?: boolean;
 };
 
 const getMaxWidth = (theme: DefaultTheme, variant?: ContainerVariants) => {
@@ -35,6 +36,12 @@ const StyledContainer = styled.div<ContainerProps>`
     customWidth || getMaxWidth(theme, variant)};
   margin-left: auto;
   margin-right: auto;
+
+  ${({ overflow }) =>
+    overflow &&
+    css`
+      overflow-x: auto;
+    `}
 
   ${({ variant }) => {
     if (variant === 'full') {
@@ -65,11 +72,13 @@ const Container = ({
   className,
   variant,
   customWidth,
+  overflow,
 }: ContainerProps) => (
   <StyledContainer
     variant={variant}
     className={className}
     customWidth={customWidth}
+    overflow={overflow}
   >
     {children}
   </StyledContainer>

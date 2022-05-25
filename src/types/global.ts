@@ -25,4 +25,4 @@ export type PortfolioItemCard = {
   };
   excerpt: string;
   uri: string;
-}
+};

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import Container from 'components/atoms/Container';
@@ -6,6 +6,7 @@ import Section from 'components/atoms/Section';
 import Spacing from 'components/atoms/Spacing';
 import { BlockHeading } from 'components/atoms/Typography';
 import CardList from 'components/molecules/CardList';
+import DataContext from 'context/DataProvider';
 
 import { theme } from 'theme/index';
 
@@ -16,8 +17,9 @@ type ExploreMoreWorkBlockProps = {
 const ExploreMoreWorkBlock = ({ heading }: ExploreMoreWorkBlockProps) => {
   const portfolioItems = useStaticQuery(graphql`
     query MorePortofolioItemsQuery {
-      allPortfolioItem(limit: 4) {
+      allPortfolioItem(sort: {fields: publishDate, order: DESC}, limit: 5) {
         nodes {
+          databaseId
           title
           excerpt
           image {
@@ -32,18 +34,21 @@ const ExploreMoreWorkBlock = ({ heading }: ExploreMoreWorkBlockProps) => {
     }
   `);
 
+  const GatsbyPageContext = useContext(DataContext);
   const { allPortfolioItem } = portfolioItems;
-  console.log(portfolioItems);
 
   const getCards = () => {
+    const currentPageID = GatsbyPageContext.pageContext.databaseId;
     let allPortfolioItems = allPortfolioItem.nodes;
+    console.log(allPortfolioItems);
+    console.log(currentPageID);
 
-    return allPortfolioItems.map((node: any) => ({
+    return allPortfolioItems.filter((node: any) => node.databaseId !== currentPageID).map((node: any) => ({
       heading: node.title,
       content: node.excerpt,
       image: node.image,
       link: node.uri,
-    }));
+    })).slice(0, 4);
   };
 
   return (

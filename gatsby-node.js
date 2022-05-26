@@ -132,6 +132,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
   actions.createTypes(/* GraphQL */ `
     type PortfolioItem implements Node {
       id: ID!
+      databaseId: Int
       slug: String!
       title: String
       description: String
@@ -140,6 +141,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       categories: [WpCategory] @link
       html: String
       uri: String
+      publishDate: String
     }
   `)
 };
@@ -158,6 +160,7 @@ exports.onCreateNode = ({
             type: "PortfolioItem",
             contentDigest: node.internal.contentDigest,
           },
+          databaseId: node.databaseId,
           parent: node.id,
           slug: node.slug,
           title: node.title,
@@ -166,6 +169,7 @@ exports.onCreateNode = ({
           categories: node.categories?.nodes?.map(category => category.id),
           html: node.content,
           uri: node.uri,
+          publishDate: node.date,
         });
     }
   }

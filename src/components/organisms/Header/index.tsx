@@ -138,7 +138,7 @@ const Header = ({ pageTitle }: { pageTitle: string }) => {
           <MobileSVGColorWrapper>
             <NavLink to="/">
               <VisuallyHidden>Home</VisuallyHidden>
-              <Logo />
+              <Logo inverted={isOpen} />
             </NavLink>
           </MobileSVGColorWrapper>
           <Flex>

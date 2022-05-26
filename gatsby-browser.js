@@ -2,6 +2,7 @@ import * as React from "react";
 import fetch from "cross-fetch";
 import { ApolloClient, ApolloProvider, InMemoryCache, HttpLink } from "@apollo/client";
 import { AnimatePresence } from 'framer-motion';
+import { DataProvider } from "context/DataProvider";
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -19,6 +20,8 @@ export const wrapRootElement = ({ element }) => {
   return <ApolloProvider client={client}>{element}</ApolloProvider>;
 };
 
-export const wrapPageElement = ({element}) => (
-  <AnimatePresence exitBeforeEnter>{element}</AnimatePresence>
+export const wrapPageElement = ({element, props}) => (
+  <DataProvider value={props}>
+    <AnimatePresence exitBeforeEnter>{element}</AnimatePresence>
+  </DataProvider>
 );

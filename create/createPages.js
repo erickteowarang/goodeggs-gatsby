@@ -128,6 +128,7 @@ const createPages = async (pages, gatsbyUtilities) => {
           component: pageTemplate,
           context: {
             id: page.id,
+            databaseId: page.databaseId,
           },
         });
       } else {

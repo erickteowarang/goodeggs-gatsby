@@ -28,7 +28,10 @@ const FileUploadButton = styled.span`
   align-items: center;
   background: none;
   justify-content: center;
-  height: 48px;
+  min-height: 48px;
+  max-height: 80px;
+  padding: 10px;
+  font-size: 15px;
   width: 100%;
   content: 'Browse files';
   color: #72777a;
@@ -44,6 +47,7 @@ const FileUpload = ({ fieldData, name, wrapId }: FileUploadProps) => {
 
   const {
     register,
+    setValue,
     formState: { errors },
   } = useFormContext();
 
@@ -56,6 +60,7 @@ const FileUpload = ({ fieldData, name, wrapId }: FileUploadProps) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const fileUploaded = event.target.files[0];
     setFileLabel(fileUploaded.name);
+    setValue(name, fileUploaded);
   };
 
   return (

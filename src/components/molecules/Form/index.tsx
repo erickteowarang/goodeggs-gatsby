@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, CSSProperties } from 'react';
 import styled from 'styled-components';
 import { useForm, FormProvider } from 'react-hook-form';
 import { gql, useMutation } from '@apollo/client';
+import ClipLoader from "react-spinners/ClipLoader";
 
 import Button from 'components/atoms/Button';
 import Container from 'components/atoms/Container';
@@ -27,18 +28,28 @@ type FormProps = {
 };
 
 const FormButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
   margin-left: auto;
 `;
+
+const LoaderContainer = styled.span`
+  display: inline-block;
+  margin-left: 10px;
+`
 
 const Form = ({ id, formFields }: FormProps) => {
   const methods = useForm();
   const [submitForm, { loading }] = useMutation(SUBMIT_FORM);
   const [submissionError, setSubmissionError] = useState('');
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmitCallback = async (values: any) => {
     if (loading) return;
 
+    setIsLoading(true);
+    
     const formRes = formatPayload({
       serverData: formFields,
       clientData: values,
@@ -52,6 +63,7 @@ const Form = ({ id, formFields }: FormProps) => {
     })
       .then((data: any) => {
         // Success if no errors returned.
+        setIsLoading(false);
         if (!Boolean(data?.submitGfForm?.errors?.length)) {
           setSubmissionSuccess(true);
         } else {
@@ -60,6 +72,7 @@ const Form = ({ id, formFields }: FormProps) => {
       })
       .catch((error) => {
         console.error(error);
+        setIsLoading(false);
         setSubmissionError('Unknown Error');
       });
   };
@@ -81,6 +94,11 @@ const Form = ({ id, formFields }: FormProps) => {
                 <Button type="submit" variant="form">
                   Send
                 </Button>
+                {isLoading && (
+                  <LoaderContainer>
+                    <ClipLoader color="#004ca3" loading={isLoading} />
+                  </LoaderContainer>
+                )}
               </FormButtonContainer>
             </Flex>
           )}

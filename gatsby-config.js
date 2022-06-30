@@ -19,7 +19,18 @@ module.exports = {
       },
     },
     'gatsby-plugin-styled-components',
-    'gatsby-plugin-sharp',
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`],
+          placeholder: `dominantColor`,
+          quality: 100,
+          breakpoints: [750, 1080, 1366, 1920],
+          backgroundColor: `transparent`,
+        }
+      }
+    },
     'gatsby-plugin-typescript',
     'gatsby-plugin-root-import',
     'gatsby-plugin-image',

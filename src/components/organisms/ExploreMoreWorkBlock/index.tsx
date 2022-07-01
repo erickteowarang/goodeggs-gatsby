@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
+import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 
-import Container from 'components/atoms/Container';
 import Section from 'components/atoms/Section';
 import Spacing from 'components/atoms/Spacing';
 import { BlockHeading } from 'components/atoms/Typography';
@@ -10,6 +10,15 @@ import DataContext from 'context/DataProvider';
 
 import { theme } from 'theme/index';
 
+const OverflowContainer = styled.div`
+  padding-left: 20px;
+
+  @media screen and (min-width: ${theme.sizes.container}) {
+    padding: 0;
+    margin-left: calc((100vw - ${theme.sizes.container}) / 2);
+  }
+`;
+
 type ExploreMoreWorkBlockProps = {
   heading: string;
 };
@@ -17,7 +26,7 @@ type ExploreMoreWorkBlockProps = {
 const ExploreMoreWorkBlock = ({ heading }: ExploreMoreWorkBlockProps) => {
   const portfolioItems = useStaticQuery(graphql`
     query MorePortofolioItemsQuery {
-      allPortfolioItem(sort: {fields: publishDate, order: DESC}, limit: 5) {
+      allPortfolioItem(sort: {fields: publishDate, order: DESC}, limit: 6) {
         nodes {
           databaseId
           title
@@ -40,20 +49,18 @@ const ExploreMoreWorkBlock = ({ heading }: ExploreMoreWorkBlockProps) => {
   const getCards = () => {
     const currentPageID = GatsbyPageContext.pageContext.databaseId;
     let allPortfolioItems = allPortfolioItem.nodes;
-    console.log(allPortfolioItems);
-    console.log(currentPageID);
 
     return allPortfolioItems.filter((node: any) => node.databaseId !== currentPageID).map((node: any) => ({
       heading: node.title,
       content: node.excerpt,
       image: node.image,
       link: node.uri,
-    })).slice(0, 4);
+    })).slice(0, 5);
   };
 
   return (
     <Section background={theme.colors.sectionBackground}>
-      <Container overflow>
+      <OverflowContainer>
         {heading && (
           <>
             <BlockHeading>{heading}</BlockHeading>
@@ -61,7 +68,7 @@ const ExploreMoreWorkBlock = ({ heading }: ExploreMoreWorkBlockProps) => {
           </>
         )}
         <CardList cards={getCards()} overflow />
-      </Container>
+      </OverflowContainer>
     </Section>
   );
 };

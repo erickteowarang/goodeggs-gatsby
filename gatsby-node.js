@@ -102,6 +102,14 @@ exports.createSchemaCustomization = async ({ actions }) => {
       bannerImage: GatsbyImage @link
     }
 
+    type ColourBanner implements Node {
+      text: String
+      imageLocation: String
+      image: GatsbyImage @link
+      backgroundColour: String
+      cta: GatsbyCTA
+    }
+
     type ThreeColumnTextImageBlock implements Node {
       heading: String
       mainContent: String

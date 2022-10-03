@@ -4,7 +4,7 @@ import { media } from '../../../theme/media';
 
 type FlexVariants = 'columnStart' | 'column' | 'spaceBetween' | 'center';
 
-type AlignItemsOptions = 'start' | 'baseline' | 'end' | 'stretch';
+type AlignItemsOptions = 'start' | 'baseline' | 'end' | 'stretch' | 'center';
 
 type FlexProps = {
   as?: ElementType;

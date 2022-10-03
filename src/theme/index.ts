@@ -24,6 +24,7 @@ const space = {
   7: '100px',
   8: '120px',
   9: '40px',
+  10: '200px',
 };
 
 // add negative margins
@@ -48,6 +49,7 @@ const fontSizes = {
   6: '48px',
   7: '64px',
   8: '78px',
+  9: '100px',
 };
 
 const fontWeights = {
@@ -61,7 +63,7 @@ const fontWeights = {
 
 const fonts = {
   text: '"Poppins", sans-serif',
-  heading: '"Palanquin", sans-serif',
+  heading: '"Petrona", sans-serif',
   mono: 'Menlo, monospace',
 };
 

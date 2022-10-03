@@ -20,41 +20,93 @@ type HeroProps = {
   text: string;
   cta: CTAProps;
   image: GatsbyImageProps;
+  wideLayout: boolean;
+  backgroundColor: string;
 };
 
 const HeroContent = styled(Text)`
-  margin: ${({ theme }) => theme.space[4]} 0;
+  margin: 14px 0 ${({ theme }) => theme.space[4]};
   font-size: 20px;
   font-weight: ${({ theme }) => theme.fontWeights.light};
 `;
 
-const Hero = ({ heading, text, cta, image }: HeroProps) => (
-  <Section background={theme.colors.headerBackground}>
-    <Container customWidth="1250px">
-      <Flex variant="spaceBetween" responsive>
-        <Box width="55%">
-          <Heading as="h1" isLarge isHighlighted>
-            {parse(heading, TrimParagraphOptions)}
-          </Heading>
-          <HeroContent>{text}</HeroContent>
-          {cta && (
-            <Button url={cta.url} isLink>
-              {cta.title}
-            </Button>
+const HeroImageContainer = styled.div`
+  position: absolute;
+  bottom: -50%;
+`;
+
+const Hero = ({ 
+  heading,
+  text,
+  cta,
+  image,
+  wideLayout,
+  backgroundColor 
+}: HeroProps) => (
+  <>
+    <Section
+      background={
+        wideLayout && backgroundColor 
+          ? backgroundColor
+          : theme.colors.headerBackground
+      }
+    >
+      <Container customWidth="1250px">
+        <Flex variant="spaceBetween" responsive>
+          {wideLayout ? (
+            <Box 
+              width="100%"
+              center
+              relative
+              height="570px"
+            >
+              <Heading as="h1" isExtraLarge>
+                {parse(heading, TrimParagraphOptions)}
+              </Heading>
+              <HeroContent>{text}</HeroContent>
+              {cta && (
+                <Button url={cta.url} isLink>
+                  {cta.title}
+                </Button>
+              )}
+              {image && (
+                <HeroImageContainer>
+                  <GatsbyImage
+                    alt={image.alt}
+                    image={getImage(image.gatsbyImageData)!}
+                  />
+                </HeroImageContainer>
+              )}
+            </Box>
+          ) : (
+            <>
+              <Box width="55%">
+                <Heading as="h1" isLarge isHighlighted>
+                  {parse(heading, TrimParagraphOptions)}
+                </Heading>
+                <HeroContent>{text}</HeroContent>
+                {cta && (
+                  <Button url={cta.url} isLink>
+                    {cta.title}
+                  </Button>
+                )}
+              </Box>
+              <Spacing size={3} mobileOnly />
+              <Box width="42%">
+                {image && (
+                  <GatsbyImage
+                    alt={image.alt}
+                    image={getImage(image.gatsbyImageData)!}
+                  />
+                )}
+              </Box>
+            </>
           )}
-        </Box>
-        <Spacing size={3} mobileOnly />
-        <Box width="42%">
-          {image && (
-            <GatsbyImage
-              alt={image.alt}
-              image={getImage(image.gatsbyImageData)!}
-            />
-          )}
-        </Box>
-      </Flex>
-    </Container>
-  </Section>
+        </Flex>
+      </Container>
+    </Section>
+    {wideLayout && <Spacing size={10} />}
+  </>
 );
 
 export default Hero;

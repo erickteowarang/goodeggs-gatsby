@@ -4,7 +4,7 @@ import Link, { LinkProps } from 'components/atoms/Link';
 
 const StyledNavLink = styled(Link)<{ isActive?: boolean }>`
   color: ${({ theme }) => theme.colors.grey};
-  font-family: ${({ theme }) => theme.fonts.heading};
+  font-family: ${({ theme }) => theme.fonts.text};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   text-decoration: none;
   text-transform: uppercase;

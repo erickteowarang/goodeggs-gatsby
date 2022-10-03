@@ -74,6 +74,7 @@ const StyledButton = styled.button<ButtonProps>`
   line-height: ${({ theme }) => theme.lineHeights.solid};
   padding: 19px 40px;
   transition: all 0.2s ease-out;
+  border-radius: 30px;
 
   ${({ variant }) => variant && getButtonVariants(variant)};
 `;

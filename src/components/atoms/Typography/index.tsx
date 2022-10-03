@@ -14,6 +14,7 @@ type HeadingProps = TypographyProps & {
   isLarge?: boolean;
   isHighlighted?: boolean;
   isLight?: boolean;
+  isExtraLarge?: boolean;
   align?: 'center' | 'right';
 };
 
@@ -65,8 +66,12 @@ export const Heading = styled.h2<HeadingProps>`
     isLight ? theme.colors.text : theme.colors.primary};
   margin-bottom: ${({ theme }) => theme.space[3]};
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: ${({ theme, isLarge }) =>
-    isLarge ? theme.fontSizes[6] : theme.fontSizes[5]};
+  font-size: ${({ theme, isLarge, isExtraLarge }) =>
+    isExtraLarge 
+    ? theme.fontSizes[8] 
+    : isLarge 
+    ? theme.fontSizes[6] 
+    : theme.fontSizes[5]};
   font-weight: ${({ theme, isLight }) =>
     isLight ? theme.fontWeights.normal : theme.fontWeights.bold};
   line-height: ${({ theme }) => theme.lineHeights.tight};
@@ -103,8 +108,13 @@ export const Heading = styled.h2<HeadingProps>`
     `};
 
   @media ${media.medium} {
-    font-size: ${({ theme, isLarge }) =>
-      isLarge ? theme.fontSizes[8] : theme.fontSizes[6]};
+    font-size: ${({ theme, isLarge, isExtraLarge }) =>
+      isExtraLarge 
+      ? theme.fontSizes[9] 
+      :  isLarge 
+        ? theme.fontSizes[8]
+        : theme.fontSizes[6]
+    };
   }
 `;
 

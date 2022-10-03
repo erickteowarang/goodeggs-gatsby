@@ -13,5 +13,7 @@ module.exports = () => {
       title
       url
     }
+    wideLayout
+    backgroundColor
   `;
 };

@@ -21,6 +21,7 @@ type BoxProps = {
   order?: 0 | 1 | 2 | 3;
   children: ReactNode;
   relative?: boolean;
+  height?: string;
 };
 
 const getBoxWidth = (width?: BoxWidthOptions) => {
@@ -105,6 +106,13 @@ const StyledBox = styled.div<BoxProps>`
         order: ${order};
       }
     `}
+
+    ${({ height }) =>
+      height &&
+      css`
+        min-height: ${height};
+      `
+    }
 `;
 
 const Box = ({

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import Container from 'components/atoms/Container';
@@ -6,13 +7,18 @@ import Section from 'components/atoms/Section';
 import { BlockHeading } from 'components/atoms/Typography';
 import Form from 'components/molecules/Form';
 
-import { theme } from 'theme/index';
 import { CenteredContent } from 'components/generic';
 import Spacing from 'components/atoms/Spacing';
 
 type ContactFormBlockProps = {
   heading: string;
 };
+
+const ContactFormContainer = styled(Container)`
+  background: ${props => props.theme.colors.altBackground};
+  border-radius: 20px;
+  padding: ${props => props.theme.space[6]} 0;
+`;
 
 const ContactFormBlock = ({ heading }: ContactFormBlockProps) => {
   const formData = useStaticQuery(graphql`
@@ -37,8 +43,8 @@ const ContactFormBlock = ({ heading }: ContactFormBlockProps) => {
   const { wpGfForm } = formData;
 
   return (
-    <Section background={theme.colors.sectionBackground}>
-      <Container>
+    <Section>
+      <ContactFormContainer>
         {heading && (
           <CenteredContent>
             <BlockHeading>{heading}</BlockHeading>
@@ -48,7 +54,7 @@ const ContactFormBlock = ({ heading }: ContactFormBlockProps) => {
         {wpGfForm.formFields && (
           <Form id={1} formFields={wpGfForm.formFields.nodes} />
         )}
-      </Container>
+      </ContactFormContainer>
     </Section>
   );
 };

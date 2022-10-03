@@ -14,4 +14,5 @@ export const colors = {
   linkBlue: '#01539D',
   mutedText: '#D2D6D9',
   tagBlue: '#01539D',
+  altBackground: '#F4F0EC',
 };

@@ -231,6 +231,7 @@ const createTemporaryPageTemplateFile = (
                 title
                 url
               }
+              hideCtaBlock
             }
           }
         }

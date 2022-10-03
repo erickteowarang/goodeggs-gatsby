@@ -58,7 +58,7 @@ const Hero = ({
               width="100%"
               center
               relative
-              height="570px"
+              height="580px"
             >
               <Heading as="h1" isExtraLarge>
                 {parse(heading, TrimParagraphOptions)}

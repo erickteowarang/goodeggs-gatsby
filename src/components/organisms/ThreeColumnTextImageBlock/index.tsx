@@ -51,6 +51,9 @@ const ThreeColumnTextImageBlock = ({
         <GatsbyImage
           alt={blockImage.alt}
           image={getImage(blockImage.gatsbyImageData)!}
+          style={{
+            borderRadius: '20px',
+          }}
         />
       )}
     </Container>

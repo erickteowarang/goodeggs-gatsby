@@ -34,6 +34,9 @@ const ImageGridBlock = ({
           <GatsbyImage
             alt={singleImage.image.alt}
             image={getImage(singleImage.image.gatsbyImageData)!}
+            style={{
+              borderRadius: '20px',
+            }}
           />
         ))}
       </Flex>

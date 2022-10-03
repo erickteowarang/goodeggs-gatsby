@@ -31,6 +31,9 @@ const TwoColumnTextImageBlock = ({
             <GatsbyImage
               alt={image.alt}
               image={getImage(image.gatsbyImageData)!}
+              style={{
+                borderRadius: '20px',
+              }}
             />
           )}
         </Box>

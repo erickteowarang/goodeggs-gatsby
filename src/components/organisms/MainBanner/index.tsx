@@ -51,6 +51,9 @@ const MainBanner = ({ heading, subtitle, bannerImage }: MainBannerProps) => (
         <GatsbyImage
           alt={bannerImage.alt}
           image={getImage(bannerImage.gatsbyImageData)!}
+          style={{
+            borderRadius: '20px',
+          }}
         />
       )}
     </Container>

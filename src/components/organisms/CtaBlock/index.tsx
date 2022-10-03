@@ -15,6 +15,7 @@ const CtaHeading = styled(Heading)`
 
   @media ${media.medium} {
     margin-right: ${({ theme }) => theme.space[3]};
+    margin-bottom: 0;
   }
 `;
 

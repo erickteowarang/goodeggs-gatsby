@@ -28,9 +28,8 @@ const FilterHeading = styled(Heading)`
 const FilterItem = styled.a<{
   isActive?: boolean;
 }>`
-  font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 600;
   color: ${({ theme, isActive }) =>
     isActive ? theme.colors.text : theme.colors.mutedText};
   text-decoration: ${({ isActive }) => (isActive ? 'underline' : 'none')};

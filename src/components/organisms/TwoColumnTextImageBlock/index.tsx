@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import parse from 'html-react-parser';
 
 import Box from 'components/atoms/Box';
 import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
+import Image from 'components/atoms/Image';
 import Section from 'components/atoms/Section';
 import Spacing from 'components/atoms/Spacing';
 
@@ -28,9 +28,8 @@ const TwoColumnTextImageBlock = ({
       <Flex variant="spaceBetween" responsive>
         <Box width="half">
           {image && (
-            <GatsbyImage
-              alt={image.alt}
-              image={getImage(image.gatsbyImageData)!}
+            <Image
+              image={image}
               style={{
                 borderRadius: '20px',
               }}

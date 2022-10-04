@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import parse from 'html-react-parser';
 
 import Box from 'components/atoms/Box';
 import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
+import Image from 'components/atoms/Image';
 import Section from 'components/atoms/Section';
 import { Text, PortfolioHeading } from 'components/atoms/Typography';
-import { TrimParagraphOptions } from 'components/generic';
 import { GatsbyImageProps } from 'types/global';
 import Spacing from 'components/atoms/Spacing';
 
@@ -48,9 +47,8 @@ const ThreeColumnTextImageBlock = ({
     <Spacing size={5} />
     <Container>
       {blockImage && (
-        <GatsbyImage
-          alt={blockImage.alt}
-          image={getImage(blockImage.gatsbyImageData)!}
+        <Image
+          image={blockImage}
           style={{
             borderRadius: '20px',
           }}

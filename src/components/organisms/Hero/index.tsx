@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import parse from 'html-react-parser';
 import { CTAProps, GatsbyImageProps } from 'types/global';
 
@@ -8,6 +7,7 @@ import Box from 'components/atoms/Box';
 import Button from 'components/atoms/Button';
 import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
+import Image from 'components/atoms/Image';
 import Section from 'components/atoms/Section';
 import Spacing from 'components/atoms/Spacing';
 import { Text, Heading } from 'components/atoms/Typography';
@@ -71,10 +71,7 @@ const Hero = ({
               )}
               {image && (
                 <HeroImageContainer>
-                  <GatsbyImage
-                    alt={image.alt}
-                    image={getImage(image.gatsbyImageData)!}
-                  />
+                  <Image image={image} />
                 </HeroImageContainer>
               )}
             </Box>
@@ -94,10 +91,7 @@ const Hero = ({
               <Spacing size={3} mobileOnly />
               <Box width="42%">
                 {image && (
-                  <GatsbyImage
-                    alt={image.alt}
-                    image={getImage(image.gatsbyImageData)!}
-                  />
+                  <Image image={image} />
                 )}
               </Box>
             </>

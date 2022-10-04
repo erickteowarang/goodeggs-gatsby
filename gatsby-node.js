@@ -79,6 +79,13 @@ exports.createSchemaCustomization = async ({ actions }) => {
       serviceType: String
     }
 
+    type ContentBlock implements Node {
+      blockHeading: String
+      blockContent: String
+      image: GatsbyImage @link
+      imageLocation: String
+    }
+
     type GridImage implements Node {
       image: GatsbyImage @link
     }
@@ -127,6 +134,12 @@ exports.createSchemaCustomization = async ({ actions }) => {
       heading: String
       content: String
       image: GatsbyImage @link
+    }
+
+    type TwoColumnContentBlock implements Node {
+      sectionBackground: String
+      content: String
+      contentBlocks: [ContentBlock]
     }
 
     type OurValuesBlock implements Node {

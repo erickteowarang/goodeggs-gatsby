@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import parse from 'html-react-parser';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { CTAProps, GatsbyImageProps } from 'types/global';
 
 import Box from 'components/atoms/Box';
+import Image from 'components/atoms/Image';
 import { Heading } from 'components/atoms/Typography';
 import Section from 'components/atoms/Section';
 import Flex from 'components/atoms/Flex';
@@ -51,10 +51,7 @@ const ColourBanner = ({ text, cta, backgroundColour, imageLocation, image }: Col
       <Flex alignItems="center">
         {imageLocation === 'left' && image && (
           <BannerImageContainer location={imageLocation}>
-            <GatsbyImage
-              alt={image.alt}
-              image={getImage(image.gatsbyImageData)!}
-            />
+            <Image image={image} />
           </BannerImageContainer>
         )}
         <Box>
@@ -67,10 +64,7 @@ const ColourBanner = ({ text, cta, backgroundColour, imageLocation, image }: Col
         </Box>
         {imageLocation === 'right' && image && (
           <BannerImageContainer location={imageLocation}>
-            <GatsbyImage
-              alt={image.alt}
-              image={getImage(image.gatsbyImageData)!}
-            />
+            <Image image={image} />
           </BannerImageContainer>
         )}
       </Flex>

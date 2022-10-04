@@ -1,9 +1,9 @@
 import * as React from 'react';
 import parse from 'html-react-parser';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
+import Image from 'components/atoms/Image';
 import Section from 'components/atoms/Section';
 import { Text, BlockHeading } from 'components/atoms/Typography';
 import { GatsbyImageProps } from 'types/global';
@@ -31,9 +31,8 @@ const ImageGridBlock = ({
     <Container>
       <Flex variant="spaceBetween" gap={4}>
         {gridImages.map((singleImage) => (
-          <GatsbyImage
-            alt={singleImage.image.alt}
-            image={getImage(singleImage.image.gatsbyImageData)!}
+          <Image
+            image={singleImage.image}
             style={{
               borderRadius: '20px',
             }}

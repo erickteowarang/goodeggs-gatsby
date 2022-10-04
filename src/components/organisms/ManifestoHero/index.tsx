@@ -1,11 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { GatsbyImageProps } from 'types/global';
 
 import Box from 'components/atoms/Box';
 import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
+import Image from 'components/atoms/Image';
 import Section from 'components/atoms/Section';
 import Spacing from 'components/atoms/Spacing';
 import { Text, Heading } from 'components/atoms/Typography';
@@ -45,10 +45,7 @@ const ManifestoHero = ({ heading, subtitle, image }: ManifestoHeroProps) => (
       <Flex variant="spaceBetween" responsive>
         <Box width="55%">
           {image && (
-            <GatsbyImage
-              alt={image.alt}
-              image={getImage(image.gatsbyImageData)!}
-            />
+            <Image image={image} />
           )}
         </Box>
         <Spacing size={4} mobileOnly />

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { GatsbyImageProps } from 'types/global';
 
 import Box from 'components/atoms/Box';
 import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
+import Image from 'components/atoms/Image';
 import Section from 'components/atoms/Section';
 import { Text, Heading } from 'components/atoms/Typography';
 import { media } from 'theme/media';
@@ -48,9 +48,8 @@ const MainBanner = ({ heading, subtitle, bannerImage }: MainBannerProps) => (
       </Flex>
       <BannerSpacing />
       {bannerImage && (
-        <GatsbyImage
-          alt={bannerImage.alt}
-          image={getImage(bannerImage.gatsbyImageData)!}
+        <Image
+          image={bannerImage}
           style={{
             borderRadius: '20px',
           }}

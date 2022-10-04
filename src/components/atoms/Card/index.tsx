@@ -2,8 +2,8 @@ import React from 'react';
 import parse from 'html-react-parser';
 import { navigate } from 'gatsby';
 import styled, { css } from 'styled-components';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { GatsbyImageProps } from 'types/global';
+import Image from 'components/atoms/Image';
 
 export type CardProps = {
   image: GatsbyImageProps;
@@ -78,12 +78,7 @@ const Card = ({
     onClick={() => handleCardClick(link)}
   >
     {image && (
-      <GatsbyImage
-        alt={image.alt}
-        image={getImage(image.gatsbyImageData)!}
-        className="card-image"
-        objectFit="cover"
-      />
+      <Image image={image} />
     )}
     <CardHeading>{heading}</CardHeading>
     <CardContent>{parse(content)}</CardContent>

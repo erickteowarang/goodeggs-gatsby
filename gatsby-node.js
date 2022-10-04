@@ -16,6 +16,9 @@ exports.createSchemaCustomization = async ({ actions }) => {
       return {
         args,
         async resolve(source, args, context, info) {
+          if (source.mediaItemUrl.includes('svg')) {
+            return null;
+          }
           const imageType = info.schema.getType('ImageSharp');
           const file = context.nodeModel.getNodeById({
             id: source.localFile,

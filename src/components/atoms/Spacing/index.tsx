@@ -6,6 +6,7 @@ type SpacingProps = {
   size?: number;
   auto?: boolean;
   mobileOnly?: boolean;
+  desktopOnly?: boolean;
 };
 
 const StyledSpacing = styled.div<SpacingProps>`
@@ -19,10 +20,21 @@ const StyledSpacing = styled.div<SpacingProps>`
         margin: auto;
       }
     `}
+
+  ${({ desktopOnly }) =>
+    desktopOnly &&
+    css`
+      margin: 0;
+
+      @media ${media.large} {
+        // @ts-ignore
+        margin: ${({ theme, size }) => theme.space[size]};
+      }
+    `}
 `;
 
-const Spacing = ({ size, auto, mobileOnly }: SpacingProps) => (
-  <StyledSpacing size={size} auto={auto} mobileOnly={mobileOnly} />
+const Spacing = ({ size, auto, mobileOnly, desktopOnly }: SpacingProps) => (
+  <StyledSpacing size={size} auto={auto} mobileOnly={mobileOnly} desktopOnly={desktopOnly} />
 );
 
 export default Spacing;

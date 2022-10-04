@@ -110,7 +110,11 @@ const StyledBox = styled.div<BoxProps>`
     ${({ height }) =>
       height &&
       css`
-        min-height: ${height};
+        min-height: ${parseInt(height) - 120}px;
+        
+        @media ${media.large} {
+          min-height: ${height};
+        }
       `
     }
 `;

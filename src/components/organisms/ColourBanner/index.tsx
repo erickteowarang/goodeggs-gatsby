@@ -8,9 +8,12 @@ import Image from 'components/atoms/Image';
 import { Heading } from 'components/atoms/Typography';
 import Section from 'components/atoms/Section';
 import Flex from 'components/atoms/Flex';
+import Spacing from 'components/atoms/Spacing';
 import Container from 'components/atoms/Container';
 import Link from 'components/atoms/Link';
 import { TrimParagraphOptions } from 'components/generic';
+
+import { media } from 'theme/media';
 
 type ColourBannerProps = {
   text: string;
@@ -21,15 +24,19 @@ type ColourBannerProps = {
 };
 
 const ColourBannerContainer = styled(Container)<Partial<ColourBannerProps>>`
-  padding: ${props => props.theme.space[7]} ${props => props.theme.space[5]};
+  padding: ${props => props.theme.space[5]} ${props => props.theme.space[4]};
   background: ${props => props.backgroundColour 
-    ? props.backgroundColour 
-    : props.theme.colors.altBackground
-  };
-  border-radius: 20px;
+      ? props.backgroundColour 
+      : props.theme.colors.altBackground
+    };
+
+  @media ${media.large} {
+    padding: ${props => props.theme.space[7]} ${props => props.theme.space[5]}; 
+    border-radius: 20px;
+  }
 `;
 
-const BannerImageContainer = styled.div<{ location?: 'left' | 'right' }>`
+const BannerImageContainer = styled(Box)<{ location?: 'left' | 'right' }>`
   ${props => props.location === 'left' ? 
     css`
       margin-right: ${props => props.theme.space[4]};
@@ -48,7 +55,7 @@ const ColourBanner = ({ text, cta, backgroundColour, imageLocation, image }: Col
     <ColourBannerContainer 
       backgroundColour={backgroundColour}
     >
-      <Flex alignItems="center">
+      <Flex alignItems="center" wrap>
         {imageLocation === 'left' && image && (
           <BannerImageContainer location={imageLocation}>
             <Image image={image} />
@@ -69,6 +76,8 @@ const ColourBanner = ({ text, cta, backgroundColour, imageLocation, image }: Col
         )}
       </Flex>
     </ColourBannerContainer>
+
+    <Spacing size={5} mobileOnly />
   </Section>
 );
 

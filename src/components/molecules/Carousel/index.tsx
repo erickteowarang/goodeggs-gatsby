@@ -22,8 +22,8 @@ const Carousel = ({ slides }: CarouselProps) => (
     modules={[Pagination]}
     className="mySwiper"
   >
-    {slides.map((slide) => (
-      <SwiperSlide>{slide}</SwiperSlide>
+    {slides.map((slide, index) => (
+      <SwiperSlide key={index}>{slide}</SwiperSlide>
     ))}
   </Swiper>
 );

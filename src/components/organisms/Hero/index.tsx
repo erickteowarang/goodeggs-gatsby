@@ -14,6 +14,7 @@ import { Text, Heading } from 'components/atoms/Typography';
 import { TrimParagraphOptions } from 'components/generic';
 
 import { theme } from 'theme/index';
+import { media } from 'theme/media';
 
 type HeroProps = {
   heading: string;
@@ -31,8 +32,13 @@ const HeroContent = styled(Text)`
 `;
 
 const HeroImageContainer = styled.div`
-  position: absolute;
-  bottom: -50%;
+  margin-top: ${({ theme }) => theme.space[4]};
+
+  @media ${media.medium} {
+    margin-top: 0;
+    position: absolute;
+    bottom: -50%;
+  }
 `;
 
 const Hero = ({ 
@@ -99,7 +105,7 @@ const Hero = ({
         </Flex>
       </Container>
     </Section>
-    {wideLayout && <Spacing size={10} />}
+    {wideLayout && <Spacing size={10} desktopOnly />}
   </>
 );
 

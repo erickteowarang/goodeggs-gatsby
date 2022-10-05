@@ -55,9 +55,9 @@ const ColourBanner = ({ text, cta, backgroundColour, imageLocation, image }: Col
     <ColourBannerContainer 
       backgroundColour={backgroundColour}
     >
-      <Flex alignItems="center" wrap>
+      <Flex alignItems="center" responsive>
         {imageLocation === 'left' && image && (
-          <BannerImageContainer location={imageLocation}>
+          <BannerImageContainer width="30%" location={imageLocation}>
             <Image image={image} />
           </BannerImageContainer>
         )}
@@ -70,7 +70,7 @@ const ColourBanner = ({ text, cta, backgroundColour, imageLocation, image }: Col
           )}
         </Box>
         {imageLocation === 'right' && image && (
-          <BannerImageContainer location={imageLocation}>
+          <BannerImageContainer width="65%" location={imageLocation}>
             <Image image={image} />
           </BannerImageContainer>
         )}

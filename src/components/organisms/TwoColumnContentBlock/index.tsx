@@ -37,7 +37,7 @@ const TwoColumnContentBlock = ({
       <Spacing size={5} />
       <Flex variant="spaceBetween" alignItems="start">
         {contentBlocks.map((block) => (
-          <Box width="46%">
+          <Box width="45%">
             <Flex variant="spaceBetween" alignItems="start">
               {block.image && block.imageLocation === 'left' && (
                 <Box width="30%">
@@ -56,6 +56,7 @@ const TwoColumnContentBlock = ({
                 </Box>
               )}
             </Flex>
+            <Spacing size={5} />
           </Box>
         ))}
       </Flex>

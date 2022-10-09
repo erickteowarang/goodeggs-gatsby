@@ -15,25 +15,27 @@ type OurValuesBlockProps = {
   heading: string;
   values: string;
   image: GatsbyImageProps;
+  imageLocation: 'left' | 'right';
 };
 
-const ValuesHeading = styled(BlockHeading)`
-  text-align: center;
-`;
-
-const OurValuesBlock = ({ heading, image, values }: OurValuesBlockProps) => (
+const OurValuesBlock = ({ heading, image, imageLocation, values }: OurValuesBlockProps) => (
   <Section>
     <Container variant="blockContent">
       <Flex variant="spaceBetween" responsive>
-        <Box width="45%">
-          <ValuesHeading>{heading}</ValuesHeading>
-          {image && (
+        {image && imageLocation === 'left' && (
+          <Box width="45%">
             <Image image={image} />
-          )}
-        </Box>
+          </Box>
+        )}
         <Box width="half">
+          <BlockHeading>{heading}</BlockHeading>
           <BlockContent>{parse(values, BlockContentOptions)}</BlockContent>
         </Box>
+        {image && imageLocation === 'right' && (
+          <Box width="45%">
+            <Image image={image} />
+          </Box>
+        )}
       </Flex>
     </Container>
   </Section>

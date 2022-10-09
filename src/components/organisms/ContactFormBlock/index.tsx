@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import Container from 'components/atoms/Container';
-import Section from 'components/atoms/Section';
 import { BlockHeading } from 'components/atoms/Typography';
 import Form from 'components/molecules/Form';
 
@@ -18,6 +17,7 @@ const ContactFormContainer = styled(Container)`
   background: ${props => props.theme.colors.altBackground};
   border-radius: 20px;
   padding: ${props => props.theme.space[6]} 0;
+  margin-bottom: ${props => props.theme.space[5]};
 `;
 
 const ContactFormBlock = ({ heading }: ContactFormBlockProps) => {
@@ -43,19 +43,17 @@ const ContactFormBlock = ({ heading }: ContactFormBlockProps) => {
   const { wpGfForm } = formData;
 
   return (
-    <Section>
-      <ContactFormContainer>
-        {heading && (
-          <CenteredContent>
-            <BlockHeading>{heading}</BlockHeading>
-            <Spacing size={5} />
-          </CenteredContent>
-        )}
-        {wpGfForm.formFields && (
-          <Form id={1} formFields={wpGfForm.formFields.nodes} />
-        )}
-      </ContactFormContainer>
-    </Section>
+    <ContactFormContainer>
+      {heading && (
+        <CenteredContent>
+          <BlockHeading>{heading}</BlockHeading>
+          <Spacing size={5} />
+        </CenteredContent>
+      )}
+      {wpGfForm.formFields && (
+        <Form id={1} formFields={wpGfForm.formFields.nodes} />
+      )}
+    </ContactFormContainer>
   );
 };
 

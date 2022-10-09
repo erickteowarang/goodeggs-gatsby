@@ -29,10 +29,12 @@ const ColourBannerContainer = styled(Container)<Partial<ColourBannerProps>>`
       ? props.backgroundColour 
       : props.theme.colors.altBackground
     };
+  margin-bottom: ${props => props.theme.space[5]};
 
   @media ${media.large} {
-    padding: ${props => props.theme.space[7]} ${props => props.theme.space[5]}; 
+    padding: ${props => props.theme.space[6]} ${props => props.theme.space[5]}; 
     border-radius: 20px;
+    margin-bottom: ${props => props.theme.space[7]};
   }
 `;
 

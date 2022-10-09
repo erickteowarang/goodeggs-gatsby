@@ -16,31 +16,50 @@ type TwoColumnTextImageBlockProps = {
   heading: string;
   content: string;
   image: GatsbyImageProps;
+  imageLocation: 'left' | 'right';
 };
 
 const TwoColumnTextImageBlock = ({
   heading,
   content,
   image,
+  imageLocation,
 }: TwoColumnTextImageBlockProps) => (
   <Section>
     <Container variant="blockContent">
       <Flex variant="spaceBetween" responsive>
-        <Box width="half">
-          {image && (
-            <Image
-              image={image}
-              style={{
-                borderRadius: '20px',
-              }}
-            />
-          )}
-        </Box>
-        <Spacing size={3} mobileOnly />
+        {image && imageLocation === 'left' && (
+          <>
+            <Box width="half">
+              <Image
+                image={image}
+                style={{
+                  borderRadius: '20px',
+                }}
+              />
+            </Box>
+            <Spacing size={3} mobileOnly />
+          </>
+        )}
+        
         <Box width="half">
           <BlockHeading>{heading}</BlockHeading>
           <BlockContent>{parse(content, BlockContentOptions)}</BlockContent>
         </Box>
+
+        {image && imageLocation === 'right' && (
+          <>
+            <Spacing size={3} mobileOnly />
+            <Box width="half">
+              <Image
+                image={image}
+                style={{
+                  borderRadius: '20px',
+                }}
+              />
+            </Box>
+          </>
+        )}
       </Flex>
     </Container>
   </Section>

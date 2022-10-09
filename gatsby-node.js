@@ -137,6 +137,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       heading: String
       content: String
       image: GatsbyImage @link
+      imageLocation: String
     }
 
     type TwoColumnContentBlock implements Node {
@@ -149,6 +150,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       heading: String
       values: String
       image: GatsbyImage @link
+      imageLocation: String
     }
   `);
 

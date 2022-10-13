@@ -118,6 +118,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       image: GatsbyImage @link
       backgroundColour: String
       cta: GatsbyCTA
+      wideVersion: String
     }
 
     type ThreeColumnTextImageBlock implements Node {

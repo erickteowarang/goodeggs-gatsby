@@ -26,7 +26,7 @@ type ExploreMoreWorkBlockProps = {
 const ExploreMoreWorkBlock = ({ heading }: ExploreMoreWorkBlockProps) => {
   const portfolioItems = useStaticQuery(graphql`
     query MorePortofolioItemsQuery {
-      allPortfolioItem(sort: {fields: publishDate, order: DESC}, limit: 6) {
+      allPortfolioItem {
         nodes {
           databaseId
           title
@@ -50,7 +50,7 @@ const ExploreMoreWorkBlock = ({ heading }: ExploreMoreWorkBlockProps) => {
     const currentPageID = GatsbyPageContext.pageContext.databaseId;
     let allPortfolioItems = allPortfolioItem.nodes;
 
-    return allPortfolioItems.filter((node: any) => node.databaseId !== currentPageID).map((node: any) => ({
+    return allPortfolioItems.filter((node: any) => node.databaseId !== currentPageID).splice(Math.floor(Math.random()* allPortfolioItems.length), 5).map((node: any) => ({
       heading: node.title,
       content: node.excerpt,
       image: node.image,

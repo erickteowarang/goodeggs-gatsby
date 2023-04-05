@@ -50,12 +50,16 @@ const ExploreMoreWorkBlock = ({ heading }: ExploreMoreWorkBlockProps) => {
     const currentPageID = GatsbyPageContext.pageContext.databaseId;
     let allPortfolioItems = allPortfolioItem.nodes;
 
-    return allPortfolioItems.filter((node: any) => node.databaseId !== currentPageID).splice(Math.floor(Math.random()* allPortfolioItems.length), 5).map((node: any) => ({
-      heading: node.title,
-      content: node.excerpt,
-      image: node.image,
-      link: node.uri,
-    })).slice(0, 5);
+    return allPortfolioItems
+      .filter((node: any) => node.databaseId !== currentPageID)
+      .sort(() => Math.random() - Math.random())
+      .slice(0, 5)
+      .map((node: any) => ({
+        heading: node.title,
+        content: node.excerpt,
+        image: node.image,
+        link: node.uri,
+      }));
   };
 
   return (

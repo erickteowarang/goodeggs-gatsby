@@ -45,7 +45,6 @@ export const BlockContentOptions: HTMLReactParserOptions = {
       if (domNode.name === 'p') {
         return <Text>{domToReact(domNode.children, BlockContentOptions)}</Text>;
       } else if (domNode.name === 'a') {
-        console.log(domNode);
         return <Link to={domNode.attribs.href}>{domToReact(domNode.children)}</Link>;
       } else if (domNode.name === 'h5' || domNode.name === 'h6') {
         return (

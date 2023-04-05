@@ -21,6 +21,7 @@ type ColourBannerProps = {
   imageLocation?: string;
   backgroundColour?: string;
   image: GatsbyImageProps;
+  wideVersion?: string;
 };
 
 const ColourBannerContainer = styled(Container)<Partial<ColourBannerProps>>`
@@ -32,7 +33,13 @@ const ColourBannerContainer = styled(Container)<Partial<ColourBannerProps>>`
   margin-bottom: ${props => props.theme.space[5]};
 
   @media ${media.large} {
-    padding: ${props => props.theme.space[6]} ${props => props.theme.space[5]}; 
+    padding: ${props => props.wideVersion 
+      ? css`
+        ${props => props.theme.space[3]}
+        0
+        ${props => props.theme.space[3]}
+        ${props => props.theme.space[5]}`
+      : css`${props => props.theme.space[6]} ${props => props.theme.space[5]}`}; 
     border-radius: 20px;
     margin-bottom: ${props => props.theme.space[7]};
   }
@@ -52,14 +59,18 @@ const BannerLink = styled(Link)`
   color: black;
 `;
 
-const ColourBanner = ({ text, cta, backgroundColour, imageLocation, image }: ColourBannerProps) => (
+const ColourBanner = ({ text, cta, backgroundColour, imageLocation, image, wideVersion }: ColourBannerProps) => (
   <Section>
-    <ColourBannerContainer 
+    <ColourBannerContainer
+      wideVersion={wideVersion}
       backgroundColour={backgroundColour}
     >
       <Flex alignItems="center" responsive>
         {imageLocation === 'left' && image && (
-          <BannerImageContainer width="30%" location={imageLocation}>
+          <BannerImageContainer 
+            width={wideVersion ? "auto" : "30%"}
+            location={imageLocation}
+          >
             <Image image={image} />
           </BannerImageContainer>
         )}
@@ -72,7 +83,7 @@ const ColourBanner = ({ text, cta, backgroundColour, imageLocation, image }: Col
           )}
         </Box>
         {imageLocation === 'right' && image && (
-          <BannerImageContainer width="65%" location={imageLocation}>
+          <BannerImageContainer width={wideVersion ? "auto" : "65%"} location={imageLocation}>
             <Image image={image} />
           </BannerImageContainer>
         )}

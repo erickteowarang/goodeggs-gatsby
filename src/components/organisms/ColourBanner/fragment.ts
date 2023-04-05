@@ -14,5 +14,6 @@ module.exports = () => {
     }
     imageLocation
     backgroundColour
+    wideVersion
   `;
 };

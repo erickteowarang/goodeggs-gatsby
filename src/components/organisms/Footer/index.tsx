@@ -145,9 +145,6 @@ const Footer = ({
               We acknowledge the Wurundjeri People as the Traditional Owners of the land on which we work and pay our respects to traditional custodians past, present and emerging.
             </Text>
             <Spacing size={4} />
-            <Text isSmall>
-              The Good Egg Collective contributes to <a href="https://paytherent.net.au/" target="_blank">Pay the Rent</a>, a grassroots collective that accepts donations from people and businesses, which are then paid forward to First Nations causes and campaigns.
-            </Text>
           </Box>
         </FooterItemContainer>
       </Container>

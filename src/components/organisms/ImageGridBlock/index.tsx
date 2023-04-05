@@ -1,6 +1,7 @@
 import * as React from 'react';
 import parse from 'html-react-parser';
 
+import Box from 'components/atoms/Box';
 import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
 import Image from 'components/atoms/Image';
@@ -30,14 +31,31 @@ const ImageGridBlock = ({
     <Spacing size={5} />
     <Container>
       <Flex variant="spaceBetween" gap={4}>
-        {gridImages.map((singleImage) => (
-          <Image
-            image={singleImage.image}
-            style={{
-              borderRadius: '20px',
-            }}
-          />
-        ))}
+        {gridImages.map((singleImage, index) => {
+          if (gridImages.length === 4) {
+            if (index === 2 || index === 3) {
+              return (
+                <Box width="half">
+                  <Image
+                    image={singleImage.image}
+                    style={{
+                      borderRadius: '20px',
+                    }}
+                  />
+                </Box>
+              )
+            }
+          }
+
+          return (
+            <Image
+              image={singleImage.image}
+              style={{
+                borderRadius: '20px',
+              }}
+            />
+          )
+          })}
       </Flex>
     </Container>
     <Spacing size={5} />

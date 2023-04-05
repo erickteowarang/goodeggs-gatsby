@@ -54,7 +54,7 @@ const ExploreMoreWorkBlock = ({ heading }: ExploreMoreWorkBlockProps) => {
     .sort(() => Math.random() - Math.random())
     .slice(0, 5);
 
-    console.log(sortedPortfolioItems);
+    console.log(allPortfolioItem);
 
     return sortedPortfolioItems
       .map((node: any) => ({

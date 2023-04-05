@@ -49,11 +49,14 @@ const ExploreMoreWorkBlock = ({ heading }: ExploreMoreWorkBlockProps) => {
   const getCards = () => {
     const currentPageID = GatsbyPageContext.pageContext.databaseId;
     let allPortfolioItems = allPortfolioItem.nodes;
+    const sortedPortfolioItems = allPortfolioItems
+    .filter((node: any) => node.databaseId !== currentPageID)
+    .sort(() => Math.random() - Math.random())
+    .slice(0, 5);
 
-    return allPortfolioItems
-      .filter((node: any) => node.databaseId !== currentPageID)
-      .sort(() => Math.random() - Math.random())
-      .slice(0, 5)
+    console.log(sortedPortfolioItems);
+
+    return sortedPortfolioItems
       .map((node: any) => ({
         heading: node.title,
         content: node.excerpt,

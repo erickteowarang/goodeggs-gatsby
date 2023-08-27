@@ -6,7 +6,7 @@ import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
 import Image from 'components/atoms/Image';
 import Section from 'components/atoms/Section';
-import { Text, PortfolioHeading } from 'components/atoms/Typography';
+import { Text, ServicesText, PortfolioHeading } from 'components/atoms/Typography';
 import { GatsbyImageProps } from 'types/global';
 import Spacing from 'components/atoms/Spacing';
 
@@ -28,18 +28,18 @@ const ThreeColumnTextImageBlock = ({
   <Section smallPadding>
     <Container variant="narrow">
       <Flex variant="spaceBetween" alignItems="start">
-        <Box width="33.3%">
+        <Box width="30%">
           <PortfolioHeading>{heading}</PortfolioHeading>
         </Box>
-        <Box width="35%">
+        <Box width="45%">
           <Text isBlock>{parse(mainContent)}</Text>
         </Box>
-        <Box width="20%">
+        <Box width="18%">
           <Text as="h4" bold>
             Services
           </Text>
           {servicesRendered.map((service) => (
-            <Text isBlock>{service.serviceType}</Text>
+            <ServicesText>{service.serviceType}</ServicesText>
           ))}
         </Box>
       </Flex>

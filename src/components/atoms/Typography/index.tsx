@@ -60,6 +60,14 @@ export const Text = styled.p<TypographyProps>`
     `};
 `;
 
+export const ServicesText = styled.p`
+  margin: 0;
+  margin-bottom: 8px;
+  color: ${({ theme }) => theme.colors.blockText};
+  line-height: 1.25;
+  font-size: ${({ theme }) => theme.fontSizes[2]};
+`
+
 export const Heading = styled.h2<HeadingProps>`
   margin: 0;
   color: ${({ theme, isLight }) =>

@@ -121,11 +121,15 @@ exports.createSchemaCustomization = async ({ actions }) => {
       wideVersion: String
     }
 
-    type ThreeColumnTextImageBlock implements Node {
+    type ThreeColumnInlineTextBlock implements Node {
       heading: String
       mainContent: String
       servicesRendered: [ServiceRendered]
-      blockImage: GatsbyImage @link
+    }
+
+    type HeadingTextBlock implements Node {
+      heading: String
+      content: String
     }
 
     type ImageGridBlock implements Node {
@@ -152,6 +156,14 @@ exports.createSchemaCustomization = async ({ actions }) => {
       values: String
       image: GatsbyImage @link
       imageLocation: String
+    }
+
+    type SingleImageBlock implements Node {
+      image: GatsbyImage @link
+    }
+
+    type TwoColumnImageBlock implements Node {
+      image: [GridImage]
     }
   `);
 

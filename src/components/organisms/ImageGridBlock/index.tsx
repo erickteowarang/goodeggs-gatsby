@@ -24,10 +24,10 @@ const ImageGridBlock = ({
   gridImages,
 }: ImageGridBlockProps) => (
   <Section smallPadding>
-    <Container variant="tight">
+    {/* <Container variant="tight">
       <BlockHeading>{heading}</BlockHeading>
       <Text isBlock>{parse(content)}</Text>
-    </Container>
+    </Container> */}
     <Spacing size={5} />
     <Container>
       <Flex variant="spaceBetween" gap={4}>

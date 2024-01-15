@@ -21,7 +21,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
           }
           const imageType = info.schema.getType('ImageSharp');
           const file = context.nodeModel.getNodeById({
-            id: source.localFile,
+            id: source.localFile.id,
           });
           if (!file) return null;
           const image = context.nodeModel.getNodeById({
@@ -182,36 +182,32 @@ exports.createSchemaCustomization = async ({ actions }) => {
       uri: String
       publishDate: String
     }
-  `)
+  `);
 };
 
-exports.onCreateNode = ({
-  node,
-  actions,
-  createNodeId,
-}) => {
-  if (!node.internal.type.includes("Wp")) return
+exports.onCreateNode = ({ node, actions, createNodeId }) => {
+  if (!node.internal.type.includes('Wp')) return;
 
-  if (node.internal.type === "WpPortfolioItem") {
-        actions.createNode({
-          id: createNodeId(`${node.id} >>> PortfolioItem ${node.slug}`),
-          internal: {
-            type: "PortfolioItem",
-            contentDigest: node.internal.contentDigest,
-          },
-          databaseId: node.databaseId,
-          parent: node.id,
-          slug: node.slug,
-          title: node.title,
-          excerpt: node.excerpt,
-          image: node.featuredImage?.node?.id,
-          categories: node.categories?.nodes?.map(category => category.id),
-          html: node.content,
-          uri: node.uri,
-          publishDate: node.date,
-        });
-    }
+  if (node.internal.type === 'WpPortfolioItem') {
+    actions.createNode({
+      id: createNodeId(`${node.id} >>> PortfolioItem ${node.slug}`),
+      internal: {
+        type: 'PortfolioItem',
+        contentDigest: node.internal.contentDigest,
+      },
+      databaseId: node.databaseId,
+      parent: node.id,
+      slug: node.slug,
+      title: node.title,
+      excerpt: node.excerpt,
+      image: node.featuredImage?.node?.id,
+      categories: node.categories?.nodes?.map((category) => category.id),
+      html: node.content,
+      uri: node.uri,
+      publishDate: node.date,
+    });
   }
+};
 
 setOptions({
   postTypes: ['Page', 'PortfolioItem'],

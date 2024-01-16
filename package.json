@@ -30,7 +30,7 @@
     "gatsby-source-wordpress": "^6.5.1",
     "gatsby-transformer-sharp": "^4.4.0",
     "graphql": "^15.8.0",
-    "html-react-parser": "^1.4.10",
+    "html-react-parser": "1.4.10",
     "is-absolute-url": "^4.0.1",
     "lodash.clonedeep": "^4.5.0",
     "lodash.uniq": "^4.5.0",

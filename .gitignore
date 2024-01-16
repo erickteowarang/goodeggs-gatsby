@@ -6,3 +6,5 @@ public
 dist
 .DS_Store
 src/fragments/components.js
+# Local Netlify folder
+.netlify

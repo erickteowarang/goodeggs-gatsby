@@ -21,7 +21,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
           }
           const imageType = info.schema.getType('ImageSharp');
           const file = context.nodeModel.getNodeById({
-            id: source.localFile.id,
+            id: source.localFile?.id,
           });
           if (!file) return null;
           const image = context.nodeModel.getNodeById({

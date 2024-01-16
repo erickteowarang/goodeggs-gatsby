@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import parse from 'html-react-parser';
+import parse, { domToReact, Element } from 'html-react-parser';
 import { CTAProps, GatsbyImageProps } from 'types/global';
 
 import Box from 'components/atoms/Box';
@@ -49,7 +49,13 @@ const Hero = ({
   wideLayout,
   backgroundColor,
 }: HeroProps) => {
-  const parsedHeadingText = parse(heading, TrimParagraphOptions);
+  const parsedHeadingText = parse(heading, {
+    replace: (domNode) => {
+      if (domNode instanceof Element && domNode.name === 'p') {
+        return <>{domToReact(domNode.children)}</>;
+      }
+    },
+  });
 
   return (
     <>

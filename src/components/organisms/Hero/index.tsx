@@ -65,7 +65,6 @@ const Hero = ({
             {wideLayout ? (
               <Box width="100%" center relative height="580px">
                 <Heading as="h1" isExtraLarge>
-                  {console.log(parsedHeadingText)}
                   {parsedHeadingText}
                 </Heading>
                 <HeroContent>{text}</HeroContent>

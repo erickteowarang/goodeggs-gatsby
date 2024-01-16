@@ -33,6 +33,7 @@ export const CenteredContent = styled.div`
 
 export const TrimParagraphOptions: HTMLReactParserOptions = {
   replace: (domNode) => {
+    console.log(domNode);
     if (domNode instanceof Element && domNode.name === 'p') {
       return <>{domToReact(domNode.children)}</>;
     }
@@ -45,7 +46,9 @@ export const BlockContentOptions: HTMLReactParserOptions = {
       if (domNode.name === 'p') {
         return <Text>{domToReact(domNode.children, BlockContentOptions)}</Text>;
       } else if (domNode.name === 'a') {
-        return <Link to={domNode.attribs.href}>{domToReact(domNode.children)}</Link>;
+        return (
+          <Link to={domNode.attribs.href}>{domToReact(domNode.children)}</Link>
+        );
       } else if (domNode.name === 'h5' || domNode.name === 'h6') {
         return (
           <SmallHeading as={domNode.name}>

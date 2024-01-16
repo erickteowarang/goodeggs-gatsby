@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import parse, { domToReact, Element } from 'html-react-parser';
+import parse from 'html-react-parser';
 import { CTAProps, GatsbyImageProps } from 'types/global';
 
 import Box from 'components/atoms/Box';
@@ -48,30 +48,39 @@ const Hero = ({
   image,
   wideLayout,
   backgroundColor,
-}: HeroProps) => {
-  const parsedHeadingText = parse(heading, {
-    replace: (domNode) => {
-      if (domNode instanceof Element && domNode.name === 'p') {
-        return <>{domToReact(domNode.children)}</>;
+}: HeroProps) => (
+  <>
+    <Section
+      background={
+        wideLayout && backgroundColor
+          ? backgroundColor
+          : theme.colors.headerBackground
       }
-    },
-  });
-
-  return (
-    <>
-      <Section
-        background={
-          wideLayout && backgroundColor
-            ? backgroundColor
-            : theme.colors.headerBackground
-        }
-      >
-        <Container customWidth="1250px">
-          <Flex variant="spaceBetween" responsive>
-            {wideLayout ? (
-              <Box width="100%" center relative height="580px">
-                <Heading as="h1" isExtraLarge>
-                  {parsedHeadingText}
+    >
+      <Container customWidth="1250px">
+        <Flex variant="spaceBetween" responsive>
+          {wideLayout ? (
+            <Box width="100%" center relative height="580px">
+              <Heading as="h1" isExtraLarge>
+                {parse(heading, TrimParagraphOptions)}
+              </Heading>
+              <HeroContent>{text}</HeroContent>
+              {cta && (
+                <Button url={cta.url} isLink>
+                  {cta.title}
+                </Button>
+              )}
+              {image && (
+                <HeroImageContainer>
+                  <Image image={image} />
+                </HeroImageContainer>
+              )}
+            </Box>
+          ) : (
+            <>
+              <Box width="55%">
+                <Heading as="h1" isLarge isHighlighted>
+                  {parse(heading, TrimParagraphOptions)}
                 </Heading>
                 <HeroContent>{text}</HeroContent>
                 {cta && (
@@ -79,35 +88,16 @@ const Hero = ({
                     {cta.title}
                   </Button>
                 )}
-                {image && (
-                  <HeroImageContainer>
-                    <Image image={image} />
-                  </HeroImageContainer>
-                )}
               </Box>
-            ) : (
-              <>
-                <Box width="55%">
-                  <Heading as="h1" isLarge isHighlighted>
-                    {parse(heading, TrimParagraphOptions)}
-                  </Heading>
-                  <HeroContent>{text}</HeroContent>
-                  {cta && (
-                    <Button url={cta.url} isLink>
-                      {cta.title}
-                    </Button>
-                  )}
-                </Box>
-                <Spacing size={3} mobileOnly />
-                <Box width="42%">{image && <Image image={image} />}</Box>
-              </>
-            )}
-          </Flex>
-        </Container>
-      </Section>
-      {wideLayout && <Spacing size={10} desktopOnly />}
-    </>
-  );
-};
+              <Spacing size={3} mobileOnly />
+              <Box width="42%">{image && <Image image={image} />}</Box>
+            </>
+          )}
+        </Flex>
+      </Container>
+    </Section>
+    {wideLayout && <Spacing size={10} desktopOnly />}
+  </>
+);
 
 export default Hero;

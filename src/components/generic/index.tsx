@@ -33,7 +33,6 @@ export const CenteredContent = styled.div`
 
 export const TrimParagraphOptions: HTMLReactParserOptions = {
   replace: (domNode) => {
-    console.log(domNode);
     if (domNode instanceof Element && domNode.name === 'p') {
       return <>{domToReact(domNode.children)}</>;
     }

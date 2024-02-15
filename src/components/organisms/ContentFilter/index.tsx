@@ -55,6 +55,10 @@ const FilterContainer = styled(Flex)`
     margin-top: 40px;
     padding: 0;
   }
+
+  @media ${media.large} {
+    width: 900px;
+  }
 `;
 
 const ContentFilter = ({

@@ -81,7 +81,7 @@ const Header = ({ pageTitle }: { pageTitle: string }) => {
 
   const menuQuery = useStaticQuery(graphql`
     query MenuQuery {
-      wpMenu(locations: { eq: PRIMARY }) {
+      wpMenu {
         menuItems {
           nodes {
             id

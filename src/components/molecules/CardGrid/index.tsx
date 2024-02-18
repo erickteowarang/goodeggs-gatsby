@@ -10,6 +10,16 @@ import { media } from 'theme/media';
 
 const CardGridContainer = styled(Container)`
   margin-bottom: ${({ theme }) => theme.space[7]};
+
+  > div {
+    gap: 20px;
+  }
+
+  @media ${media.large} {
+    > div {
+      gap: 40px;
+    }
+  }
 `;
 
 const CardContainer = styled(motion.div)`
@@ -22,7 +32,7 @@ const CardContainer = styled(motion.div)`
 
 const CardGrid = ({ cards }: { cards: Array<CardProps> }) => (
   <CardGridContainer>
-    <Flex gap={9} wrap>
+    <Flex wrap>
       <AnimatePresence initial={false}>
         {cards.map((card, i) => (
           <CardContainer

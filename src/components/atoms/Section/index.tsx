@@ -28,7 +28,7 @@ const getPadding = (
 
 const StyledSection = styled.section<SectionProps>`
   padding-top: 20px;
-  padding-bottom: 0px;
+  padding-bottom: 20px;
 
   &:first-of-type {
     padding-top: calc(40px + ${headerHeight});

@@ -34,6 +34,7 @@ const FilterItem = styled.a<{
     isActive ? theme.colors.text : theme.colors.mutedText};
   text-decoration: ${({ isActive }) => (isActive ? 'underline' : 'none')};
   cursor: pointer;
+  text-wrap: nowrap;
 
   &:hover {
     color: ${({ theme }) => theme.colors.text};
@@ -41,19 +42,26 @@ const FilterItem = styled.a<{
   }
 
   @media ${media.medium} {
+    text-wrap: auto;
     font-size: ${({ theme }) => theme.fontSizes[4]};
   }
 `;
 
 const FilterContainer = styled(Flex)`
-  padding: 0 15px;
+  padding: 0 15px 20px;
   margin-left: auto;
   margin-right: auto;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 
   @media ${media.medium} {
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    padding: 0 15px;
     width: 500px;
     margin-top: 40px;
     padding: 0;
+    overflow-x: auto;
   }
 
   @media ${media.large} {

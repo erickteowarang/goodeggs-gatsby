@@ -78,7 +78,13 @@ const Card = ({
     onClick={() => handleCardClick(link)}
   >
     {image && (
-      <Image image={image} />
+      <Image
+        style={{
+          objectFit: 'cover',
+          maxWidth: '100%',
+        }}
+        image={image}
+      />
     )}
     <CardHeading>{heading}</CardHeading>
     <CardContent>{parse(content)}</CardContent>

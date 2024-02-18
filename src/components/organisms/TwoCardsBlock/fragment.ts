@@ -14,6 +14,7 @@ module.exports = () => {
               id
               alt
               gatsbyImageData
+              url
             }
           }
         }

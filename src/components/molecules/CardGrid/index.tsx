@@ -18,7 +18,7 @@ const CardContainer = styled(motion.div)`
   @media ${media.small} {
     width: 31.2%;
   }
-`
+`;
 
 const CardGrid = ({ cards }: { cards: Array<CardProps> }) => (
   <CardGridContainer>

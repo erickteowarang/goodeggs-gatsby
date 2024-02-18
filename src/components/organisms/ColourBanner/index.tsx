@@ -25,41 +25,57 @@ type ColourBannerProps = {
 };
 
 const ColourBannerContainer = styled(Container)<Partial<ColourBannerProps>>`
-  padding: ${props => props.theme.space[5]} ${props => props.theme.space[4]};
-  background: ${props => props.backgroundColour 
-      ? props.backgroundColour 
-      : props.theme.colors.altBackground
-    };
-  margin-bottom: ${props => props.theme.space[5]};
+  padding: ${(props) => props.theme.space[5]} ${(props) => props.theme.space[4]};
+  background: ${(props) =>
+    props.backgroundColour
+      ? props.backgroundColour
+      : props.theme.colors.altBackground};
+
+  @media ${media.medium} {
+    margin-bottom: ${(props) => props.theme.space[5]};
+  }
 
   @media ${media.large} {
-    padding: ${props => props.wideVersion 
-      ? css`
-        ${props => props.theme.space[3]}
-        0
-        ${props => props.theme.space[3]}
-        ${props => props.theme.space[5]}`
-      : css`${props => props.theme.space[6]} ${props => props.theme.space[5]}`}; 
+    padding: ${(props) =>
+      props.wideVersion
+        ? css`
+            ${(props) => props.theme.space[3]}
+            0
+        ${(props) => props.theme.space[3]}
+        ${(props) => props.theme.space[5]}
+          `
+        : css`
+            ${(props) => props.theme.space[6]} ${(props) =>
+              props.theme.space[5]}
+          `};
     border-radius: 20px;
-    margin-bottom: ${props => props.theme.space[7]};
+    margin-bottom: ${(props) => props.theme.space[7]};
   }
 `;
 
 const BannerImageContainer = styled(Box)<{ location?: 'left' | 'right' }>`
-  ${props => props.location === 'left' ? 
-    css`
-      margin-right: ${props => props.theme.space[4]};
-    `
-    : css`
-      margin-left: ${props => props.theme.space[4]};
-    `}
+  ${(props) =>
+    props.location === 'left'
+      ? css`
+          margin-right: ${(props) => props.theme.space[4]};
+        `
+      : css`
+          margin-left: ${(props) => props.theme.space[4]};
+        `}
 `;
 
 const BannerLink = styled(Link)`
   color: black;
 `;
 
-const ColourBanner = ({ text, cta, backgroundColour, imageLocation, image, wideVersion }: ColourBannerProps) => (
+const ColourBanner = ({
+  text,
+  cta,
+  backgroundColour,
+  imageLocation,
+  image,
+  wideVersion,
+}: ColourBannerProps) => (
   <Section>
     <ColourBannerContainer
       wideVersion={wideVersion}
@@ -67,8 +83,8 @@ const ColourBanner = ({ text, cta, backgroundColour, imageLocation, image, wideV
     >
       <Flex alignItems="center" responsive>
         {imageLocation === 'left' && image && (
-          <BannerImageContainer 
-            width={wideVersion ? "auto" : "30%"}
+          <BannerImageContainer
+            width={wideVersion ? 'auto' : '30%'}
             location={imageLocation}
           >
             <Image image={image} />
@@ -78,19 +94,20 @@ const ColourBanner = ({ text, cta, backgroundColour, imageLocation, image, wideV
           <Heading isHighlighted isLight as="h3">
             {parse(text, TrimParagraphOptions)}
           </Heading>
-          {cta && (
-            <BannerLink href={cta.url}>{cta.title}</BannerLink>
-          )}
+          {cta && <BannerLink href={cta.url}>{cta.title}</BannerLink>}
         </Box>
         {imageLocation === 'right' && image && (
-          <BannerImageContainer width={wideVersion ? "auto" : "65%"} location={imageLocation}>
+          <BannerImageContainer
+            width={wideVersion ? 'auto' : '65%'}
+            location={imageLocation}
+          >
             <Image image={image} />
           </BannerImageContainer>
         )}
       </Flex>
     </ColourBannerContainer>
 
-    <Spacing size={5} mobileOnly />
+    <Spacing size={5} desktopOnly />
   </Section>
 );
 

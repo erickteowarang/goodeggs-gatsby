@@ -26,6 +26,7 @@ const mapPortfolioItemToCards = (
   return cards.map((item) => ({
     heading: item.portfolioItem.title,
     image: item.portfolioItem.featuredImage.node,
+    imageURL: item.portfolioItem.featuredImage.node.url,
     content: item.portfolioItem.excerpt,
     link: item.portfolioItem.uri,
   }));

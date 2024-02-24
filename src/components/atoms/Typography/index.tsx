@@ -16,6 +16,7 @@ type HeadingProps = TypographyProps & {
   isLight?: boolean;
   isExtraLarge?: boolean;
   align?: 'center' | 'right';
+  noMarginBottom?: boolean;
 };
 
 export const Blockquote = styled.blockquote`
@@ -72,7 +73,7 @@ export const Heading = styled.h2<HeadingProps>`
   margin: 0;
   color: ${({ theme, isLight }) =>
     isLight ? theme.colors.text : theme.colors.primary};
-  margin-bottom: ${({ theme }) => theme.space[3]};
+  margin-bottom: ${({ theme, noMarginBottom }) => noMarginBottom ? 0 : theme.space[3]};
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: ${({ theme, isLarge, isExtraLarge }) =>
     isExtraLarge 

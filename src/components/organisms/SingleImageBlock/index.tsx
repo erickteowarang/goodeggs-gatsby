@@ -20,6 +20,7 @@ const SingleImageBlock = ({
           image={image}
           style={{
             borderRadius: '20px',
+            maxWidth: '100%',
           }}
         />
       </Flex>

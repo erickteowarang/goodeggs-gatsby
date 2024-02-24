@@ -20,7 +20,8 @@ const HeadingTextBlock = ({
       <BlockHeading>{heading}</BlockHeading>
       <Text isBlock>{parse(content)}</Text>
     </Container>
-    <Spacing size={5} />
+    <Spacing size={5} desktopOnly />
+    <Spacing size={1} mobileOnly />
   </Section>
 );
 

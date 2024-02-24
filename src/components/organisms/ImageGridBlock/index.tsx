@@ -1,12 +1,10 @@
 import * as React from 'react';
-import parse from 'html-react-parser';
 
 import Box from 'components/atoms/Box';
 import Container from 'components/atoms/Container';
 import Flex from 'components/atoms/Flex';
 import Image from 'components/atoms/Image';
 import Section from 'components/atoms/Section';
-import { Text, BlockHeading } from 'components/atoms/Typography';
 import { GatsbyImageProps } from 'types/global';
 import Spacing from 'components/atoms/Spacing';
 
@@ -19,8 +17,6 @@ type ImageGridBlockProps = {
 };
 
 const ImageGridBlock = ({
-  heading,
-  content,
   gridImages,
 }: ImageGridBlockProps) => (
   <Section smallPadding>
@@ -40,6 +36,7 @@ const ImageGridBlock = ({
                     image={singleImage.image}
                     style={{
                       borderRadius: '20px',
+                      maxWidth:'100%',
                     }}
                   />
                 </Box>
@@ -52,6 +49,7 @@ const ImageGridBlock = ({
               image={singleImage.image}
               style={{
                 borderRadius: '20px',
+                maxWidth:'100%',
               }}
             />
           )

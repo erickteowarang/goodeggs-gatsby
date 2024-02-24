@@ -8,6 +8,7 @@ import Flex from 'components/atoms/Flex';
 import Container from 'components/atoms/Container';
 import Link from 'components/atoms/Link';
 import { CenteredContent, TrimParagraphOptions } from 'components/generic';
+import Spacing from 'components/atoms/Spacing';
 
 type TextBannerProps = {
   text: string;
@@ -18,7 +19,8 @@ const TextBanner = ({ text, cta }: TextBannerProps) => (
   <Section largePadding>
     <Container variant="narrow">
       <Flex variant="center">
-        <Heading isHighlighted isLight align="center" as="h3">
+        <Spacing size={2} mobileOnly />
+        <Heading isHighlighted isLight align="center" as="h3" noMarginBottom>
           {parse(text, TrimParagraphOptions)}
         </Heading>
         {cta && (
@@ -26,6 +28,7 @@ const TextBanner = ({ text, cta }: TextBannerProps) => (
             <Link href={cta.url}>{cta.title}</Link>
           </CenteredContent>
         )}
+        <Spacing size={2} mobileOnly />
       </Flex>
     </Container>
   </Section>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
-
+import { media } from 'theme/media';
 import Container from 'components/atoms/Container';
 import { BlockHeading } from 'components/atoms/Typography';
 import Form from 'components/molecules/Form';
@@ -18,6 +18,11 @@ const ContactFormContainer = styled(Container)`
   border-radius: 20px;
   padding: ${props => props.theme.space[6]} 0;
   margin-bottom: ${props => props.theme.space[5]};
+
+  @media ${media.medium} {
+    border-radius: 20px;
+  }
+
 `;
 
 const ContactFormBlock = ({ heading }: ContactFormBlockProps) => {

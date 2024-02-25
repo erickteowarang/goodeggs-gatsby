@@ -28,7 +28,7 @@ const FilterHeading = styled(Heading)`
 const FilterItem = styled.a<{
   isActive?: boolean;
 }>`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: ${({ theme, isActive }) =>
     isActive ? theme.colors.text : theme.colors.mutedText};
@@ -42,6 +42,7 @@ const FilterItem = styled.a<{
   }
 
   @media ${media.medium} {
+    font-size: 20px;
     text-wrap: auto;
     font-size: ${({ theme }) => theme.fontSizes[4]};
   }

@@ -4,6 +4,7 @@ import { navigate } from 'gatsby';
 import styled, { css } from 'styled-components';
 import { GatsbyImageProps } from 'types/global';
 import Image from 'components/atoms/Image';
+import { media } from 'theme/media';
 
 export type CardProps = {
   image: GatsbyImageProps;
@@ -15,7 +16,7 @@ export type CardProps = {
 };
 
 const StyledCard = styled.div<{ fullWidth?: boolean; hasLink?: boolean }>`
-  width: ${({ fullWidth }) => (fullWidth ? '100%' : '333px')};
+  width: 100%;  
 
   .card-image {
     width: 100%;
@@ -27,6 +28,10 @@ const StyledCard = styled.div<{ fullWidth?: boolean; hasLink?: boolean }>`
     css`
       cursor: pointer;
     `}
+
+    @media ${media.medium} {
+      width: ${({ fullWidth }) => (fullWidth ? '100%' : '333px')};
+    }
 `;
 
 const CardHeading = styled.h4`

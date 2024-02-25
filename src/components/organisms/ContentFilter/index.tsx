@@ -35,6 +35,7 @@ const FilterItem = styled.a<{
   text-decoration: ${({ isActive }) => (isActive ? 'underline' : 'none')};
   cursor: pointer;
   text-wrap: nowrap;
+  white-space: nowrap;
 
   &:hover {
     color: ${({ theme }) => theme.colors.text};
@@ -44,6 +45,7 @@ const FilterItem = styled.a<{
   @media ${media.medium} {
     font-size: 20px;
     text-wrap: auto;
+    white-space: normal;
     font-size: ${({ theme }) => theme.fontSizes[4]};
   }
 `;

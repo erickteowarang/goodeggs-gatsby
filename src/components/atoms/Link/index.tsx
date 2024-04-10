@@ -19,6 +19,10 @@ const StyledLink = styled.a`
   &:hover {
     color: ${({ theme }) => theme.colors.active};
   }
+
+  &:visited {
+    color: ${({ theme }) => theme.colors.active};
+  }
 `;
 
 const Link = ({ to, href, children, className, ...props }: LinkProps) => {

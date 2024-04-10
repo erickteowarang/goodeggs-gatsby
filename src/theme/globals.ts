@@ -59,6 +59,18 @@ const Globals = createGlobalStyle`
       visibility: hidden;
     }
   }
+
+  a {
+    color: ${({ theme }) => theme.colors.linkBlue};
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.active};
+    }
+
+    &:visited {
+      color: ${({ theme }) => theme.colors.active};
+    }
+  }
 `;
 
 export default withTheme(Globals);

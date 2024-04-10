@@ -13,6 +13,9 @@ export type CardProps = {
   fullWidth?: boolean;
   tags?: Array<string>;
   link?: string;
+  imageStyles?: {
+    [key: string]: string
+  }
 };
 
 const StyledCard = styled.div<{ fullWidth?: boolean; hasLink?: boolean }>`
@@ -76,6 +79,7 @@ const Card = ({
   tags,
   fullWidth,
   link,
+  imageStyles,
 }: CardProps) => (
   <StyledCard
     fullWidth={fullWidth}
@@ -87,6 +91,7 @@ const Card = ({
         style={{
           objectFit: 'cover',
           maxWidth: '100%',
+          ...imageStyles,
         }}
         image={image}
       />

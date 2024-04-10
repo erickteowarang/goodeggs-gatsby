@@ -57,7 +57,19 @@ const PortfolioItemPage = (pageProps) => {
         setActiveFilter={setActiveFilter}
         activeFilter={activeFilter}
       />
-      {cards.length && <CardGrid cards={cards} />}
+      {cards.length && 
+        <CardGrid 
+          cards={cards}
+          flexStart
+          imageStyles={{ 
+            width: '100%',
+            height: '500px',
+            display: 'inline-block',
+            verticalAlign: 'top',
+            borderRadius: '20px',
+          }}
+        />
+      }
     </Layout>
   );
 };

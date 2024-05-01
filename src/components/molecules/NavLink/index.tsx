@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import Link, { LinkProps } from 'components/atoms/Link';
 
 const StyledNavLink = styled(Link)<{ isActive?: boolean }>`
-  color: ${({ theme }) => theme.colors.tagBlue};
+  color: ${({ theme }) => theme.colors.tagBlue} !important;
   font-family: ${({ theme }) => theme.fonts.text};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   text-decoration: none;

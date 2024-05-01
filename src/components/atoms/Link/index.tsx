@@ -17,11 +17,11 @@ const StyledLink = styled.a`
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
 
   &:hover {
-    color: ${({ theme }) => theme.colors.active};
+    color: ${({ theme }) => theme.colors.tagBlue};
   }
 
   &:visited {
-    color: ${({ theme }) => theme.colors.active};
+    color: ${({ theme }) => theme.colors.tagBlue};
   }
 `;
 

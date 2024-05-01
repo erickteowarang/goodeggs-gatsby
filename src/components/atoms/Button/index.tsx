@@ -20,14 +20,14 @@ const getButtonVariants = (variant: ButtonVariantTypes) => {
         background-color: ${({ theme }) => theme.colors.primary};
         border: 2px solid ${({ theme }) => theme.colors.primary};
 
+        &:visited {
+          color: white;
+        }
+
         &:hover,
         &:focus {
           color: ${({ theme }) => theme.colors.primary};
           background-color: white;
-        }
-
-        &:visited {
-          color: white;
         }
       `;
     case 'form':
@@ -37,14 +37,14 @@ const getButtonVariants = (variant: ButtonVariantTypes) => {
         border: 2px solid ${({ theme }) => theme.colors.primary};
         padding: 15px 50px;
 
+        &:visited {
+          color: white;
+        }
+
         &:hover,
         &:focus {
           color: ${({ theme }) => theme.colors.primary};
           background-color: white;
-        }
-
-        &:visited {
-          color: white;
         }
       `;
     case 'inverted':
@@ -53,14 +53,14 @@ const getButtonVariants = (variant: ButtonVariantTypes) => {
         background-color: white;
         border: 2px solid white;
 
+        &:visited {
+          color: ${({ theme }) => theme.colors.primary};
+        }
+
         &:hover,
         &:focus {
           color: white;
           background-color: ${({ theme }) => theme.colors.primary};
-        }
-
-        &:visited {
-          color: ${({ theme }) => theme.colors.primary};
         }
       `;
     case 'link':
@@ -68,13 +68,13 @@ const getButtonVariants = (variant: ButtonVariantTypes) => {
         color: inherit;
         background-color: transparent;
 
+        &:visited {
+          color: inherit;
+        }
+
         &::hover,
         &:focus {
           background-color: ${({ theme }) => theme.colors.muted};
-        }
-
-        &:visited {
-          color: inherit;
         }
       `;
     default:

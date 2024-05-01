@@ -64,11 +64,11 @@ const Globals = createGlobalStyle`
     color: ${({ theme }) => theme.colors.linkBlue};
 
     &:hover {
-      color: ${({ theme }) => theme.colors.active};
+      color: ${({ theme }) => theme.colors.tagBlue};
     }
 
     &:visited {
-      color: ${({ theme }) => theme.colors.active};
+      color: ${({ theme }) => theme.colors.tagBlue};
     }
   }
 `;

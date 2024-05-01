@@ -25,6 +25,10 @@ const getButtonVariants = (variant: ButtonVariantTypes) => {
           color: ${({ theme }) => theme.colors.primary};
           background-color: white;
         }
+
+        &:visited {
+          color: white;
+        }
       `;
     case 'form':
       return css`
@@ -38,6 +42,10 @@ const getButtonVariants = (variant: ButtonVariantTypes) => {
           color: ${({ theme }) => theme.colors.primary};
           background-color: white;
         }
+
+        &:visited {
+          color: white;
+        }
       `;
     case 'inverted':
       return css`
@@ -50,6 +58,10 @@ const getButtonVariants = (variant: ButtonVariantTypes) => {
           color: white;
           background-color: ${({ theme }) => theme.colors.primary};
         }
+
+        &:visited {
+          color: ${({ theme }) => theme.colors.primary};
+        }
       `;
     case 'link':
       return css`
@@ -59,6 +71,10 @@ const getButtonVariants = (variant: ButtonVariantTypes) => {
         &::hover,
         &:focus {
           background-color: ${({ theme }) => theme.colors.muted};
+        }
+
+        &:visited {
+          color: inherit;
         }
       `;
     default:

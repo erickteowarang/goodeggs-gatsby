@@ -47,6 +47,7 @@ const MobileNavOverlay = styled.div`
   padding-top: ${({ theme }) => theme.space[4]};
   background: ${({ theme }) => theme.colors.primary};
   z-index: 1;
+  margin-top: -1px;
 
   @media ${media.small} {
     display: none;
@@ -55,9 +56,9 @@ const MobileNavOverlay = styled.div`
 
 const MobileNavLink = styled(NavLink)`
   display: block;
-  color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.background} !important;
   font-size: ${({ theme }) => theme.fontSizes[4]};
-  padding-top: ${({ theme }) => theme.space[2]};
+  padding-top: ${({ theme }) => theme.space[2]};s
   padding-bottom: ${({ theme }) => theme.space[2]};
   padding-left: ${({ theme }) => theme.space[4]};
   padding-right: ${({ theme }) => theme.space[4]};

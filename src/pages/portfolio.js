@@ -114,7 +114,7 @@ const PortfolioItemPage = () => {
           setActiveFilter={setActiveFilter}
           activeFilter={activeFilter}
         />
-        {cards.length && (
+        {cards && (
           <CardGrid
             cards={cards}
             flexStart

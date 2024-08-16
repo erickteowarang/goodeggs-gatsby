@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import Layout from 'components/organisms/Layout';
+import Section from 'components/atoms/Section';
 import ContentFilter from 'components/organisms/ContentFilter';
 import CardGrid from 'components/molecules/CardGrid';
 import ClipLoader from 'react-spinners/ClipLoader';
@@ -100,6 +102,11 @@ const PortfolioItemPage = () => {
       .catch(console.error);
   }, []);
 
+  const LoaderContainer = styled.span`
+    display: flex;
+    justify-content: center;
+  `;
+
   return (
     allPortfolioItem && (
       <Layout
@@ -110,9 +117,11 @@ const PortfolioItemPage = () => {
         }}
       >
         {isLoading ? (
-          <LoaderContainer>
-            <ClipLoader color="#004ca3" loading={isLoading} />
-          </LoaderContainer>
+          <Section>
+            <LoaderContainer>
+              <ClipLoader color="#004ca3" loading={isLoading} />
+            </LoaderContainer>
+          </Section>
         ) : (
           <>
             <ContentFilter

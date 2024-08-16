@@ -1,8 +1,8 @@
-import React, { useState, CSSProperties } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useForm, FormProvider } from 'react-hook-form';
 import { gql, useMutation } from '@apollo/client';
-import ClipLoader from "react-spinners/ClipLoader";
+import ClipLoader from 'react-spinners/ClipLoader';
 
 import Button from 'components/atoms/Button';
 import Container from 'components/atoms/Container';
@@ -36,7 +36,7 @@ const FormButtonContainer = styled.div`
 const LoaderContainer = styled.span`
   display: inline-block;
   margin-left: 10px;
-`
+`;
 
 const Form = ({ id, formFields }: FormProps) => {
   const methods = useForm();
@@ -49,7 +49,7 @@ const Form = ({ id, formFields }: FormProps) => {
     if (loading) return;
 
     setIsLoading(true);
-    
+
     const formRes = formatPayload({
       serverData: formFields,
       clientData: values,

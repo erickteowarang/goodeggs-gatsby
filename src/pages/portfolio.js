@@ -9,39 +9,52 @@ const PortfolioItemPage = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [allPortfolioItem, setAllPortfolioItem] = useState([]);
 
-  useEffect(async () => {
-    const res = await fetch('https://admin.thegoodeggs.com.au/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: `
-            {
-              portfolioItems(where: { orderby: { field: MENU_ORDER, order: ASC } }) {
-                nodes {
-                  title
-                  excerpt
-                  featuredImage {
-                    node {
-                      id
-                      altText
-                      sourceUrl					
+  useEffect(() => {
+    const fetchData = async () => {
+      // get the data from the api
+      const data = await fetch('https://admin.thegoodeggs.com.au/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
+              {
+                portfolioItems(where: { orderby: { field: MENU_ORDER, order: ASC } }) {
+                  nodes {
+                    title
+                    excerpt
+                    featuredImage {
+                      node {
+                        id
+                        altText
+                        sourceUrl					
+                      }
                     }
-                  }
-                  uri
-                  categories {
-                    nodes {
-                      name
+                    uri
+                    categories {
+                      nodes {
+                        name
+                      }
                     }
                   }
                 }
               }
-            }
-        `,
-      }),
-    });
-    console.log('res', res.json());
+          `,
+        }),
+      });
+      // convert the data to json
+      const json = await data.json();
+
+      console.log('json', json);
+
+      // set state with the result
+      setAllPortfolioItem(json);
+    };
+
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);
   }, []);
 
   // const getCategories = () => {

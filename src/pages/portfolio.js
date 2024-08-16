@@ -8,6 +8,7 @@ const PortfolioItemPage = () => {
   const [cards, setCards] = useState([]);
   const [activeFilter, setActiveFilter] = useState('All');
   const [allPortfolioItem, setAllPortfolioItem] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   const getCategories = () => {
     let allCategories = ['All'];
@@ -90,8 +91,8 @@ const PortfolioItemPage = () => {
       const portfolioItemData = json.data.portfolioItems;
       setAllPortfolioItem(portfolioItemData);
       const allCards = getCards(portfolioItemData);
-      console.log('allCards', allCards);
       setCards(allCards);
+      setLoaded(true);
     };
 
     fetchData()
@@ -108,12 +109,14 @@ const PortfolioItemPage = () => {
           footerCtaHeading: `Let's talk digital`,
         }}
       >
-        <ContentFilter
-          heading="Selected work"
-          filters={getCategories()}
-          setActiveFilter={setActiveFilter}
-          activeFilter={activeFilter}
-        />
+        {loaded && (
+          <ContentFilter
+            heading="Selected work"
+            filters={getCategories()}
+            setActiveFilter={setActiveFilter}
+            activeFilter={activeFilter}
+          />
+        )}
         {cards && (
           <CardGrid
             cards={cards}

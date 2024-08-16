@@ -10,7 +10,7 @@ const PortfolioItemPage = () => {
   const [allPortfolioItem, setAllPortfolioItem] = useState([]);
 
   useEffect(async () => {
-    const res = await fetch('/graphql', {
+    const res = await fetch('https://admin.thegoodeggs.com.au/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

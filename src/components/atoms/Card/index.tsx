@@ -14,12 +14,13 @@ export type CardProps = {
   tags?: Array<string>;
   link?: string;
   imageStyles?: {
-    [key: string]: string
-  }
+    [key: string]: string;
+  };
+  useImageSrc?: boolean;
 };
 
 const StyledCard = styled.div<{ fullWidth?: boolean; hasLink?: boolean }>`
-  width: 100%;  
+  width: 100%;
 
   .card-image {
     width: 100%;
@@ -32,9 +33,9 @@ const StyledCard = styled.div<{ fullWidth?: boolean; hasLink?: boolean }>`
       cursor: pointer;
     `}
 
-    @media ${media.medium} {
-      width: ${({ fullWidth }) => (fullWidth ? '100%' : '333px')};
-    }
+  @media ${media.medium} {
+    width: ${({ fullWidth }) => (fullWidth ? '100%' : '333px')};
+  }
 `;
 
 const CardHeading = styled.h4`
@@ -80,6 +81,7 @@ const Card = ({
   fullWidth,
   link,
   imageStyles,
+  useImageSrc,
 }: CardProps) => (
   <StyledCard
     fullWidth={fullWidth}
@@ -94,6 +96,7 @@ const Card = ({
           ...imageStyles,
         }}
         image={image}
+        useImageSrc={useImageSrc}
       />
     )}
     <CardHeading>{heading}</CardHeading>

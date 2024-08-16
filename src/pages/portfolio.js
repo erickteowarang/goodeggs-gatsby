@@ -9,6 +9,46 @@ const PortfolioItemPage = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [allPortfolioItem, setAllPortfolioItem] = useState([]);
 
+  const getCategories = () => {
+    let allCategories = ['All'];
+    allPortfolioItem?.nodes?.forEach((node) => {
+      node.categories.nodes.forEach((category) => {
+        if (!allCategories.includes(category.name)) {
+          allCategories.push(category.name);
+        }
+      });
+    });
+
+    return allCategories;
+  };
+
+  const getCards = (allPortfolioItemNodes) => {
+    let allPortfolioItems = allPortfolioItemNodes.nodes;
+    if (activeFilter !== 'All') {
+      allPortfolioItems = allPortfolioItems.filter((node) =>
+        node.categories.nodes.some((category) => category.name === activeFilter)
+      );
+    }
+
+    return allPortfolioItems?.map((node) => ({
+      heading: node.title,
+      content: node.excerpt,
+      image: {
+        url: node.featuredImage.node.sourceUrl,
+        alt: node.featuredImage.node.altText,
+        id: node.featuredImage.node.id,
+      },
+      tags: node.categories.nodes.map((category) => category.name),
+      link: node.uri,
+    }));
+  };
+
+  useEffect(() => {
+    if (allPortfolioItem) {
+      setCards(getCards(allPortfolioItem));
+    }
+  }, [activeFilter]);
+
   useEffect(() => {
     const fetchData = async () => {
       // get the data from the api
@@ -20,7 +60,7 @@ const PortfolioItemPage = () => {
         body: JSON.stringify({
           query: `
               {
-                portfolioItems(where: { orderby: { field: MENU_ORDER, order: ASC } }) {
+                portfolioItems(first: 25, where: { orderby: { field: MENU_ORDER, order: ASC } }) {
                   nodes {
                     title
                     excerpt
@@ -28,7 +68,7 @@ const PortfolioItemPage = () => {
                       node {
                         id
                         altText
-                        sourceUrl					
+                        sourceUrl
                       }
                     }
                     uri
@@ -46,10 +86,12 @@ const PortfolioItemPage = () => {
       // convert the data to json
       const json = await data.json();
 
-      console.log('json', json);
-
       // set state with the result
-      setAllPortfolioItem(json);
+      const portfolioItemData = json.data;
+      setAllPortfolioItem(portfolioItemData);
+      const allCards = getCards(portfolioItemData);
+      console.log('allCards', allCards);
+      setCards(allCards);
     };
 
     fetchData()
@@ -57,70 +99,37 @@ const PortfolioItemPage = () => {
       .catch(console.error);
   }, []);
 
-  // const getCategories = () => {
-  //   let allCategories = ['All'];
-  //   allPortfolioItem?.nodes?.forEach((node) => {
-  //     node.categories.forEach((category) => {
-  //       if (!allCategories.includes(category.name)) {
-  //         allCategories.push(category.name);
-  //       }
-  //     });
-  //   });
-
-  //   return allCategories;
-  // };
-
-  // const getCards = () => {
-  //   let allPortfolioItems = allPortfolioItem.nodes;
-  //   if (activeFilter !== 'All') {
-  //     allPortfolioItems = allPortfolioItems.filter((node) =>
-  //       node.categories.some((category) => category.name === activeFilter)
-  //     );
-  //   }
-
-  //   if (allPortfolioItems) {
-  //     return allPortfolioItems?.map((node) => ({
-  //       heading: node.title,
-  //       content: node.excerpt,
-  //       image: node.image,
-  //       tags: node.categories.map((category) => category.name),
-  //       link: node.uri,
-  //     }));
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   setCards(getCards());
-  // }, [activeFilter]);
-
   return (
-    <Layout
-      title="Selected work"
-      footerData={{
-        backgroundColor: 'grey',
-        footerCtaHeading: `Let's talk digital`,
-      }}
-    >
-      {/* <ContentFilter
-        heading="Selected work"
-        filters={getCategories()}
-        setActiveFilter={setActiveFilter}
-        activeFilter={activeFilter}
-      />
-      {cards?.length && (
-        <CardGrid
-          cards={cards}
-          flexStart
-          imageStyles={{
-            width: '100%',
-            height: '500px',
-            display: 'inline-block',
-            verticalAlign: 'top',
-            borderRadius: '20px',
-          }}
+    allPortfolioItem && (
+      <Layout
+        title="Selected work"
+        footerData={{
+          backgroundColor: 'grey',
+          footerCtaHeading: `Let's talk digital`,
+        }}
+      >
+        <ContentFilter
+          heading="Selected work"
+          filters={getCategories()}
+          setActiveFilter={setActiveFilter}
+          activeFilter={activeFilter}
         />
-      )} */}
-    </Layout>
+        {cards.length && (
+          <CardGrid
+            cards={cards}
+            flexStart
+            imageStyles={{
+              width: '100%',
+              height: '500px',
+              display: 'inline-block',
+              verticalAlign: 'top',
+              borderRadius: '20px',
+            }}
+            useImageSrc
+          />
+        )}
+      </Layout>
+    )
   );
 };
 

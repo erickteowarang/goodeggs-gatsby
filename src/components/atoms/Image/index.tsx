@@ -5,11 +5,12 @@ import { GatsbyImageProps } from 'types/global';
 type ImageProps = {
   image: GatsbyImageProps;
   style?: React.CSSProperties;
+  useImageSrc?: boolean;
 };
 
-const Image = ({ image, style }: ImageProps) => (
+const Image = ({ image, style, useImageSrc }: ImageProps) => (
   <>
-    {image.url?.includes('svg') ? (
+    {image.url?.includes('svg') || useImageSrc ? (
       <img src={image.url} alt={image.alt} style={style} />
     ) : (
       <GatsbyImage

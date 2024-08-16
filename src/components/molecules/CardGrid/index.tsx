@@ -9,12 +9,13 @@ import Flex from 'components/atoms/Flex';
 import { media } from 'theme/media';
 
 type CardGridProps = {
-  cards: Array<CardProps>; 
-  flexStart: boolean; 
+  cards: Array<CardProps>;
+  flexStart: boolean;
   imageStyles?: {
-    [key: string]: string
-  }; 
-}
+    [key: string]: string;
+  };
+  useImageSrc?: boolean;
+};
 
 const CardGridContainer = styled(Container)`
   margin-bottom: ${({ theme }) => theme.space[7]};
@@ -38,10 +39,11 @@ const CardContainer = styled(motion.div)`
   }
 `;
 
-const CardGrid = ({ 
-  cards, 
+const CardGrid = ({
+  cards,
   flexStart,
-  imageStyles
+  imageStyles,
+  useImageSrc,
 }: CardGridProps) => (
   <CardGridContainer>
     <Flex wrap alignItems={flexStart ? 'start' : 'center'}>
@@ -55,10 +57,12 @@ const CardGrid = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <Card key={i} 
-              {...card} 
-              fullWidth 
+            <Card
+              key={i}
+              {...card}
+              fullWidth
               imageStyles={imageStyles}
+              useImageSrc={useImageSrc}
             />
           </CardContainer>
         ))}

@@ -1,17 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import Layout from 'components/organisms/Layout';
 import ContentFilter from 'components/organisms/ContentFilter';
 import CardGrid from 'components/molecules/CardGrid';
 
-const PortfolioItemPage = (pageProps) => {
+const PortfolioItemPage = () => {
   const [cards, setCards] = useState([]);
   const [activeFilter, setActiveFilter] = useState('All');
-  const { allPortfolioItem } = pageProps.data;
+  const { allPortfolioItem } = useStaticQuery(graphql`
+    query allPortfolioItemQuery {
+      allPortfolioItem {
+        nodes {
+          title
+          excerpt
+          image {
+            id
+            gatsbyImageData
+            alt
+            url
+          }
+          uri
+          categories {
+            name
+          }
+        }
+      }
+    }
+  `);
 
   const getCategories = () => {
     let allCategories = ['All'];
-    allPortfolioItem.nodes.forEach((node) => {
+    allPortfolioItem?.nodes?.forEach((node) => {
       node.categories.forEach((category) => {
         if (!allCategories.includes(category.name)) {
           allCategories.push(category.name);
@@ -57,11 +76,11 @@ const PortfolioItemPage = (pageProps) => {
         setActiveFilter={setActiveFilter}
         activeFilter={activeFilter}
       />
-      {cards.length && 
-        <CardGrid 
+      {cards.length && (
+        <CardGrid
           cards={cards}
           flexStart
-          imageStyles={{ 
+          imageStyles={{
             width: '100%',
             height: '500px',
             display: 'inline-block',
@@ -69,30 +88,9 @@ const PortfolioItemPage = (pageProps) => {
             borderRadius: '20px',
           }}
         />
-      }
+      )}
     </Layout>
   );
 };
 
 export default PortfolioItemPage;
-
-export const portfolioItemPageQuery = graphql`
-  query PortfolioItemsQuery {
-    allPortfolioItem {
-      nodes {
-        title
-        excerpt
-        image {
-          id
-          gatsbyImageData
-          alt
-          url
-        }
-        uri
-        categories {
-          name
-        }
-      }
-    }
-  }
-`;

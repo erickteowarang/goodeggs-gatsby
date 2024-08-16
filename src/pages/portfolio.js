@@ -87,7 +87,7 @@ const PortfolioItemPage = () => {
       const json = await data.json();
 
       // set state with the result
-      const portfolioItemData = json.data;
+      const portfolioItemData = json.data.portfolioItems;
       setAllPortfolioItem(portfolioItemData);
       const allCards = getCards(portfolioItemData);
       console.log('allCards', allCards);

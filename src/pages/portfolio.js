@@ -4,10 +4,45 @@ import Layout from 'components/organisms/Layout';
 import ContentFilter from 'components/organisms/ContentFilter';
 import CardGrid from 'components/molecules/CardGrid';
 
-const PortfolioItemPage = ({ serverData }) => {
+const PortfolioItemPage = () => {
   const [cards, setCards] = useState([]);
   const [activeFilter, setActiveFilter] = useState('All');
-  console.log('serverData', serverData);
+  const [allPortfolioItem, setAllPortfolioItem] = useState([]);
+
+  useEffect(async () => {
+    const res = await fetch('/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `
+            {
+              portfolioItems(where: { orderby: { field: MENU_ORDER, order: ASC } }) {
+                nodes {
+                  title
+                  excerpt
+                  featuredImage {
+                    node {
+                      id
+                      altText
+                      sourceUrl					
+                    }
+                  }
+                  uri
+                  categories {
+                    nodes {
+                      name
+                    }
+                  }
+                }
+              }
+            }
+        `,
+      }),
+    });
+    console.log('res', res.json());
+  }, []);
 
   // const getCategories = () => {
   //   let allCategories = ['All'];
@@ -77,53 +112,3 @@ const PortfolioItemPage = ({ serverData }) => {
 };
 
 export default PortfolioItemPage;
-
-export async function getServerData() {
-  try {
-    const res = await fetch('https://admin.thegoodeggs.com/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: `
-            {
-              portfolioItems(where: { orderby: { field: MENU_ORDER, order: ASC } }) {
-                nodes {
-                  title
-                  excerpt
-                  featuredImage {
-                    node {
-                      id
-                      altText
-                      sourceUrl					
-                    }
-                  }
-                  uri
-                  categories {
-                    nodes {
-                      name
-                    }
-                  }
-                }
-              }
-            }
-        `,
-      }),
-    });
-
-    if (!res.ok) {
-      throw new Error(`Response failed`);
-    }
-
-    return {
-      props: await res.json(),
-    };
-  } catch (error) {
-    return {
-      status: 500,
-      headers: {},
-      props: {},
-    };
-  }
-}

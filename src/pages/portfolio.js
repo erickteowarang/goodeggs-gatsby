@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
 import Layout from 'components/organisms/Layout';
 import ContentFilter from 'components/organisms/ContentFilter';
 import CardGrid from 'components/molecules/CardGrid';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const PortfolioItemPage = () => {
   const [cards, setCards] = useState([]);
   const [activeFilter, setActiveFilter] = useState('All');
   const [allPortfolioItem, setAllPortfolioItem] = useState([]);
-  const [loaded, setLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getCategories = () => {
     let allCategories = ['All'];
@@ -92,7 +92,7 @@ const PortfolioItemPage = () => {
       setAllPortfolioItem(portfolioItemData);
       const allCards = getCards(portfolioItemData);
       setCards(allCards);
-      setLoaded(true);
+      setIsLoading(false);
     };
 
     fetchData()
@@ -109,27 +109,34 @@ const PortfolioItemPage = () => {
           footerCtaHeading: `Let's talk digital`,
         }}
       >
-        {loaded && (
-          <ContentFilter
-            heading="Selected work"
-            filters={getCategories()}
-            setActiveFilter={setActiveFilter}
-            activeFilter={activeFilter}
-          />
-        )}
-        {cards && (
-          <CardGrid
-            cards={cards}
-            flexStart
-            imageStyles={{
-              width: '100%',
-              height: '500px',
-              display: 'inline-block',
-              verticalAlign: 'top',
-              borderRadius: '20px',
-            }}
-            useImageSrc
-          />
+        {isLoading ? (
+          <LoaderContainer>
+            <ClipLoader color="#004ca3" loading={isLoading} />
+          </LoaderContainer>
+        ) : (
+          <>
+            <ContentFilter
+              heading="Selected work"
+              filters={getCategories()}
+              setActiveFilter={setActiveFilter}
+              activeFilter={activeFilter}
+            />
+
+            {cards && (
+              <CardGrid
+                cards={cards}
+                flexStart
+                imageStyles={{
+                  width: '100%',
+                  height: '500px',
+                  display: 'inline-block',
+                  verticalAlign: 'top',
+                  borderRadius: '20px',
+                }}
+                useImageSrc
+              />
+            )}
+          </>
         )}
       </Layout>
     )

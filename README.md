@@ -1,4 +1,4 @@
-# Advanced Gatsby Wordpress ACF Starter
+# Good Eggs Gatsby Repo
 
 This is a bare-bones repository to help you get started building pages in gatsby in a component-like fashion with Wordpress using the Advanced Custom Field (ACF) plugin's Flexible Content field on multiple post types.
 <br/>

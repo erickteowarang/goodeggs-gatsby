@@ -55,7 +55,7 @@ const PortfolioItemPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       // get the data from the api
-      const data = await fetch('https://admin.thegoodeggs.com.au/graphql', {
+      const data = await fetch('https://admin.thegoodeggcollective.com.au/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

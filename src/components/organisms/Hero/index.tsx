@@ -72,7 +72,7 @@ const Hero = ({
               )}
               {image && (
                 <HeroImageContainer>
-                  <Image image={image} />
+                  <Image image={image} style={{ maxWidth: '100%' }} />
                 </HeroImageContainer>
               )}
             </Box>

@@ -6,7 +6,7 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://goodeggs.com.au/',
+    siteUrl: 'https://goodeggcollective.com.au/',
     title: 'Good Eggs Collective',
     author: `Erick Teowarang`,
     description: 'The website for the Good Eggs Collective',

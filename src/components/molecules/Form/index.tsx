@@ -73,7 +73,9 @@ const Form = ({ id, formFields }: FormProps) => {
       .catch((error) => {
         console.error(error);
         setIsLoading(false);
-        setSubmissionError('Unknown Error');
+        setSubmissionError(
+          'An error has occurred, please try again or contact us directly'
+        );
       });
   };
 

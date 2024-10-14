@@ -34,12 +34,7 @@ const formatter = ({
       };
     case 'FILEUPLOAD':
       return {
-        fileUploadValues: [{
-          name: fieldResponse.name,
-          type: fieldResponse.type,
-          size: fieldResponse.size,
-          tmp_name: fieldResponse.name,
-        }],
+        fileUploadValues: fieldResponse,
       };
     default:
       return {};

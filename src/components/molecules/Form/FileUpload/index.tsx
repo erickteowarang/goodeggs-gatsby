@@ -58,8 +58,8 @@ const FileUpload = ({ fieldData, name, wrapId }: FileUploadProps) => {
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const fileUploaded = event.target.files[0];
-    setFileLabel(fileUploaded.name);
+    const fileUploaded = event.target.files;
+    setFileLabel(fileUploaded[0].name);
     setValue(name, fileUploaded);
   };
 
@@ -74,6 +74,7 @@ const FileUpload = ({ fieldData, name, wrapId }: FileUploadProps) => {
       <StyledFileInput
         aria-invalid={Boolean(errors?.[name])}
         aria-required={isRequired}
+        accept="image/*,.pdf"
         id={name}
         placeholder={placeholder}
         {...register(name, {

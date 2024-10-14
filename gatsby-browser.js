@@ -4,8 +4,8 @@ import {
   ApolloClient,
   ApolloProvider,
   InMemoryCache,
-  HttpLink,
 } from '@apollo/client';
+import createUploadLink from 'apollo-upload-client/createUploadLink.mjs';
 import { AnimatePresence } from 'framer-motion';
 import { DataProvider } from 'context/DataProvider';
 
@@ -15,7 +15,7 @@ import './overrides.css';
 
 export const wrapRootElement = ({ element }) => {
   const client = new ApolloClient({
-    link: new HttpLink({
+    link: createUploadLink({
       uri: 'https://admin.thegoodeggcollective.com.au/graphql',
       fetch,
     }),

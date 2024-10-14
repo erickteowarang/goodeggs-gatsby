@@ -8,3 +8,4 @@ dist
 src/fragments/components.js
 # Local Netlify folder
 .netlify
+.vercel

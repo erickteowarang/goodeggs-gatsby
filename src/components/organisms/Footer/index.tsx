@@ -52,17 +52,6 @@ const CopyrightText = styled(Text)`
   }
 `;
 
-const replaceLineBreaks = (mainString: string) => {
-  return mainString.split('\n').map((item, idx) => {
-    return (
-      <FooterLineItem key={idx}>
-        {item}
-        <br />
-      </FooterLineItem>
-    );
-  });
-};
-
 const Footer = ({
   backgroundColor,
   footerCtaHeading,
@@ -102,8 +91,8 @@ const Footer = ({
             ctaLink={
               overrideCtaLink || {
                 id: 'contact-page-link-footer',
-                url: '/contact-us',
-                title: 'Contact us',
+                url: '/contact',
+                title: 'Get in touch',
               }
             }
           />
@@ -116,25 +105,22 @@ const Footer = ({
         >
           <Box width="48%">
             <Flex variant="spaceBetween">
-            <div>
-              {replaceLineBreaks(wp.contactDetails.companyContactDetails.address)}
-            </div>
-            <div>
-              <FooterLineItem>
-                <a
-                  href={`tel:${wp.contactDetails.companyContactDetails.phoneNumber}`}
-                >
-                  {wp.contactDetails.companyContactDetails.phoneNumber}
-                </a>
-              </FooterLineItem>
-              <FooterLineItem>
-                <a
-                  href={`mailto:${wp.contactDetails.companyContactDetails.email}`}
-                >
-                  {wp.contactDetails.companyContactDetails.email}
-                </a>
-              </FooterLineItem>
-            </div>
+              <div>
+                <FooterLineItem>
+                  <a
+                    href={`tel:${wp.contactDetails.companyContactDetails.phoneNumber}`}
+                  >
+                    {wp.contactDetails.companyContactDetails.phoneNumber}
+                  </a>
+                </FooterLineItem>
+                <FooterLineItem>
+                  <a
+                    href={`mailto:${wp.contactDetails.companyContactDetails.email}`}
+                  >
+                    {wp.contactDetails.companyContactDetails.email}
+                  </a>
+                </FooterLineItem>
+              </div>
             </Flex>
             <CopyrightText isSmall>
               {`© The Good Egg Collective ${new Date().getFullYear()}. All Rights Reserved.`}
@@ -142,7 +128,9 @@ const Footer = ({
           </Box>
           <Box width="48%">
             <Text isSmall>
-              We acknowledge the Wurundjeri People as the Traditional Owners of the land on which we work and pay our respects to traditional custodians past, present and emerging.
+              We acknowledge the Wurundjeri People as the Traditional Owners of
+              the land on which we work and pay our respects to traditional
+              custodians past, present and emerging.
             </Text>
             <Spacing size={4} />
           </Box>

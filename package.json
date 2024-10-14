@@ -12,6 +12,7 @@
     "@vanilla-extract/css": "^1.6.8",
     "@vanilla-extract/css-utils": "^0.1.2",
     "@vanilla-extract/webpack-plugin": "^2.1.5",
+    "apollo-upload-client": "^18.0.1",
     "babel-plugin-styled-components": "^2.0.7",
     "chokidar": "^3.5.2",
     "cross-fetch": "^4.0.0",

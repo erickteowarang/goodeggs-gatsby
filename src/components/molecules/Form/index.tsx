@@ -85,8 +85,8 @@ const Form = ({ id, formFields }: FormProps) => {
         <Container variant="tight">
           {submissionSuccess ? (
             <CenteredContent>
-              <Heading>Your submission is successful</Heading>
-              <Text>We'll reach out to you as soon as we can</Text>
+              <Heading>Thanks for contacting us!</Heading>
+              <Text>We will get in touch with you shortly.</Text>
             </CenteredContent>
           ) : (
             <Flex variant="spaceBetween">

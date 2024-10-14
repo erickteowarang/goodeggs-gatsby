@@ -16,7 +16,7 @@ import './overrides.css';
 export const wrapRootElement = ({ element }) => {
   const client = new ApolloClient({
     link: new HttpLink({
-      uri: 'https://admin.thegoodeggs.com.au/graphql',
+      uri: 'https://admin.thegoodeggcollective.com.au/graphql',
       fetch,
     }),
     cache: new InMemoryCache(),

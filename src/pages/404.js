@@ -24,7 +24,6 @@ export default function NotFound() {
       }}
     >
       <Section>
-        <Box paddingY={4}>
           <Container>
             <Flex variant="column">
               <Heading variant="mega">404</Heading>
@@ -38,8 +37,8 @@ export default function NotFound() {
                 </Link>
               </Flex>
             </Flex>
+            <Box paddingY={4}></Box>
           </Container>
-        </Box>
       </Section>
     </Layout>
   );

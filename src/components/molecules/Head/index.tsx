@@ -33,8 +33,8 @@ const Head = ({ title, description, image, seo, ...props }: HeadProps) => {
     `
   );
 
-  const seoTitle = seo.title || title || site.siteMetadata.title;
-  const metaDescription = seo.metaDesc || description || site.siteMetadata.description;
+  const seoTitle = seo?.title || title || site.siteMetadata.title;
+  const metaDescription = seo?.metaDesc || description || site.siteMetadata.description;
 
   return (
     <Helmet
@@ -57,8 +57,8 @@ const Head = ({ title, description, image, seo, ...props }: HeadProps) => {
       <meta name="twitter:title" content={seoTitle} />
       <meta name="twitter:description" content={metaDescription} />
       {image && <meta name="twitter:image" content={image.url} />}
-      {seo.canonical && <link rel="canonical" href={seo.canonical} />}
-      {seo.schema && seo.schema.raw && <script type="application/ld+json">{seo.schema.raw}</script>}
+      {seo?.canonical && <link rel="canonical" href={seo.canonical} />}
+      {seo?.schema && seo.schema.raw && <script type="application/ld+json">{seo.schema.raw}</script>}
     </Helmet>
   );
 };

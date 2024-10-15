@@ -51,8 +51,36 @@ module.exports.createPages = async (gatsbyUtilities) => {
   if (!existsSync(cacheFolder)) {
     mkdirSync(cacheFolder, { recursive: true });
   }
+  
+  await getRedirects(gatsbyUtilities);
   const pages = await getPages(gatsbyUtilities);
   await createPages(pages, gatsbyUtilities);
+};
+
+const getRedirects = async ({ graphql, actions }) => {
+  const { createRedirect } = actions;
+  const redirects = await graphql(`
+    query GetAllRedirects {
+      wp {
+        redirection {
+          redirects {
+            origin
+            target
+          }
+        }
+      }
+    }
+  `);
+  const allRedirects = redirects.data.wp.redirection.redirects;
+  allRedirects.forEach(wpRedirect =>  {
+    const { origin, target } = wpRedirect;
+    const endingString = "s:11";
+    const terminatedNo = target.search(endingString) - 2;
+    const redirectedLink = target.substring(65, terminatedNo);
+    createRedirect({ fromPath: origin, toPath: redirectedLink, statusCode: 301 });
+    console.log(`Created a redirect from ${origin} to ${redirectedLink}`);
+  });
+
 };
 
 /**

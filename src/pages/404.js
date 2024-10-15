@@ -30,7 +30,7 @@ export default function NotFound() {
               <Heading variant="mega">404</Heading>
               <Heading as="h1">Page not found</Heading>
               <Flex variant="column">
-                <Text variant="lead">
+                <Text variant="lead" center>
                   Sorry! We couldn’t find the page you were looking for.
                 </Text>
                 <Link to="/">

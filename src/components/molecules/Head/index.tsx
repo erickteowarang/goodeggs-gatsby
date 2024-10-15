@@ -8,9 +8,17 @@ type HeadProps = {
   image: {
     url: string;
   };
+  seo: {
+    title: string;
+    metaDesc: string;
+    canonical: string;
+    schema: {
+      raw: string;
+    }
+  };
 };
 
-const Head = ({ title, description, image, ...props }: HeadProps) => {
+const Head = ({ title, description, image, seo, ...props }: HeadProps) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -25,30 +33,32 @@ const Head = ({ title, description, image, ...props }: HeadProps) => {
     `
   );
 
-  const metaDescription = description || site.siteMetadata.description;
+  const seoTitle = seo.title || title || site.siteMetadata.title;
+  const metaDescription = seo.metaDesc || description || site.siteMetadata.description;
 
   return (
     <Helmet
       htmlAttributes={{
         lang: 'en-au',
       }}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
     >
       <meta charSet="utf-8" />
-      <title>{title}</title>
+      <title>{seoTitle}</title>
       <meta
         name="description"
         property="og:description"
         content={metaDescription}
       />
-      <meta property="og:title" content={title} />
+      <meta property="og:title" content={seoTitle} />
       <meta property="og:type" content="website" />
       {image && <meta property="og:image" content={image.url} />}
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:author" content={site.siteMetadata.author} />
-      <meta name="twitter:title" content={title} />
+      <meta name="twitter:title" content={seoTitle} />
       <meta name="twitter:description" content={metaDescription} />
       {image && <meta name="twitter:image" content={image.url} />}
+      {seo.canonical && <link rel="canonical" href={seo.canonical} />}
+      {seo.schema && seo.schema.raw && <script type="application/ld+json">{seo.schema.raw}</script>}
     </Helmet>
   );
 };

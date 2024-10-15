@@ -21,6 +21,7 @@ const PageTemplate = (pageProps) => {
       title={pageProps.data[accessor].title}
       url={pageProps.data[accessor].uri}
       footerData={pageProps.data[accessor].footerFields}
+      seo={pageProps.data[accessor].seo}
     >
       {components.map((component, index) => {
         // ### COMPONENT RENDERING ### DO NOT MODIFY OR MOVE THIS COMMENT ###

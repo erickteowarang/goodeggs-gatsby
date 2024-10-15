@@ -222,6 +222,14 @@ const createTemporaryPageTemplateFile = (
           title
           uri
           ${getComponentsQuery(postType, index, true, componentNames)}
+          seo {
+            title
+            metaDesc
+            canonical
+            schema {
+              raw
+            }
+          }
 
           footerFields {
             ... on Wp${postType}_Footerfields {

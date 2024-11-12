@@ -59,6 +59,15 @@ const Head = ({ title, description, image, seo, ...props }: HeadProps) => {
       {image && <meta name="twitter:image" content={image.url} />}
       {seo?.canonical && <link rel="canonical" href={seo.canonical} />}
       {seo?.schema && seo.schema.raw && <script type="application/ld+json">{seo.schema.raw}</script>}
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-68YX3KRQYX"></script>
+      <script dangerouslySetInnerHTML={{ __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-68YX3KRQYX');
+        `}}>
+      </script>
     </Helmet>
   );
 };

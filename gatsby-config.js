@@ -54,7 +54,7 @@ module.exports = {
       resolve: 'gatsby-plugin-yoast-sitemap',
       options: {
         baseUrl: 'https://admin.thegoodeggcollective.com.au/',
-        siteUrl: 'https://thegoodeggcollective.com.au',
+        gatsbyUrl: 'https://thegoodeggcollective.com.au',
       }
     },
     {

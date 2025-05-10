@@ -6,7 +6,7 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://goodeggcollective.com.au/',
+    siteUrl: 'https://thegoodeggcollective.com.au/',
     title: 'Good Eggs Collective',
     author: `Erick Teowarang`,
     description: 'The website for the Good Eggs Collective',
@@ -42,7 +42,7 @@ module.exports = {
               }
           }`,
           // The filepath and name to Index Sitemap. Defaults to '/sitemap.xml'.
-          output: "/sitemap-index.xml",
+          output: "/sitemap_index.xml",
           mapping: {
             allWpPage: {
               sitemap: `pages`,

@@ -32,7 +32,6 @@ module.exports = {
         }
       }
     },
-    'gatsby-plugin-sitemap',
     'gatsby-plugin-typescript',
     'gatsby-plugin-root-import',
     'gatsby-plugin-image',

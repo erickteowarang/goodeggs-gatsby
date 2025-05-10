@@ -18,7 +18,6 @@ module.exports = {
         url: process.env.WPGRAPHQL_URL,
       },
     },
-    'gatsby-plugin-advanced-sitemap',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-netlify',
     {
@@ -39,6 +38,7 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-vanilla-extract',
+    'gatsby-plugin-advanced-sitemap',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

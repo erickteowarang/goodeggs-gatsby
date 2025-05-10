@@ -16,6 +16,9 @@ module.exports = {
       resolve: 'gatsby-source-wordpress',
       options: {
         url: process.env.WPGRAPHQL_URL,
+        schema: {
+          perPage: 75,
+        },
       },
     },
     'gatsby-plugin-styled-components',

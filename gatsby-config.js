@@ -19,45 +19,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-styled-components',
-    {
-      resolve: `gatsby-plugin-advanced-sitemap`,
-      options: {
-           // 1 query for each data type
-          query: `
-          {
-              pages {
-                  edges {
-                      node {
-                          id
-                          slug
-                      }
-                  }
-              }
-              portfolioItems {
-                  edges {
-                      node {
-                          id
-                          slug
-                      }
-                  }
-              }
-          }`,
-          // The filepath and name to Index Sitemap. Defaults to '/sitemap.xml'.
-          output: "/sitemap_index.xml",
-          mapping: {
-            pages: {
-              sitemap: `pages`,
-            },
-            portfolioItems: {
-              sitemap: `pages`,
-          },
-          },
-          exclude: [
-            `/404`,
-            `/404.html`,
-          ],
-      }
-    },
     'gatsby-plugin-netlify',
     {
       resolve: `gatsby-plugin-sharp`,

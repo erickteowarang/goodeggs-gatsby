@@ -18,6 +18,7 @@ module.exports = {
         url: process.env.WPGRAPHQL_URL,
       },
     },
+    'gatsby-plugin-advanced-sitemap',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-netlify',
     {
@@ -49,13 +50,6 @@ module.exports = {
         theme_color: '#004ca3',
         icon: 'src/favicon.png',
       },
-    },
-    {
-      resolve: 'gatsby-plugin-yoast-sitemap',
-      options: {
-        baseUrl: 'https://admin.thegoodeggcollective.com.au/',
-        gatsbyUrl: 'https://thegoodeggcollective.com.au',
-      }
     },
     {
       resolve: 'gatsby-plugin-web-font-loader',

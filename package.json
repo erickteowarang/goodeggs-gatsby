@@ -49,6 +49,7 @@
   },
   "private": true,
   "devDependencies": {
+    "ajv": "^7.2.4",
     "eslint": "^7.32.0",
     "gatsby-plugin-root-import": "^2.0.8",
     "husky": "^7.0.4",

@@ -18,45 +18,7 @@ module.exports = {
         url: process.env.WPGRAPHQL_URL,
       },
     },
-    {
-      resolve: `gatsby-plugin-advanced-sitemap`,
-      options: {
-           // 1 query for each data type
-          query: `
-          {
-              allWpPage {
-                  edges {
-                      node {
-                          id
-                          slug
-                      }
-                  }
-              }
-              allWpPortfolioItem {
-                  edges {
-                      node {
-                          id
-                          slug
-                      }
-                  }
-              }
-          }`,
-          // The filepath and name to Index Sitemap. Defaults to '/sitemap.xml'.
-          output: "/sitemap_index.xml",
-          mapping: {
-            allWpPage: {
-              sitemap: `pages`,
-            },
-            allWpPortfolioItem: {
-              sitemap: `pages`,
-          },
-          },
-          exclude: [
-            `/404`,
-            `/404.html`,
-          ],
-      }
-    },
+    'gatsby-plugin-advanced-sitemap',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-netlify',
     {
